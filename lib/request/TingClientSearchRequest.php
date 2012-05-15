@@ -22,7 +22,7 @@ class TingClientSearchRequest extends TingClientRequest {
   protected $query = '*:*';
   protected $facets = array();
   protected $numFacets;
-  protected $format;
+  protected $objectFormat;
   protected $start;
   protected $numResults;
   protected $rank;
@@ -40,13 +40,13 @@ class TingClientSearchRequest extends TingClientRequest {
 
     // These defaults are always needed.
     $this->setParameter('action', 'searchRequest');
-    if (!isset($parameters['format']) || empty($parameters['format'])) {
-      $this->setParameter('format', 'dkabm');
+    if (!isset($parameters['objectFormat']) || empty($parameters['objectFormat'])) {
+      $this->setParameter('objectFormat', variable_get('ting_search_openformat', 'dkabm'));
     }
 
     $methodParameterMap = array(
       'query' => 'query',
-      'format' => 'format',
+      'objectFormat' => 'objectFormat',
       'start' => 'start',
       'numResults' => 'stepValue',
       'rank' => 'rank',
@@ -112,12 +112,12 @@ class TingClientSearchRequest extends TingClientRequest {
     $this->numFacets = $numFacets;
   }
 
-  public function getFormat() {
-    return $this->format;
+  public function getObjectFormat() {
+    return $this->objectFormat;
   }
 
-  public function setFormat($format) {
-    $this->format = $format;
+  public function setObjectFormat($objectFormat) {
+    $this->objectFormat = $objectFormat;
   }
 
   public function getStart() {

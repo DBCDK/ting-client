@@ -9,7 +9,6 @@
 class TingClientObjectRequest extends TingClientRequest {
   protected $agency;
   protected $allRelations;
-  protected $format;
   protected $id;
   protected $localId;
   protected $relationData;
@@ -56,14 +55,6 @@ class TingClientObjectRequest extends TingClientRequest {
     $this->allRelations = $allRelations;
   }
 
-  public function getFormat() {
-    return $this->format;
-  }
-
-  public function setFormat($format) {
-    $this->format = $format;
-  }
-
   public function getLocalId() {
     return $this->localId;
   }
@@ -93,8 +84,8 @@ class TingClientObjectRequest extends TingClientRequest {
     // These defaults are always needed.
     $this->setParameter('action', 'getObjectRequest');
 
-    if (!isset($parameters['format']) || empty($parameters['format'])) {
-      $this->setParameter('format', 'dkabm');
+    if (!isset($parameters['objectFormat']) || empty($parameters['objectFormat'])) {
+      $this->setParameter('objectFormat', variable_get('ting_search_openformat', 'dkabm'));
     }
 
     // Determine which id to use and the corresponding index
@@ -111,7 +102,6 @@ class TingClientObjectRequest extends TingClientRequest {
     }
 
     $methodParameterMap = array(
-      'format' => 'format',
       'allRelations' => 'allRelations',
       'relationData' => 'relationData',
       'agency' => 'agency',
