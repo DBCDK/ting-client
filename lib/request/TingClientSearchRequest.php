@@ -121,20 +121,20 @@ class TingClientSearchRequest extends TingClientRequest {
     $this->numFacets = $numFacets;
   }
 
-  public function getFormat() {
-    return $this->format;
-  }
+public function getFormat() {
+return $this->format;
+}
+public function setFormat($format) {
+$this->format = $format;
+}
 
-  public function setFormat($format) {
-    $this->format = $format;
-  }
 
-  public function setObjectFormat($format){
-    $this->objectFormat = $format;
-  }
-
-  public function getObjectFormat(){
+  public function getObjectFormat() {
     return $this->objectFormat;
+  }
+
+  public function setObjectFormat($objectFormat) {
+    $this->objectFormat = $objectFormat;
   }
 
   public function getStart() {
