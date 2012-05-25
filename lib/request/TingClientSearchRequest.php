@@ -121,13 +121,16 @@ class TingClientSearchRequest extends TingClientRequest {
     $this->numFacets = $numFacets;
   }
 
-public function getFormat() {
-return $this->format;
-}
-public function setFormat($format) {
-$this->format = $format;
-}
+  public function getFormat() {
+    return $this->format;
+  }
+  public function setFormat($format) {
+    $this->format = $format;
+  }
 
+  public function cacheKey() {
+    return md5($this->getQuery());
+  }
 
   public function getObjectFormat() {
     return $this->objectFormat;
@@ -222,14 +225,12 @@ $this->format = $format;
 
     if (isset($searchResponse->result->searchResult) && is_array($searchResponse->result->searchResult)) {
       foreach ($searchResponse->result->searchResult as $entry => $result) {
-        $searchResult->collections[] = $this->generateCollection($result->collection, (array)$response->{'@namespaces'});
-	 // pjo 22-05-12 formatted collections
-	if( isset( $result->formattedCollection ) ) {
-	  $searchResult->formattedCollections[] = $this->generateFormattedCollection($result->formattedCollection,  (array)$response->{'@namespaces'});
+	// pjo 22-05-12 formatted collections
+	$formattedCollection =  isset( $result->formattedCollection ) ? $result->formattedCollection : NULL;
+        $searchResult->collections[] = $this->generateCollection($result->collection, (array)$response->{'@namespaces'}, $formattedCollection);
 	}
-      }      
-    }   
-
+      }     
+   
     if (isset($searchResponse->result->facetResult->facet) && is_array($searchResponse->result->facetResult->facet)) {
       foreach ($searchResponse->result->facetResult->facet as $facetResult) {
         $facet = new TingClientFacetResult();
@@ -239,7 +240,6 @@ $this->format = $format;
             $facet->terms[self::getValue($term->term)] = self::getValue($term->frequence);
           }
         }
-
         $searchResult->facets[$facet->name] = $facet;
       }
     }
@@ -323,14 +323,20 @@ $this->format = $format;
     return $object;
   }
 
-  private function generateCollection($collectionData, $namespaces) {
+  private function generateCollection($collectionData, $namespaces, $formattedCollection=NULL) {
     $objects = array();
     if (isset($collectionData->object) && is_array($collectionData->object)) {
       foreach ($collectionData->object as $objectData) {
-        $objects[] = $this->generateObject($objectData, $namespaces);
+        $objects[] = $this->generateObject($objectData, $namespaces, $formattedCollection);
       }
     }
-    return new TingClientObjectCollection($objects);
+
+    $ret = new TingClientObjectCollection($objects);
+
+    if( isset($formattedCollection) ) {
+      $ret->formattedCollection = $formattedCollection;
+    }
+    return $ret;
   }
 }
 
