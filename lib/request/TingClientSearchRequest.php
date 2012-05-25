@@ -243,6 +243,8 @@ class TingClientSearchRequest extends TingClientRequest {
         $searchResult->facets[$facet->name] = $facet;
       }
     }
+
+    dpm($searchResult);
     return $searchResult;
   }
 
@@ -334,7 +336,7 @@ class TingClientSearchRequest extends TingClientRequest {
     $ret = new TingClientObjectCollection($objects);
 
     if( isset($formattedCollection) ) {
-      $ret->formattedCollection = $formattedCollection;
+      $ret->formattedCollection = new TingClientFormattedCollection($formattedCollection);
     }
     return $ret;
   }
