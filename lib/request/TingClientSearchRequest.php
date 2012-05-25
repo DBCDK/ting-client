@@ -243,8 +243,6 @@ class TingClientSearchRequest extends TingClientRequest {
         $searchResult->facets[$facet->name] = $facet;
       }
     }
-
-    dpm($searchResult);
     return $searchResult;
   }
 
