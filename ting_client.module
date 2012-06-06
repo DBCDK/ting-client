@@ -1,0 +1,11 @@
+<?php
+/**
+ * @file
+ * Ting Client module for Drupal
+ *
+ * This is a module and not a library due to the dependency on the NanoSOAP
+ * module.
+ *
+ * All code are found in the lib/ directory and subdirectories. Inclusion of
+ * code (classes) is done by ting_client.info.
+ */
