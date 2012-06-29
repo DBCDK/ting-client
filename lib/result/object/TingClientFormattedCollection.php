@@ -10,6 +10,10 @@ class TingClientFormattedCollection {
     $this->formattedCollection = $formattedCollection->workDisplay->workDisplay;
   }
 
+  public function all(){
+    return $this->formattedCollection;
+  }
+
   public function work() {
     if (isset( $this->formattedColletion->work ) ) {
       return $this->formattedColletion->work;
