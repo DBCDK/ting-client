@@ -7,7 +7,7 @@ class TingClientFormattedCollection {
 	  'manifestation' => 'returns array of manifestions(stdojb)',);
 
   public function __construct( $formattedCollection){
-    $this->formattedCollection = $formattedCollection->workDisplay->workDisplay;
+    $this->formattedCollection = $formattedCollection->workDisplay;
   }
 
   public function all(){
