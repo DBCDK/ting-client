@@ -1,6 +1,6 @@
 <?php
 
-class TingClientSearchRequest extends TingClientRequest {
+class TingClientSearchRequest extends TingClientRequest implements ITingClientRequestCache{
   /**
    * Prefix to namespace URI map.
    */
@@ -95,6 +95,26 @@ class TingClientSearchRequest extends TingClientRequest {
     return $this;
   }
 
+  /** Implementation of ITingClientRequestCache **/
+  public function cacheKey() {
+    return md5($this->getQuery());
+  }
+
+  public function cacheEnable($value=NULL) {
+    if( isset($value) ) {
+      $this->cacheEnable=$value;
+    }
+    else{ return $this->cacheEnable; }
+  }
+
+  public function cacheTimeout($value=NULL) {
+    if( isset($value) ) {
+      $this->cacheTimeout = $value;
+    }
+    else{ return $this->cacheTimeout; }
+  }
+
+  /** end ITingClientRequestCache **/
 
 
   public function getQuery() {
@@ -126,10 +146,6 @@ class TingClientSearchRequest extends TingClientRequest {
   }
   public function setFormat($format) {
     $this->format = $format;
-  }
-
-  public function cacheKey() {
-    return md5($this->getQuery());
   }
 
   public function getObjectFormat() {
@@ -229,8 +245,8 @@ class TingClientSearchRequest extends TingClientRequest {
 	$formattedCollection =  isset( $result->formattedCollection ) ? $result->formattedCollection : NULL;
         $searchResult->collections[] = $this->generateCollection($result->collection, (array)$response->{'@namespaces'}, $formattedCollection);
 	}
-      }     
-   
+      }
+
     if (isset($searchResponse->result->facetResult->facet) && is_array($searchResponse->result->facetResult->facet)) {
       foreach ($searchResponse->result->facetResult->facet as $facetResult) {
         $facet = new TingClientFacetResult();

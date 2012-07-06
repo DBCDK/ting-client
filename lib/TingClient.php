@@ -21,4 +21,3 @@ class TingClient {
     return $request->execute($this->requestAdapter);
   }
 }
-

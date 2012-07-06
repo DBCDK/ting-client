@@ -1,6 +1,17 @@
 <?php
 
+interface ITingClientRequestCache{
+  public function cacheKey();
+  public function cacheEnable($value=NULL);
+  public function cacheTimeout($value=NULL);
+}
+
 abstract class TingClientRequest {
+
+  private $cacheEnable;
+  private $cacheTimeOut;
+  private $cacheKey;
+
   private $wsdlUrl;
   private $parameters = array();
 
@@ -111,6 +122,9 @@ abstract class TingClientRequest {
       return NULL;
     }
   }
-
 }
+
+
+
+
 
