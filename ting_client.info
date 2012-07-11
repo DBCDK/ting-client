@@ -37,14 +37,14 @@ files[] = lib/result/search/TingClientFacetResult.php
 files[] = lib/result/search/TingClientSearchResult.php
 files[] = lib/result/spell/TingClientSpellSuggestion.php
 
-; tests
-files[] = tests/ting_client_collection.test
+; tests (needs review - testing against live (dead) webservices)
+;files[] = tests/ting_client_collection.test
 files[] = tests/ting_client_infomedia.test
-files[] = tests/ting_client_object_recommendation.test
-files[] = tests/ting_client_object.test
-files[] = tests/ting_client_scan.test
-files[] = tests/ting_client_search.test
-files[] = tests/ting_client_spell.test
-files[] = tests/ting_client.test
+;files[] = tests/ting_client_object_recommendation.test
+;files[] = tests/ting_client_object.test
+;files[] = tests/ting_client_scan.test
+;files[] = tests/ting_client_search.test
+;files[] = tests/ting_client_spell.test
+;files[] = tests/ting_client.test
 
 
