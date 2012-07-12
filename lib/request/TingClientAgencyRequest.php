@@ -8,7 +8,6 @@ class TingClientAgencyRequest extends TingClientRequest {
 
   protected function getRequest() {
     $this->setParameter('action', 'pickupAgencyListRequest');
-    #$this->setParameter('outputType', 'json');
     
     $methodParameterMap = array(
       'agencyName' => 'agencyName',
