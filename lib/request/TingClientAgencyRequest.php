@@ -72,6 +72,7 @@ class TingClientAgencyRequest extends TingClientRequest {
    */
   private function parseResult($response) {
     $agencies = array();
+    $counter = 0;
     foreach ($response->library as $value) {
       $agency = new TingClientAgencyAgency();
       $agency->agencyId = $this->getValue($value->agencyId);
@@ -110,10 +111,12 @@ class TingClientAgencyRequest extends TingClientRequest {
             $branch->pickupAllowed = $this->getValue($pickupAgency->pickupAllowed);
 
           $agency->pickUpAgencies[] = $branch;
+          $counter++;
         }
       }
       $agencies['libraries'][] = $agency;
     }
+    $agencies['count'] = $counter;
     return $agencies;
   }
 
