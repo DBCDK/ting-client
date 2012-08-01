@@ -2,6 +2,8 @@
 
 class TingClientRequestFactory {
 
+  public $urls;
+
   public function __construct($urls) {
     $this->urls = $urls;
   }
@@ -10,63 +12,82 @@ class TingClientRequestFactory {
    * @return TingClientSearchRequest
    */
   public function getSearchRequest() {
-    return new TingClientSearchRequest($this->urls['search']);
+    if( isset($this->urls['search']) ) {
+      return new TingClientSearchRequest($this->urls['search']);
+    }
   }
 
   /**
    * @return TingClientScanRequest
    */
   public function getScanRequest() {
-    return new TingClientScanRequest($this->urls['scan']);
+    if( isset($this->urls['scan']) ) {
+      return new TingClientScanRequest($this->urls['scan']);
+    }
   }
 
   /**
    * @return TingClientAgencyRequest
    */
   public function getAgencyRequest() {
-    return new TingClientAgencyRequest($this->urls['agency']);
+    if( isset($this->urls['agency']) ) {
+      return new TingClientAgencyRequest($this->urls['agency']);
+    }
   }
 
   /**
    * @return TingClientCollectionRequest
    */
   public function getCollectionRequest() {
-    return new TingClientCollectionRequest($this->urls['collection']);
+    if( isset($this->urls['collection']) ) {
+      return new TingClientCollectionRequest($this->urls['collection']);
+    }
+
   }
 
-  /**
-   * @return TingClientObjectRequest
-   */
-  public function getObjectRequest() {
-    return new TingClientObjectRequest($this->urls['object']);
-  }
+    /**
+     * @return TingClientObjectRequest
+     */
+    public function getObjectRequest() {
+      if( isset($this->urls['object']) ) {
+	return new TingClientObjectRequest($this->urls['object']);
+      }
+    }
 
-  /**
-   * @return TingClientSpellRequest
-   */
-  public function getSpellRequest() {
-    return new TingClientSpellRequest($this->urls['spell']);
-  }
+    /**
+     * @return TingClientSpellRequest
+     */
+    public function getSpellRequest() {
+      if( isset($this->urls['spell']) ) {
+	return new TingClientSpellRequest($this->urls['spell']);
+      }
+    }
 
-  /**
-   * @return TingClientObjectRecommendationRequest
-   */
-  function getObjectRecommendationRequest() {
-    return new TingClientObjectRecommendationRequest($this->urls['recommendation']);
-  }
+    /**
+     * @return TingClientObjectRecommendationRequest
+     */
+    function getObjectRecommendationRequest() {
+      if( isset($this->urls['recommendation']) ) {
+	return new TingClientObjectRecommendationRequest($this->urls['recommendation']);
+      }
+    }
 
-  /**
-   * @ return TingClientInfomediaArticleRequest
-   */
-  function getInfomediaArticleRequest() {
-    return new TingClientInfomediaArticleRequest($this->urls['infomedia']);
-  }
+    /**
+     * @ return TingClientInfomediaArticleRequest
+     */
+    function getInfomediaArticleRequest() {
+      if( isset($this->urls['infomedia']) ) {
+	return new TingClientInfomediaArticleRequest($this->urls['infomedia']);
+      }
+    }
 
-  /**
-   * @ return TingClientInfomediaReviewRequest
-   */
-  function getInfomediaReviewRequest() {
-    return new TingClientInfomediaReviewRequest($this->urls['infomedia']);
+    /**
+     * @ return TingClientInfomediaReviewRequest
+     */
+    function getInfomediaReviewRequest() {
+      if( isset($this->urls['infomedia']) ) {
+	return new TingClientInfomediaReviewRequest($this->urls['infomedia']);
+      }
+    }
   }
-}
 
