@@ -91,30 +91,26 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     if (is_array($this->userDefinedRanking) && !empty($this->userDefinedRanking)) {
       $this->setParameter('userDefinedRanking', $this->userDefinedRanking);
     }
-
     return $this;
   }
 
   /** Implementation of ITingClientRequestCache **/
   public function cacheKey() {
     return md5($this->getQuery());
-  }
+  } 
 
   public function cacheEnable($value=NULL) {
-    if( isset($value) ) {
-      $this->cacheEnable=$value;
-    }
-    else{ return $this->cacheEnable; }
+    $class_name = get_class($this);
+    return variable_get($class_name.TingClientRequest::$cache_enable);
   }
 
   public function cacheTimeout($value=NULL) {
-    if( isset($value) ) {
-      $this->cacheTimeout = $value;
-    }
-    else{ return $this->cacheTimeout; }
+    $class_name = get_class($this);
+    return variable_get($class_name.TingClientRequest::$cache_lifetime,'1');
   }
 
   /** end ITingClientRequestCache **/
+
 
 
   public function getQuery() {
