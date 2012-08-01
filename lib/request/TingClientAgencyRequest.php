@@ -1,10 +1,13 @@
 <?php
 
-class TingClientAgencyRequest extends TingClientRequest {
+class TingClientAgencyRequest extends TingClientRequest implements ITingClientRequestCache{
 
   protected $agencyName;
   protected $postalCode;
   protected $city;
+
+
+  protected $cacheKey;
 
   protected function getRequest() {
     $this->setParameter('action', 'pickupAgencyListRequest');
@@ -25,6 +28,26 @@ class TingClientAgencyRequest extends TingClientRequest {
 
     return $this;
   }
+
+ /** Implementation of ITingClientRequestCache **/
+  public function cacheKey() { 
+    if( !isset($this->cacheKey) ) {
+      $this->cacheKey.= 'agencyName'.$this->getAgencyName().'postalCode'.$this->getPostalCode().'city'.$this-> getCity();
+    }
+    return md5($this->cacheKey);
+  } 
+
+  public function cacheEnable($value=NULL) {
+    $class_name = get_class($this);
+    return variable_get($class_name.TingClientRequest::$cache_enable);
+  }
+
+  public function cacheTimeout($value=NULL) {
+    $class_name = get_class($this);
+    return variable_get($class_name.TingClientRequest::$cache_lifetime,'1');
+  }
+
+  /** end ITingClientRequestCache **/
 
   public function getAgencyName() {
     return $this->agencyName;
