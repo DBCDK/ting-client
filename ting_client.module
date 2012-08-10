@@ -9,3 +9,54 @@
  * All code are found in the lib/ directory and subdirectories. Inclusion of
  * code (classes) is done by ting_client.info.
  */
+require_once('ting_client_class.inc');
+
+/* Implements hook_menu */
+function ting_client_menu() {
+ $items['admin/config/serviceclient'] = array(
+    'title' => 'Webservice client settings',
+    'description' => 'Manage webservices.',
+    'position' => 'right',
+    'weight' => 20,
+    'page callback' => 'system_admin_menu_block_page',
+    'access arguments' => array('access administration pages'),
+    'file' => 'system.admin.inc',
+    'file path' => drupal_get_path('module', 'system'),
+  );
+
+  $items['admin/config/serviceclient/settings'] = array(
+    'title' => 'Urls and settings',
+    'description' => 'Manage webservice settings.',
+    'weight' => -20,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ting_client_admin_webservices_settings'),
+    'access arguments' => array('administer webservices settings'),
+    'file' => 'ting_client.admin.inc'
+  );
+
+  $items['admin/config/serviceclient/cache_settings'] = array(
+    'title' => 'Cache settings',
+    'description' => 'Configure cache settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments'=> array('ting_client_cache_admin_form'),
+    'access arguments' => array('administer webservices settings'),
+    // 'type' => MENU_LOCAL_ACTION,
+    'file' => 'ting_client.admin.inc',
+  );
+  return $items;
+}
+
+
+/**
+ * Implements hook_ding_install_tasks().
+ */
+function ting_client_ding_install_tasks() {
+  module_load_include('inc', 'ting_client', 'ting_client.admin');
+  return array(
+    'ting_client_admin_webservices_settings' => array(
+      'display_name' => st('Service settings'),
+      'type' => 'form',
+      'file' => drupal_get_path('module', 'ting_client') . '/ting_client.admin.inc',
+    ),
+  );
+}
