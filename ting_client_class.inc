@@ -16,6 +16,25 @@ class ting_client_class {
   }
 
   /**
+   * getObjectRequest to retreive a single work
+   **/
+  public function do_get_object($params) {
+    $request = self::request_factory()->getObjectRequest();
+     foreach ($params as $key => $value) {
+      $setter = 'set' . ucfirst($key);
+      if( method_exists( $request,$setter ) ){
+        $request->$setter($value);
+      }
+      else {
+        drupal_set_message('TingClientGetObjectRequest does not implement: '.$setter,'error');
+        watchdog('Openformat search','TingClientGetObjectRequest does not implement %setter called from %file in line %line',array('%setter'=>$setter,'%file'=>__FILE__ ,'%line'=>__LINE__),WATCHDOG_ERROR);
+      }
+    }
+    $result = $this->execute($request);
+    return $result;
+  }
+
+  /**
    * initialize a search; call execute
    * method uses a TingClientSearchRequest as parameter
    **/
