@@ -131,6 +131,10 @@ class TingClientObjectRequest extends TingClientRequest {
     $searchRequest = new TingClientSearchRequest(NULL);
     $response = $searchRequest->processResponse($response);
 
+//pjo 17082012 hack ... @TODO make this in a more clever way
+if( isset($response->collections[0]->formattedCollection) ) {
+return $response->collections[0]->formattedCollection;
+}
     if (isset($response->collections[0]->objects[0])) {
       return $response->collections[0]->objects[0];
     }
