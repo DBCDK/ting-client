@@ -41,7 +41,7 @@ files[] = lib/result/spell/TingClientSpellSuggestion.php
 
 ; tests (needs review - testing against live (dead) webservices)
 ;files[] = tests/ting_client_collection.test
-files[] = tests/ting_client_infomedia.test
+;files[] = tests/ting_client_infomedia.test
 ;files[] = tests/ting_client_object_recommendation.test
 ;files[] = tests/ting_client_object.test
 ;files[] = tests/ting_client_scan.test
