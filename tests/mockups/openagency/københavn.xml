@@ -1,0 +1,2254 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<oa:pickupAgencyListResponse xmlns:oa="http://oss.dbc.dk/ns/openagency">
+    <oa:library>
+        <oa:agencyId>710100</oa:agencyId>
+        <oa:agencyType>Folkebibliotek</oa:agencyType>
+        <oa:agencyName>Københavns Biblioteker</oa:agencyName>
+        <oa:agencyPhone>33 66 46 50</oa:agencyPhone>
+        <oa:agencyEmail>bibliotek@kff.kk.dk</oa:agencyEmail>
+        <oa:postalAddress>Københavns Kommune</oa:postalAddress>
+        <oa:postalCode>1602</oa:postalCode>
+        <oa:city>København V</oa:city>
+        <oa:agencyWebsiteUrl>http://www.bibliotek.kk.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>710100</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>33 73 60 60</oa:branchPhone>
+            <oa:branchName>Hovedbiblioteket, Krystalgade</oa:branchName>
+            <oa:branchEmail>hovinf@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Krystalgade 15</oa:postalAddress>
+            <oa:postalCode>1172</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-710100</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-14 (1.4.-30.9.), lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday-Friday from 10 am to 7 pm. Saturdays from 10 am to 2 pm.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710101</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>33 66 23 67</oa:branchPhone>
+            <oa:branchName>Rådhusbiblioteket</oa:branchName>
+            <oa:branchEmail>bibrhb@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Rådhuset
+                Og vi mener det
+            </oa:postalAddress>
+            <oa:postalCode>1599</oa:postalCode>
+            <oa:city>København V</oa:city>
+            <oa:isil>DK-710101</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-tor 10.30 - 15.00</oa:openingHours>
+            <oa:openingHours oa:language="eng">Mon-thu 10.30 - 15.00</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710103</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>35816860</oa:branchPhone>
+            <oa:branchName>Bispebjerg Bibliotek</oa:branchName>
+            <oa:branchEmail>bibbis@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Filosofvænget 1</oa:postalAddress>
+            <oa:postalCode>2400</oa:postalCode>
+            <oa:city>Kbh. NV</oa:city>
+            <oa:isil>DK-710103</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-tor kl. 12-19, fre 12-17,
+                lør kl. 10-14
+            </oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday-Friday from 10 am to 7 pm. Saturdays from 10 am to 2 pm.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710104</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>35378200</oa:branchPhone>
+            <oa:branchName>Blågårdens Bibliotek</oa:branchName>
+            <oa:branchEmail>bibbla@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Blågårds Plads 5</oa:postalAddress>
+            <oa:postalCode>2200</oa:postalCode>
+            <oa:city>Kbh. N</oa:city>
+            <oa:isil>DK-710104</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-tor kl. 10-19, fre kl. 13-17, lør kl. 10-14 (1.4.-30.9)
+                lør kl. 11-15 (1.10.-31.3.)
+            </oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday-Friday from 10 am to 7 pm. Saturdays from 10 am to 2 pm.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710105</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>38280797</oa:branchPhone>
+            <oa:branchName>Brønshøj Bibliotek</oa:branchName>
+            <oa:branchEmail>bibbrh@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Frederikssundsvej 175</oa:postalAddress>
+            <oa:postalCode>2700</oa:postalCode>
+            <oa:city>Brønshøj</oa:city>
+            <oa:isil>DK-710105</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man og tor kl. 12-19, tir og ons kl. 10-19, fre kl. 12-17, lør kl. 10-14, søn kl. 12-16 (1.10.-31.3.)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Mondays and Thursdays  from 12 am to 7 pm. Tuedays and Wednesdays from 10 am to 19 pm, Fridays  from 12 am to 17 pm,Saturdays from 10 am to 2 pm and Sondays from 12 am to 16 pm  (1.10.-31.3.)</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710106</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>32546478</oa:branchPhone>
+            <oa:branchName>Christianshavns Bibliotek</oa:branchName>
+            <oa:branchEmail>bibchr@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Dronningensgade 53</oa:postalAddress>
+            <oa:postalCode>1420</oa:postalCode>
+            <oa:city>Kbh. K</oa:city>
+            <oa:isil>DK-710106</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-tor kl. 12-19, fre kl. 10-16,lør kl. 10-14, søn kl. 13-17 (1.10.-31.3.)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday-Friday from 10 am to 7 pm. Saturdays from 10 am to 2 pm.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710107</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>38281476</oa:branchPhone>
+            <oa:branchName>Husum Bibliotek</oa:branchName>
+            <oa:branchEmail>bibhus@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Frederikssundsvej 290</oa:postalAddress>
+            <oa:postalCode>2700</oa:postalCode>
+            <oa:city>Brønshøj</oa:city>
+            <oa:isil>DK-710107</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-tor kl. 13-19, fre kl. 10-17, lør kl. 10-14</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday-Friday from 10 am to 7 pm. Saturdays from 10 am to 2 pm.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710108</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>3366 3220</oa:branchPhone>
+            <oa:branchName>Islands Brygge Bibliotek</oa:branchName>
+            <oa:branchEmail>bibbry@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Njalsgade 15</oa:postalAddress>
+            <oa:postalCode>2300</oa:postalCode>
+            <oa:city>København S</oa:city>
+            <oa:isil>DK-710108</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man, ons, tor kl. 13-19, tir kl. 10-16, fre kl. 13-16, lør kl. 10-14</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday-Friday from 10 am to 7 pm. Saturdays from 10 am to 2 pm.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710109</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>39201876</oa:branchPhone>
+            <oa:branchName>Øbro Jagtvej Bibliotek</oa:branchName>
+            <oa:branchEmail>bibjag@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Jagtvej 227</oa:postalAddress>
+            <oa:postalCode>2100</oa:postalCode>
+            <oa:city>Kbh. Ø</oa:city>
+            <oa:isil>DK-710109</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-tor kl. 12-19, fre kl. 12-18, lør kl. 10-14, søn kl. 13-17 (1.10.-31.3.)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday-Friday from 10 am to 7 pm. Saturdays from 10 am to 2 pm.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710110</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>33667400</oa:branchPhone>
+            <oa:branchName>Biblioteket Rentemestervej</oa:branchName>
+            <oa:branchEmail>biboer@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Ørnevej 55</oa:postalAddress>
+            <oa:postalCode>2400</oa:postalCode>
+            <oa:city>Kbh. NV</oa:city>
+            <oa:isil>DK-710110</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man og ons kl. 10-19, tir og tor kl. kl. 13-19, fre kl. 10-17, lør kl. 10-14</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday 10 am to 7 pm, Tuesday to Thursday 1 pm to 7 pm, Frday 10 am to 5 pm, Saturday 10 am to 2 pm.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710111</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>3585 6853</oa:branchPhone>
+            <oa:branchName>Nørrebro Bibliotek</oa:branchName>
+            <oa:branchEmail>bibnoe@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Bragesgade 8</oa:postalAddress>
+            <oa:postalCode>2200</oa:postalCode>
+            <oa:city>Kbh. N</oa:city>
+            <oa:isil>DK-710111</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man, tir, tor kl. 11-19, ons kl. 13-19, fre kl. 11-17, lør kl. 10-14, søn kl. 10-14 (1.10.-31.3.)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday-Friday from 10 am to 7 pm. Saturdays from 10 am to 2 pm.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710112</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>32581614</oa:branchPhone>
+            <oa:branchName>Solvang Bibliotek</oa:branchName>
+            <oa:branchEmail>bibsrm@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Remisevej 14</oa:postalAddress>
+            <oa:postalCode>2300</oa:postalCode>
+            <oa:city>København S</oa:city>
+            <oa:isil>DK-710112</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man, ons, tor kl. 12.30-19.00, tir kl. 12.30-17.00, fre kl. 10.00-16.00, lør kl. 10.00-14.00.</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday-Friday from 10 am to 7 pm. Saturdays from 10 am to 2 pm.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710113</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>8232 5580</oa:branchPhone>
+            <oa:branchName>Sundby Bibliotek</oa:branchName>
+            <oa:branchEmail>bibsun@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Kvarterhuset
+                Jemtelandsgade 3
+            </oa:postalAddress>
+            <oa:postalCode>2300</oa:postalCode>
+            <oa:city>København S</oa:city>
+            <oa:isil>DK-710113</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-tor kl. 10-19, fre kl. 13-18, lør kl. 10-14</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday-Friday from 10 am to 7 pm. Saturdays from 10 am to 2 pm.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710114</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>8232 1600</oa:branchPhone>
+            <oa:branchName>Bibliotekshuset</oa:branchName>
+            <oa:branchEmail>bibbro@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Rodosvej 4</oa:postalAddress>
+            <oa:postalCode>2300</oa:postalCode>
+            <oa:city>København S</oa:city>
+            <oa:isil>DK-710114</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Mandag onsdag 13-19
+                tirsdag torsdag 11-19
+                fredag 13-17, lørdag 10-14
+                søndag 11-15 (1.10.-31.3.)
+            </oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday-Friday from 10 am to 7 pm. Saturdays from 10 am to 2 pm.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710115</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>36148414</oa:branchPhone>
+            <oa:branchName>Sydhavnens Bibliotek</oa:branchName>
+            <oa:branchEmail>bibsyd@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Karens Minde
+                Wagnersvej 19
+            </oa:postalAddress>
+            <oa:postalCode>2450</oa:postalCode>
+            <oa:city>København SV</oa:city>
+            <oa:isil>DK-710115</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://www.bibliotek.kk.dk/om_bibliotekerne/servicedeklaration.htm</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man og ons kl. 10-19, tir og tor kl. 13-19, fre kl. 13-16, lør (1.4-30.9) kl. 10-14, lør (1.10-31.3) kl. 10-16.</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday and Wednesday 10 am to 7 pm, Tuesday and Thursday 1 pm to 7 pm, Friday 1 pm to 4 pm, Saturday (1.5-31.8) 10 am to 1 pm, Saturday (1.9-30.4) 10 am to 4 pm.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710116</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>38607800</oa:branchPhone>
+            <oa:branchName>Tingbjerg Bibliotek</oa:branchName>
+            <oa:branchEmail>bibtin@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Ruten 14</oa:postalAddress>
+            <oa:postalCode>2700</oa:postalCode>
+            <oa:city>Brønshøj</oa:city>
+            <oa:isil>DK-710116</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man kl. 12-19, tir kl. 10-18, ons-tor kl. 12-18, fre kl. 12-16, lør kl. 10-14.</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday and Wednesday 10 am to 7 pm, Tuesday and Thursday 1 pm to 7 pm, Friday 1 pm to 4 pm, Saturday (1.5-31.8) 10 am to 1 pm, Saturday (1.9-30.4) 10 am to 4 pm.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710117</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>36161502</oa:branchPhone>
+            <oa:branchName>Valby Bibliotek</oa:branchName>
+            <oa:branchEmail>bibval@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Annexstræde 2</oa:postalAddress>
+            <oa:postalCode>2500</oa:postalCode>
+            <oa:city>Valby</oa:city>
+            <oa:isil>DK-710117</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man kl. 12-19, tirs-tor kl. 11-19, fre kl. 12-17, lør kl. 10-14, søn (1.10-31-3) kl. 12-16.</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday 10 am to 5 pm, Tuesday to Thursday 12 am to 7 pm, Friday 12 am to 5 pm, Saturday 10 am to 2 pm, Sunday (1.10-31.3) 12 am to 4 pm.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710118</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>3877 3300</oa:branchPhone>
+            <oa:branchName>Kulturstationen Vanløse. Biblioteket</oa:branchName>
+            <oa:branchEmail>bibvan@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Jernbane Alle 38</oa:postalAddress>
+            <oa:postalCode>2720</oa:postalCode>
+            <oa:city>Vanløse</oa:city>
+            <oa:isil>DK-710118</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-tor kl. 10-19,  fre kl. 12-17, lør kl. 10-14, søn kl. 11-15 (1.10.-31.3.)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday 10 am to 6 pm, Tuesday to Thursday 12 am to 7 pm, Friday 12 am to 5 pm, Saturday 10 am to 2 pm.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710119</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>33248679</oa:branchPhone>
+            <oa:branchName>Vesterbro Bibliotek</oa:branchName>
+            <oa:branchEmail>bibves@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Lyrskovgade 4</oa:postalAddress>
+            <oa:postalCode>1758</oa:postalCode>
+            <oa:city>Kbh. V</oa:city>
+            <oa:isil>DK-710119</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/ves</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-tors kl. 11.00-19, fre kl. 11-17, lør kl. 11-15,
+                søn kl. 11-15 (1.10.-31.3.)
+            </oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday 12.30 pm to 7 pm, Friday 10 am to 5 pm, saturday 10 am to 2 pm.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710120</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>82552200</oa:branchPhone>
+            <oa:branchName>Vigerslev Bibliotek</oa:branchName>
+            <oa:branchEmail>bibvig@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Kirsebærhaven 23</oa:postalAddress>
+            <oa:postalCode>2500</oa:postalCode>
+            <oa:city>Valby</oa:city>
+            <oa:isil>DK-710120</oa:isil>
+            <oa:branchWebsiteUrl>http://bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man kl. 10-18, tirs og fre kl. 10-16, ons og tors kl. 12-18, lør kl. 10-14</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday 10 am to 6 pm, Tuesday and Friday 10 am to 4 pm, Wednesday and Thursday 1 pm to 6 pm, Saturday 10 am to 2 pm</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710121</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>35381648</oa:branchPhone>
+            <oa:branchName>Østerbro Bibliotek</oa:branchName>
+            <oa:branchEmail>biboes@kff.kk.dk</oa:branchEmail>
+            <oa:postalAddress>Dag Hammarskjölds Alle 19</oa:postalAddress>
+            <oa:postalCode>2100</oa:postalCode>
+            <oa:city>Kbh. Ø</oa:city>
+            <oa:isil>DK-710121</oa:isil>
+            <oa:branchWebsiteUrl>http://www.bibliotek.kk.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://bibliotek.kk.dk/bibliotekerne/lovgrundlag/servicedeklaration/view</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://stormp.kk.dk/sites/XWW/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-tors kl. 10-19, 
+                Fre kl. 12-18 (1/4-30/9: kl. 12-17),
+                Lør kl. 10-15 (1/4-30/): kl. 10-14)
+            </oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday to Thursday 12 am to 7 pm, Friday 12 am to 5 pm, Saturday 10 am to 2 pm.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>710122</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>33244254</oa:branchPhone>
+            <oa:branchName>Ørestad Bibliotek</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Lyrskovgade 2, 1</oa:postalAddress>
+            <oa:postalCode>1758</oa:postalCode>
+            <oa:city>København V</oa:city>
+            <oa:isil>DK-710122</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>810010</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Det Kongelige Bibliotek: Nationalbibliotek og Københavns Universitetsbibliotek</oa:agencyName>
+        <oa:agencyPhone>33 47 47 47</oa:agencyPhone>
+        <oa:agencyEmail>kb@kb.dk</oa:agencyEmail>
+        <oa:postalAddress>Postboks 2149</oa:postalAddress>
+        <oa:postalCode>1016</oa:postalCode>
+        <oa:city>København K</oa:city>
+        <oa:agencyWebsiteUrl>http://www.kb.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>810010</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>33 47 47 47</oa:branchPhone>
+            <oa:branchName>Det Kongelige Bibliotek, Diamanten</oa:branchName>
+            <oa:branchEmail>kb@kb.dk</oa:branchEmail>
+            <oa:postalAddress>Søren Kierkegaards Plads 1</oa:postalAddress>
+            <oa:postalCode>1221</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-810010</oa:isil>
+            <oa:branchWebsiteUrl>http://www.kb.dk</oa:branchWebsiteUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>810011</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>33 47 47 47</oa:branchPhone>
+            <oa:branchName>Det Samfundsvidenskabelige Fakultetsbibliotek</oa:branchName>
+            <oa:branchEmail>kb@kb.dk</oa:branchEmail>
+            <oa:postalAddress>Fiolstræde 1</oa:postalAddress>
+            <oa:postalCode>1171</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-810011</oa:isil>
+            <oa:branchWebsiteUrl>http://www.kb.dk</oa:branchWebsiteUrl>
+            <oa:openingHours oa:language="dan">Det Kongelige Bibliotek Amager
+                og Fiolstræde: mandag til fredag 10-19, lørdag lukket.&lt;p&gt;
+                Det Kongelige Bibliotek Slotsholmen: mandag til  fredag 10-19, lørdag 10-14. &lt;br&gt;
+                Læsesal Vest (forskerlæsesal):
+                mandag til fredag 10-21, lørdag 10-19. &lt;br&gt;
+                Særlige sommeråbningstider (se www.kb.dk). &lt;br&gt;
+            </oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>810012</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>33 47 47 47</oa:branchPhone>
+            <oa:branchName>Det Humanistiske Fakultetsbibliotek</oa:branchName>
+            <oa:branchEmail>kb@kb.dk</oa:branchEmail>
+            <oa:postalAddress>Njalsgade 80</oa:postalAddress>
+            <oa:postalCode>2300</oa:postalCode>
+            <oa:city>København S</oa:city>
+            <oa:isil>DK-810012</oa:isil>
+            <oa:branchWebsiteUrl>http://www.kb.dk</oa:branchWebsiteUrl>
+            <oa:openingHours oa:language="dan">Det Kongelige Bibliotek Amager
+                og Fiolstræde: mandag til fredag 10-19, lørdag lukket.&lt;p&gt;
+                Det Kongelige Bibliotek Slotsholmen: mandag til  fredag 10-19, lørdag 10-14. &lt;br&gt;
+                Læsesal Vest (forskerlæsesal):
+                mandag til fredag 10-21, lørdag 10-19. &lt;br&gt;
+                Særlige sommeråbningstider (se www.kb.dk). &lt;br&gt;
+            </oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>810013</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>33475177</oa:branchPhone>
+            <oa:branchName>Det Natur- og Sundhedsvidenskabelige Fakultetsbibliotek</oa:branchName>
+            <oa:branchEmail>kb@kb.dk</oa:branchEmail>
+            <oa:postalAddress>Nørre Allé, 49</oa:postalAddress>
+            <oa:postalCode>2200</oa:postalCode>
+            <oa:city>København N</oa:city>
+            <oa:isil>DK-810013</oa:isil>
+            <oa:branchWebsiteUrl>http://www.dnlb.dk</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://www.dnlb.dk/frame.php?side=omdnlb.html</oa:serviceDeclarationUrl>
+            <oa:registrationFormUrl>https://login.kb.dk/kbuser/regguide</oa:registrationFormUrl>
+            <oa:openingHours oa:language="dan">Åbningstider:
+                Mandag-torsdag 8-20
+                Fredag 8-18
+                Lørdag 10-16 (begrænset betjening)
+                Sommeråbningstider 1. juli-15. august
+                Man-fre 9-17. Lørdag lukket.
+            </oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday-Thursday 9-20
+                Friday 8-18
+                Saturday 10a.m.-4 p.m.
+                During summertime:
+                July 1th to August 15th,
+                Mon-Fri 9a.m. - 5p.m.
+                Saturday closed
+            </oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>810014</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone></oa:branchPhone>
+            <oa:branchName>Dansk Folkemindesamlings Bibliotek</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:isil>DK-810014</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>810015</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>33 47 47 47</oa:branchPhone>
+            <oa:branchName>Det Kongelige Bibliotek. Nationalbibliotekets samling</oa:branchName>
+            <oa:branchEmail>kb@kb.dk</oa:branchEmail>
+            <oa:postalAddress>Søren Kierkegaards Plads 1</oa:postalAddress>
+            <oa:postalCode>1221</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-810015</oa:isil>
+            <oa:branchWebsiteUrl>http://www.kb.dk</oa:branchWebsiteUrl>
+            <oa:openingHours oa:language="dan">Det Kongelige Bibliotek Amager
+                og Fiolstræde: mandag til fredag 10-19, lørdag lukket.&lt;p&gt;
+                Det Kongelige Bibliotek Slotsholmen: mandag til  fredag 10-17, lørdag 10-14. &lt;br&gt;
+                Læsesal Øst og Læsesal Nord (studenterlæsesale): Mandag til fredag 9-21, lørdag 9-14 
+                Læsesal Vest (forskerlæsesal):
+                mandag til fredag 10-21, lørdag 10-19. &lt;br&gt;
+                Særlige sommeråbningstider ( se www.kb.dk). &lt;br&gt;
+            </oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>840290</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>35 32 34 59</oa:branchPhone>
+            <oa:branchName>Antropologi. Depotsamling Det Kongelige Bibliotek</oa:branchName>
+            <oa:branchEmail>jan.d.starcke@anthro.ku.dk</oa:branchEmail>
+            <oa:postalAddress>Københavns Universitet, CSS.
+                Øster Farimagsgade 5, opg. E, 1 sal
+            </oa:postalAddress>
+            <oa:postalCode>1353</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-840290</oa:isil>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>820010</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Statsbiblioteket</oa:agencyName>
+        <oa:agencyPhone>89 46 20 22</oa:agencyPhone>
+        <oa:agencyEmail>sb@statsbiblioteket.dk</oa:agencyEmail>
+        <oa:postalAddress>Victor Albecks Vej 1</oa:postalAddress>
+        <oa:postalCode>8000</oa:postalCode>
+        <oa:city>Aarhus C</oa:city>
+        <oa:agencyWebsiteUrl>http://www.statsbiblioteket.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>820010</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>89 46 20 22</oa:branchPhone>
+            <oa:branchName>Statsbiblioteket</oa:branchName>
+            <oa:branchEmail>sb@statsbiblioteket.dk</oa:branchEmail>
+            <oa:postalAddress>Universitetsparken</oa:postalAddress>
+            <oa:postalCode>8000</oa:postalCode>
+            <oa:city>Århus C</oa:city>
+            <oa:isil>DK-820010</oa:isil>
+            <oa:branchWebsiteUrl>http://www.statsbiblioteket.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://www.statsbiblioteket.dk/fakta/danbibforalle.jsp</oa:serviceDeclarationUrl>
+            <oa:registrationFormUrl>https://www.statsbiblioteket.dk/brugerregister-opret/default.jsp</oa:registrationFormUrl>
+            <oa:userStatusUrl>http://www.statsbiblioteket.dk/cgi-bin/webpac/new+-access+TOP.vegalog_dan0</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday-Friday 9 a.m. - 6 p.m. Saturday 11 a.m. - 2 p.m. However no Saturdays in July and the first two weeks of August. On weekdays after 4 p.m. and saturdays there will be no expedition from the stacks.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>820013</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>86 24 90 46</oa:branchPhone>
+            <oa:branchName>Statsbiblioteket, Aviskroniksamlingen</oa:branchName>
+            <oa:branchEmail>avkrmail@statsbiblioteket.dk</oa:branchEmail>
+            <oa:postalAddress>Universitetsparken</oa:postalAddress>
+            <oa:postalCode>8000</oa:postalCode>
+            <oa:city>Århus C</oa:city>
+            <oa:isil>DK-820013</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>820014</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>89 46 23 62</oa:branchPhone>
+            <oa:branchName>Det Sundhedsvidenskabelige Bibliotek</oa:branchName>
+            <oa:branchEmail>svb@statsbiblioteket.dk</oa:branchEmail>
+            <oa:postalAddress>Vennelyst Boulevard 4</oa:postalAddress>
+            <oa:postalCode>8000</oa:postalCode>
+            <oa:city>Aarhus</oa:city>
+            <oa:isil>DK-820014</oa:isil>
+            <oa:branchWebsiteUrl>http://www.statsbiblioteket.dk/svb/svb.htm</oa:branchWebsiteUrl>
+            <oa:registrationFormUrl>http://www.statsbiblioteket.dk/laanervejledning/service.htm</oa:registrationFormUrl>
+            <oa:userStatusUrl>http://www.statsbiblioteket.dk/cgi-bin/webpac/new+-access+TOP.vegalog_dan0</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 9-18</oa:openingHours>
+            <oa:openingHours oa:language="eng">Mon-Fri. 9-19</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>820070</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Danmarks Pædagogiske Bibliotek</oa:agencyName>
+        <oa:agencyPhone>87 16 13 60</oa:agencyPhone>
+        <oa:agencyEmail>dpb@dpu.dk</oa:agencyEmail>
+        <oa:postalAddress>Postboks 840</oa:postalAddress>
+        <oa:postalCode>2400</oa:postalCode>
+        <oa:city>København NV</oa:city>
+        <oa:agencyWebsiteUrl>http://www.dpb.dpu.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>820070</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>88 88 93 00</oa:branchPhone>
+            <oa:branchName>Danmarks Pædagogiske Bibliotek</oa:branchName>
+            <oa:branchEmail>dpb@dpu.dk</oa:branchEmail>
+            <oa:postalAddress>Postboks 840
+                Tuborgvej 164
+            </oa:postalAddress>
+            <oa:postalCode>2400</oa:postalCode>
+            <oa:city>København NV</oa:city>
+            <oa:isil>DK-820070</oa:isil>
+            <oa:branchWebsiteUrl>http://www.dpb.dpu.dk/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://www.dpb.dpu.dk/site.asp?p=81</oa:serviceDeclarationUrl>
+            <oa:registrationFormUrl>http://www.dpb.dpu.dk/site.asp?p=136</oa:registrationFormUrl>
+            <oa:userStatusUrl>https://130.226.206.5/sites/WKBH/pub/patronstatus.html</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Mon through Fri 10 am to 7 pm
+                Sat 11 am to 3 pm
+                July and August: Mon through Fri 10 am to 4 pm
+                Sat closed
+            </oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>820090</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Det Farmaceutiske Bibliotek</oa:agencyName>
+        <oa:agencyPhone>35 33 63 19</oa:agencyPhone>
+        <oa:agencyEmail>farmbib@farma.ku.dk</oa:agencyEmail>
+        <oa:postalAddress>Universitetsparken 4, 2.sal</oa:postalAddress>
+        <oa:postalCode>2100</oa:postalCode>
+        <oa:agencyWebsiteUrl>http://www.farma.ku.dk/bibliotek</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>820090</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>35 33 63 19</oa:branchPhone>
+            <oa:branchName>Det Farmaceutiske Fakultetsbibliotek</oa:branchName>
+            <oa:branchEmail>farmbib@farma.ku.dk</oa:branchEmail>
+            <oa:postalAddress>Universitetsparken 4, 2. etage</oa:postalAddress>
+            <oa:postalCode>2100</oa:postalCode>
+            <oa:city>København Ø</oa:city>
+            <oa:isil>DK-820090</oa:isil>
+            <oa:branchWebsiteUrl>http://www.farma.ku.dk/bibliotek</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://www.farma.ku.dk/bibliotek</oa:serviceDeclarationUrl>
+            <oa:registrationFormUrl>http://www.farma.ku.dk/index.php/Indmeldelsesblanket/418/0/</oa:registrationFormUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday to Thursday: 9-5.30 p.m.
+                Friday: 10-4 p.m.
+            </oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>820150</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Danmarks Kunstbibliotek</oa:agencyName>
+        <oa:agencyPhone>33 74 48 02</oa:agencyPhone>
+        <oa:agencyEmail>dkb@kunstbib.dk</oa:agencyEmail>
+        <oa:postalAddress>Kongens Nytorv 1</oa:postalAddress>
+        <oa:postalCode>1007</oa:postalCode>
+        <oa:city>København K</oa:city>
+        <oa:agencyWebsiteUrl>http://www.kunstbib.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>820150</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>33 74 48 00</oa:branchPhone>
+            <oa:branchName>Danmarks Kunstbibliotek, Kongens Nytorv Afdeling</oa:branchName>
+            <oa:branchEmail>dkb@kunstbib.dk</oa:branchEmail>
+            <oa:postalAddress>Kongens Nytorv 1
+                Postboks 1053
+            </oa:postalAddress>
+            <oa:postalCode>1007</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-820150</oa:isil>
+            <oa:branchWebsiteUrl>http://www.kunstbib.dk</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://www.kunstbib.dk/brug_bib/Reglement_dec2006_web.pdf</oa:serviceDeclarationUrl>
+            <oa:registrationFormUrl>https://ext.kb.dk/F/YEKQ3449XQ6A6JI6YCEHES3GLNXAN9Y8R1SAPQ7VP7HFBCVLGU-01244?func=file&amp;file_name=bor-new</oa:registrationFormUrl>
+            <oa:userStatusUrl>https://ext.kb.dk/F/-?func=file&amp;file_name=login-session&amp;local_base=kab01</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>820160</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Panum Bibliotek</oa:agencyName>
+        <oa:agencyPhone>35 32 73 93</oa:agencyPhone>
+        <oa:agencyEmail>panbib@panbib.ku.dk</oa:agencyEmail>
+        <oa:postalAddress>Panum Instituttet</oa:postalAddress>
+        <oa:postalCode>2200</oa:postalCode>
+        <oa:city>København N</oa:city>
+        <oa:agencyWebsiteUrl>http://www.panbib.ku.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>820160</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>35 32 73 93</oa:branchPhone>
+            <oa:branchName>Panum Bibliotek</oa:branchName>
+            <oa:branchEmail>panbib@panbib.ku.dk</oa:branchEmail>
+            <oa:postalAddress>Blegdamsvej 3c</oa:postalAddress>
+            <oa:postalCode>2200</oa:postalCode>
+            <oa:city>København N</oa:city>
+            <oa:isil>DK-820160</oa:isil>
+            <oa:serviceDeclarationUrl>http://www.panbib.ku.dk</oa:serviceDeclarationUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Mon.-Fre. 8am. - 5pm.
+                In July and August 9am. - 1pm.
+            </oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>830010</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>IVA Biblioteket. Det Informationsvidenskabelige Akademi</oa:agencyName>
+        <oa:agencyPhone>32 58 60 66</oa:agencyPhone>
+        <oa:agencyEmail>dbilaan@iva.dk</oa:agencyEmail>
+        <oa:postalAddress>Birketinget 6</oa:postalAddress>
+        <oa:postalCode>2300</oa:postalCode>
+        <oa:city>København S</oa:city>
+        <oa:agencyWebsiteUrl>http://www.iva.dk/dbi/index.htm</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>830010</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>32 58 60 66</oa:branchPhone>
+            <oa:branchName>IVA Biblioteket. Det Informationsvidenskabelige Akademi</oa:branchName>
+            <oa:branchEmail>dbilaan@db.dk</oa:branchEmail>
+            <oa:postalAddress>Birketinget 6</oa:postalAddress>
+            <oa:postalCode>2300</oa:postalCode>
+            <oa:city>København S</oa:city>
+            <oa:isil>DK-830010</oa:isil>
+            <oa:branchWebsiteUrl>http://www.db.dk/dbi/home_dk.htm</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://www.db.dk/dbi/om_biblioteket/formaal.htm</oa:serviceDeclarationUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday to Thursday 9 am to 4 pm
+                Friday 9 am to 3 pm
+            </oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>830060</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>PHB. Bibliotekerne ved professionshøjskolerne Metropol og UCC</oa:agencyName>
+        <oa:agencyPhone>72 48 75 55</oa:agencyPhone>
+        <oa:agencyEmail>phbbib@ucc.dk</oa:agencyEmail>
+        <oa:postalAddress>Sigurdsgade 26</oa:postalAddress>
+        <oa:postalCode>2200</oa:postalCode>
+        <oa:city>København N</oa:city>
+        <oa:agencyWebsiteUrl>https://www.phbibliotek.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>830020</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>43 28 01 55/56</oa:branchPhone>
+            <oa:branchName>Pædagoguddannelsen Storkøbenhavn. Biblioteket</oa:branchName>
+            <oa:branchEmail>bibliotek@hsem.dk</oa:branchEmail>
+            <oa:postalAddress>Skolevej 6</oa:postalAddress>
+            <oa:postalCode>2600</oa:postalCode>
+            <oa:city>Glostrup</oa:city>
+            <oa:isil>DK-830020</oa:isil>
+            <oa:branchWebsiteUrl>http://www.hsem.dk/</oa:branchWebsiteUrl>
+            <oa:userStatusUrl>http://integrabib.dk/cvustork-hsem/linkme.php?linkop=laan</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Open:
+                Monday to Friday: 9 a.m. to 15 p.m.
+                Can be closed in schoolholidays.
+            </oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>830061</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone></oa:branchPhone>
+            <oa:branchName>Læreruddannelsen Blaagaard/KDAS. Biblioteket</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:isil>DK-830061</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>830062</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone></oa:branchPhone>
+            <oa:branchName>Professionshøjskolen UCC - Bornholm. Biblioteket</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:isil>DK-830062</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>830240</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>38 86 51 11</oa:branchPhone>
+            <oa:branchName>Læreruddannelserne Metropol. Biblioteket</oa:branchName>
+            <oa:branchEmail>biblioteket@fredersem.dk</oa:branchEmail>
+            <oa:postalAddress>Nyelandsvej 27</oa:postalAddress>
+            <oa:postalCode>2000</oa:postalCode>
+            <oa:city>Frederiksberg</oa:city>
+            <oa:isil>DK-830240</oa:isil>
+            <oa:branchWebsiteUrl>http://www.fredsnyt.dk/bibliotek</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://www.fredersem.dk/om_seminariet/bibliotek.asp</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>http://integrabib.dk/netfrb-fredersem/linkme.php?ccl=linkme.php?linkop=laan</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>830250</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>33 88 21 31</oa:branchPhone>
+            <oa:branchName>Pædagoguddannelsen Frøbel. Biblioteket</oa:branchName>
+            <oa:branchEmail>fls@frosem.dk</oa:branchEmail>
+            <oa:postalAddress>Grundtvigsvej 11</oa:postalAddress>
+            <oa:postalCode>1864</oa:postalCode>
+            <oa:city>Frederiksberg C</oa:city>
+            <oa:isil>DK-830250</oa:isil>
+            <oa:branchWebsiteUrl>http://integrabib.dk/netfrb-froebelsem</oa:branchWebsiteUrl>
+            <oa:userStatusUrl>http://integrabib.dk/netfrb-froebelsem/linkme.php?ccl=linkme.php?linkop=laan</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>830360</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>48 26 74 86</oa:branchPhone>
+            <oa:branchName>UCC Nordsjælland. Biblioteket</oa:branchName>
+            <oa:branchEmail>biblioteket@hilpost.dk</oa:branchEmail>
+            <oa:postalAddress>Frederiksværksgade 150</oa:postalAddress>
+            <oa:postalCode>3400</oa:postalCode>
+            <oa:city>Hillerød</oa:city>
+            <oa:isil>DK-830360</oa:isil>
+            <oa:branchWebsiteUrl>http://www.hilsem.dk/frames.php?show=biblioteket</oa:branchWebsiteUrl>
+            <oa:userStatusUrl>http://integrabib.dk/cvukbh-hil/linkme.php?linkop=laan</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>830830</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>38 14 46 00</oa:branchPhone>
+            <oa:branchName>Socialrådgiveruddannelserne. Biblioteket</oa:branchName>
+            <oa:branchEmail>Biblioteket@dsh-k.dk</oa:branchEmail>
+            <oa:postalAddress>Kronprinsesse Sofiesvej 35</oa:postalAddress>
+            <oa:postalCode>2000</oa:postalCode>
+            <oa:city>Frederiksberg</oa:city>
+            <oa:isil>DK-830830</oa:isil>
+            <oa:serviceDeclarationUrl>http://www.dsh-k.dk/Bibliotek.81.0.html</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>http://integrabib.dk/netfrb-dshk/linkme.php?ccl=linkme.php?linkop=laan</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday to Friday: 9.00-15.00</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>830880</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>33 45 03 26</oa:branchPhone>
+            <oa:branchName>Ernærings- og Sundhedsuddannelserne. Biblioteket</oa:branchName>
+            <oa:branchEmail>am@suhrs.dk</oa:branchEmail>
+            <oa:postalAddress>Pustervig 8</oa:postalAddress>
+            <oa:postalCode>1126</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-830880</oa:isil>
+            <oa:branchWebsiteUrl>http://www.suhrs.dk/SuhrsWeb.nsf/index.html?OpenPage&amp;id=Suhrs</oa:branchWebsiteUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>830970</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>33 69 79 55</oa:branchPhone>
+            <oa:branchName>Læreruddannelsen Zahle. Biblioteket</oa:branchName>
+            <oa:branchEmail>biblioteket@nzs.dk</oa:branchEmail>
+            <oa:postalAddress>Linnesgade 2</oa:postalAddress>
+            <oa:postalCode>1361</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-830970</oa:isil>
+            <oa:branchWebsiteUrl>http://www.nzs.dk</oa:branchWebsiteUrl>
+            <oa:userStatusUrl>http://integrabib.dk/cvukbh-nzs/linkme.php?linkop=laan</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>830070</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Kriminalforsorgens Bibliotek</oa:agencyName>
+        <oa:agencyPhone>72 55 39 51</oa:agencyPhone>
+        <oa:agencyEmail>karen.clausen@kriminalforsorgen.dk</oa:agencyEmail>
+        <oa:postalAddress>Biskop Svanes Vej 69</oa:postalAddress>
+        <oa:postalCode>3460</oa:postalCode>
+        <oa:city>Birkerød</oa:city>
+        <oa:pickupAgency>
+            <oa:branchId>830070</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>45 90 23 00</oa:branchPhone>
+            <oa:branchName>Kriminalforsorgens Bibliotek</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Biskop Svanes Vej 69</oa:postalAddress>
+            <oa:postalCode>3460</oa:postalCode>
+            <oa:city>Birkerød</oa:city>
+            <oa:isil>DK-830070</oa:isil>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>830071</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>33 11 50 22</oa:branchPhone>
+            <oa:branchName>Kriminalforsorgens Bibliotek, Strandgade</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Klareboderne 1</oa:postalAddress>
+            <oa:postalCode>1115</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-830071</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>830080</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Kunstakademiet for Arkitektur, Design og Konservering. Biblioteket</oa:agencyName>
+        <oa:agencyPhone>32 68 68 00</oa:agencyPhone>
+        <oa:agencyEmail>bibliotek@kadk.dk</oa:agencyEmail>
+        <oa:postalAddress>Danneskiold-Samsøes Allé 50</oa:postalAddress>
+        <oa:postalCode>1434</oa:postalCode>
+        <oa:city>København K</oa:city>
+        <oa:agencyWebsiteUrl>http://www.kasb.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>830080</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>32 68 68 00</oa:branchPhone>
+            <oa:branchName>Biblioteket for Arkitektur, Design og Scenekunst</oa:branchName>
+            <oa:branchEmail>kasb@karch.dk</oa:branchEmail>
+            <oa:postalAddress>Danneskiold-Samsøes Alle 50</oa:postalAddress>
+            <oa:postalCode>1434</oa:postalCode>
+            <oa:city>Copenhagen K</oa:city>
+            <oa:isil>DK-830080</oa:isil>
+            <oa:branchWebsiteUrl>http://www.kasb.dk</oa:branchWebsiteUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday - Thursday 9.30-20, Friday 9.30-16. July and August 9.30-16.</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>840090</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>33 74 47 21</oa:branchPhone>
+            <oa:branchName>Konserveringsfagligt Videncenter</oa:branchName>
+            <oa:branchEmail>bibliotek@kons.dk</oa:branchEmail>
+            <oa:postalAddress>Esplanaden 34, opg. G</oa:postalAddress>
+            <oa:postalCode>1263</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-840090</oa:isil>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">9-16, mon-fri
+                9-18, thursday
+            </oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>831420</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Den Danske Filmskoles Bibliotek</oa:agencyName>
+        <oa:agencyPhone>32 68 65 07</oa:agencyPhone>
+        <oa:agencyEmail>znj@filmskolen.dk</oa:agencyEmail>
+        <oa:postalAddress>Theodor Christensens Plads 1</oa:postalAddress>
+        <oa:postalCode>1437</oa:postalCode>
+        <oa:city>København K</oa:city>
+        <oa:pickupAgency>
+            <oa:branchId>831420</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>32 68 65 07</oa:branchPhone>
+            <oa:branchName>Den Danske Filmskoles Bibliotek</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Theodor Christensens Plads 1</oa:postalAddress>
+            <oa:postalCode>1437</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-831420</oa:isil>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>840050</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Center for Afrikastudier, Biblioteket</oa:agencyName>
+        <oa:agencyPhone>35 32 25 87</oa:agencyPhone>
+        <oa:agencyEmail>casbib@teol.ku.dk</oa:agencyEmail>
+        <oa:postalAddress>Købmagergade 46, 4. sal</oa:postalAddress>
+        <oa:postalCode>1150</oa:postalCode>
+        <oa:city>København K</oa:city>
+        <oa:agencyWebsiteUrl>http://www.teol.ku.dk/cas</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>840050</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>35 32 25 85</oa:branchPhone>
+            <oa:branchName>Center for Afrikastudier, Biblioteket</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Købmagergade 46, 4. sal</oa:postalAddress>
+            <oa:postalCode>1150</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-840050</oa:isil>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>840360</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Biblioteket for Græsk og Latin. Københavns Universitet, SAXO-Instituttet</oa:agencyName>
+        <oa:agencyPhone>35 32 94 81 / 35 32 94 60</oa:agencyPhone>
+        <oa:agencyEmail>saxobib@hum.ku.dk</oa:agencyEmail>
+        <oa:postalAddress>Njalsgade 80</oa:postalAddress>
+        <oa:postalCode>2300</oa:postalCode>
+        <oa:city>København S</oa:city>
+        <oa:agencyWebsiteUrl>http://saxo.ku.dk/biblioteker/graeskoglatin/</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>840360</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>35 32 81 37</oa:branchPhone>
+            <oa:branchName>Biblioteket for Græsk og Latin. Københavns Universitet, SAXO-Instituttet</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Njalsgade 92, tr. 2, 3</oa:postalAddress>
+            <oa:postalCode>2300</oa:postalCode>
+            <oa:city>København S</oa:city>
+            <oa:isil>DK-840360</oa:isil>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>840540</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Det Juridiske Fakultetsbibliotek</oa:agencyName>
+        <oa:agencyPhone>35 32 33 00</oa:agencyPhone>
+        <oa:agencyEmail>Bo.Sogaard.Jensen@jur.ku.dk</oa:agencyEmail>
+        <oa:postalAddress>Studiestræde 34</oa:postalAddress>
+        <oa:postalCode>1455</oa:postalCode>
+        <oa:city>København K</oa:city>
+        <oa:agencyWebsiteUrl>http://www.jura.ku.dk/Bibliotek</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>840540</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>35 32 33 00</oa:branchPhone>
+            <oa:branchName>Det Juridiske Fakultetsbibliotek</oa:branchName>
+            <oa:branchEmail>bibliotek@jur.ku.dk</oa:branchEmail>
+            <oa:postalAddress>Studiestræde 34</oa:postalAddress>
+            <oa:postalCode>1455</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-840540</oa:isil>
+            <oa:branchWebsiteUrl>http://www.jur.ku.dk/bibliotek</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://www.jur.ku.dk/bibliotek</oa:serviceDeclarationUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday - Sunday 9 am - 6 pm
+            </oa:openingHours>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>840570</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Medicinsk Museion</oa:agencyName>
+        <oa:agencyPhone>35 32 38 00</oa:agencyPhone>
+        <oa:agencyEmail>sul@kb.dk</oa:agencyEmail>
+        <oa:postalAddress>Fredericiagade 18</oa:postalAddress>
+        <oa:postalCode>1310</oa:postalCode>
+        <oa:city>København K</oa:city>
+        <oa:agencyWebsiteUrl>URL: http://www.museion.ku.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>840570</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>35 32 38 00</oa:branchPhone>
+            <oa:branchName>Medicinsk Museion</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Bredgade 62</oa:postalAddress>
+            <oa:postalCode>1260</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-840570</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>840600</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Niels Bohr Institutet, Biblioteket</oa:agencyName>
+        <oa:agencyPhone>3532 5233, 2492 2621 (m)</oa:agencyPhone>
+        <oa:agencyEmail>dilling@nbi.dk</oa:agencyEmail>
+        <oa:postalAddress>Blegdamsvej 17</oa:postalAddress>
+        <oa:postalCode>2100</oa:postalCode>
+        <oa:city>København Ø</oa:city>
+        <oa:agencyWebsiteUrl>http://www.nbi.ku.dk/bibliotek</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>840600</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>35 32 52 00</oa:branchPhone>
+            <oa:branchName>Niels Bohr Institutet. Biblioteket</oa:branchName>
+            <oa:branchEmail>dilling@nbi.dk</oa:branchEmail>
+            <oa:postalAddress>Blegdamsvej 17</oa:postalAddress>
+            <oa:postalCode>2100</oa:postalCode>
+            <oa:city>København Ø</oa:city>
+            <oa:isil>DK-840600</oa:isil>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>840601</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>35 32 59 99</oa:branchPhone>
+            <oa:branchName>Niels Bohr Instituttet. Biblioteket.  Astronomisk og Geofysisk Bibliotek</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Juliane Maries Vej 30</oa:postalAddress>
+            <oa:postalCode>2100</oa:postalCode>
+            <oa:city>København Ø</oa:city>
+            <oa:isil>DK-840601</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>840602</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>35 32 04 43</oa:branchPhone>
+            <oa:branchName>Niels Bohr Instituttet. Biblioteket. ?sted Laboratoriet</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Universitetsparken 5</oa:postalAddress>
+            <oa:postalCode>2100</oa:postalCode>
+            <oa:city>København Ø</oa:city>
+            <oa:isil>DK-840602</oa:isil>
+            <oa:serviceDeclarationUrl>ikke endnu</oa:serviceDeclarationUrl>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>840660</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Institut for Tværkulturelle og Regionale Studier. Slavisk bibliotek</oa:agencyName>
+        <oa:agencyPhone>35 32 85 35</oa:agencyPhone>
+        <oa:agencyEmail>rantzau@hum.ku.dk</oa:agencyEmail>
+        <oa:postalAddress>Snorresgade 17-19, 2.</oa:postalAddress>
+        <oa:postalCode>2300</oa:postalCode>
+        <oa:city>København S</oa:city>
+        <oa:pickupAgency>
+            <oa:branchId>840661</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>35 32 85 22</oa:branchPhone>
+            <oa:branchName>Institut for Tværkulturelle og Regionale Studie, Østeuropæisk Afdeling, Nygræsk og Balkanistik, Biblioteket</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Njalsgade 78, 18.3.149</oa:postalAddress>
+            <oa:postalCode>2300</oa:postalCode>
+            <oa:city>København S</oa:city>
+            <oa:isil>DK-840661</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>840730</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Institut for Tværkulturelle og Regionale Studier. Afdeling for Asienstudier. Biblioteket</oa:agencyName>
+        <oa:agencyPhone>35 32 88 30</oa:agencyPhone>
+        <oa:agencyEmail>merped@hum.ku.dk</oa:agencyEmail>
+        <oa:postalAddress>Leifsgade 33, 4. Sal</oa:postalAddress>
+        <oa:postalCode>2300</oa:postalCode>
+        <oa:city>København S</oa:city>
+        <oa:agencyWebsiteUrl>http://tors.ku.dk/biblioteker/</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>840731</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone></oa:branchPhone>
+            <oa:branchName>Institut for Tværkulturelle og Regionale Studier. Bibliotek for Indologi &amp; Centre of Global South Asian Studie</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:isil>DK-840731</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>842980</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Institut for medicinsk biokemi og genetik, Afdeling A</oa:agencyName>
+        <oa:agencyPhone>35 32 77 24</oa:agencyPhone>
+        <oa:agencyEmail>grunnet@imbg.ku.dk</oa:agencyEmail>
+        <oa:postalAddress>Panum Instituttet
+            Blegdamsvej 3A
+        </oa:postalAddress>
+        <oa:postalCode>2200</oa:postalCode>
+        <oa:city> </oa:city>
+        <oa:agencyWebsiteUrl> </oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>840110</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>35 32 78 44</oa:branchPhone>
+            <oa:branchName>Institut for Medicinsk Biokemi &amp; Genetik, Biblioteket.</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress> </oa:postalAddress>
+            <oa:postalCode> </oa:postalCode>
+            <oa:city> </oa:city>
+            <oa:isil>DK-840110</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>850010</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Det Administrative Bibliotek</oa:agencyName>
+        <oa:agencyPhone>72 26 98 91</oa:agencyPhone>
+        <oa:agencyEmail>dab@dab.dk</oa:agencyEmail>
+        <oa:postalAddress>Slotsholmsgade 12</oa:postalAddress>
+        <oa:postalCode>1216</oa:postalCode>
+        <oa:city>København K</oa:city>
+        <oa:agencyWebsiteUrl>http://www.dab.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>850010</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>72 26 98 91</oa:branchPhone>
+            <oa:branchName>Det Administrative Bibliotek</oa:branchName>
+            <oa:branchEmail>dab@dab.dk</oa:branchEmail>
+            <oa:postalAddress>Slotsholmsgade 12</oa:postalAddress>
+            <oa:postalCode>1216</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-850010</oa:isil>
+            <oa:branchWebsiteUrl>http://www.dab.dk</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://www.dab.dk/service.asp</oa:serviceDeclarationUrl>
+            <oa:registrationFormUrl>http://www.dab.dk/bestil_lonerkort.asp</oa:registrationFormUrl>
+            <oa:userStatusUrl>http://www.minibib.dk:/F?func=BOR-LOGIN&amp;func_option=login-bor&amp;file_name=login-session&amp;local_base=dabdab</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>850020</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Arbejdermuseet og Arbejderbevægelsens Bibliotek og Arkiv</oa:agencyName>
+        <oa:agencyPhone>35 36 15 22</oa:agencyPhone>
+        <oa:agencyEmail>aba@arbejdermuseet.dk</oa:agencyEmail>
+        <oa:postalAddress>Nørrebrogade 66D</oa:postalAddress>
+        <oa:postalCode>2200</oa:postalCode>
+        <oa:city>København N</oa:city>
+        <oa:agencyWebsiteUrl>http://www.aba.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>850020</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>33 93 25 75</oa:branchPhone>
+            <oa:branchName>Arbejdermuseet og Arbejderbevægelsens Bibliotek og Arkiv</oa:branchName>
+            <oa:branchEmail>aba@aba.dk</oa:branchEmail>
+            <oa:postalAddress>Rømersgade 22</oa:postalAddress>
+            <oa:postalCode>1362</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-850020</oa:isil>
+            <oa:branchWebsiteUrl>http://www.aba.dk</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://abm.nu/aba/index.php?option=displaypage&amp;Itemid=53&amp;op=page&amp;SubMenu=</oa:serviceDeclarationUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>850040</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Forsvarets Bibliotek</oa:agencyName>
+        <oa:agencyPhone>33 47 95 25</oa:agencyPhone>
+        <oa:agencyEmail>fbib-11@fak.dk</oa:agencyEmail>
+        <oa:postalAddress>Kastellet 46</oa:postalAddress>
+        <oa:postalCode>2100</oa:postalCode>
+        <oa:city>København Ø</oa:city>
+        <oa:agencyWebsiteUrl>http://Forsvaretsbibliotek.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>850040</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>33 47 95 25</oa:branchPhone>
+            <oa:branchName>Forsvarets Bibliotek, Kastellet</oa:branchName>
+            <oa:branchEmail>is-kgb@fak.dk</oa:branchEmail>
+            <oa:postalAddress>Kastellet</oa:postalAddress>
+            <oa:postalCode>2100</oa:postalCode>
+            <oa:city>København Ø</oa:city>
+            <oa:isil>DK-850040</oa:isil>
+            <oa:branchWebsiteUrl>http://forsvaret.dk/FAK/Fakulteter+og+Centre/Biblioteker/KGB/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://forsvaret.dk/FAK/Fakulteter+og+Centre/Biblioteker/KGB/Om+KGB/Servicedeklaration/</oa:serviceDeclarationUrl>
+            <oa:registrationFormUrl>http://forsvaret.dk/FAK/Fakulteter+og+Centre/Biblioteker/KGB/Om+KGB/L%C3%A5nerregistrering/</oa:registrationFormUrl>
+            <oa:userStatusUrl>http://www.minibib.dk/F?func=BOR-LOGIN&amp;func_option=login-bor&amp;file_name=login-session&amp;local_base=kgb01</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday and Wedensday 1300 - 1800
+                Tuesday and Thursday 1300-1600
+                Friday Closed
+            </oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>850041</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>39 15 14 93</oa:branchPhone>
+            <oa:branchName>Forsvarsakademiet. Svanemøllens Kaserne</oa:branchName>
+            <oa:branchEmail>is-fbi02@fak.dk</oa:branchEmail>
+            <oa:postalAddress>Svanemøllens Kaserne
+                Ryvangs Allé 1
+            </oa:postalAddress>
+            <oa:postalCode>2100</oa:postalCode>
+            <oa:city>København Ø</oa:city>
+            <oa:isil>DK-850041</oa:isil>
+            <oa:openingHours oa:language="dan">man-fre 0800 - 1600  -  
+                Kun for ansatte og elever ved Forsvarsakademiet
+            </oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>850043</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone></oa:branchPhone>
+            <oa:branchName>Flyvevåbnets Officersskole, Biblioteket</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:isil>DK-850043</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>850044</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone></oa:branchPhone>
+            <oa:branchName>Søværnets Officersskole, Biblioteket</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:isil>DK-850044</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>850130</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Kulturstyrelsen</oa:agencyName>
+        <oa:agencyPhone>33 73 33 73</oa:agencyPhone>
+        <oa:agencyEmail>post@bibliotekogmedier.dk</oa:agencyEmail>
+        <oa:postalAddress>H.C. Andersens Boulevard 2</oa:postalAddress>
+        <oa:postalCode>1553</oa:postalCode>
+        <oa:city>København V</oa:city>
+        <oa:agencyWebsiteUrl>http://www.bibliotekogmedier.dk/</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>850131</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone></oa:branchPhone>
+            <oa:branchName>Biblioteksafgiften. Kulturstyrelsen</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:isil>DK-850131</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>850132</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone></oa:branchPhone>
+            <oa:branchName>Kulturstyrelsen. Nationale biblioteksløsninger</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:isil>DK-850132</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>850290</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Det Danske Filminstituts Bibliotek</oa:agencyName>
+        <oa:agencyPhone>33 74 35 90</oa:agencyPhone>
+        <oa:agencyEmail>bibliotek@dfi.dk</oa:agencyEmail>
+        <oa:postalAddress>Gothersgade 55</oa:postalAddress>
+        <oa:postalCode>1123</oa:postalCode>
+        <oa:city>København K</oa:city>
+        <oa:agencyWebsiteUrl>http://www.dfi.dk/filmhuset/biblioteket.aspx</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>850290</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>33 74 35 90</oa:branchPhone>
+            <oa:branchName>Det Danske Filminstituts Bibliotek</oa:branchName>
+            <oa:branchEmail>bibliotek@dfi.dk</oa:branchEmail>
+            <oa:postalAddress>Gothersgade 55</oa:postalAddress>
+            <oa:postalCode>1123</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-850290</oa:isil>
+            <oa:branchWebsiteUrl>http://www.dfi.dk/bibliotekogarkiver/Biblioteket/biblioteket.htm</oa:branchWebsiteUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Tuesday &amp; Thursday: 12 a.m. - 7 p.m.
+                Wednesday &amp; Friday: 12 a.m. - 4 p.m.
+            </oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>850580</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Designmuseum Danmark. Biblioteket</oa:agencyName>
+        <oa:agencyPhone>33 18 56 50</oa:agencyPhone>
+        <oa:agencyEmail>bib@designmuseum.dk</oa:agencyEmail>
+        <oa:postalAddress>Bredgade 68</oa:postalAddress>
+        <oa:postalCode>1260</oa:postalCode>
+        <oa:city>København K</oa:city>
+        <oa:agencyWebsiteUrl>http://www.designmuseum.dk/bibliotek</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>850580</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>33 18 56 50</oa:branchPhone>
+            <oa:branchName>Designmuseum Danmark. Biblioteket</oa:branchName>
+            <oa:branchEmail>bib@dkim.dk</oa:branchEmail>
+            <oa:postalAddress>Bredgade 68</oa:postalAddress>
+            <oa:postalCode>1260</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-850580</oa:isil>
+            <oa:branchWebsiteUrl>http://www.dkim.dk</oa:branchWebsiteUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Tuesday through Friday: 11 am to 5 pm.&lt;br&gt;
+                Closed on Saturday through Monday.
+            </oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>850590</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>KVINFO. Videnscenter og forskningsbibliotek for køn, ligestilling og etnicitet</oa:agencyName>
+        <oa:agencyPhone>33 13 50 88</oa:agencyPhone>
+        <oa:agencyEmail>bibliotek@kvinfo.dk</oa:agencyEmail>
+        <oa:postalAddress>Christians Brygge 3</oa:postalAddress>
+        <oa:postalCode>1219</oa:postalCode>
+        <oa:city>København K</oa:city>
+        <oa:agencyWebsiteUrl>http://kvinfo.dk/</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>850590</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>33 13 50 88</oa:branchPhone>
+            <oa:branchName>KVINFO. Videnscenter og forskningsbibliotek for køn, ligestilling og etnicitet</oa:branchName>
+            <oa:branchEmail>bibliotek@kvinfo.dk</oa:branchEmail>
+            <oa:postalAddress>Chr. Brygge 3</oa:postalAddress>
+            <oa:postalCode>1219</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-850590</oa:isil>
+            <oa:branchWebsiteUrl>http://www.kvinfo.dk/side/168/</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://www.kvinfo.dk/side/234/</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>https://kvinfo.bibits.no/pls/bookit4/pkg_www_misc.print_index?in_user_id=opac-k-e&amp;in_op_key_id=menupoint_loan</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Sept - June: Mon: 10 - 18, Tues - Thurs: 11 - 17
+&lt;br&gt;
+                July - Aug: Mon - Thurs: 13 - 17
+&lt;br&gt;
+                All year: Fri: 10 - 14. Only open for requests by e-mail and tel.
+                For book deliveries, please contact the Reception
+            </oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>850650</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Botanisk Centralbibliotek</oa:agencyName>
+        <oa:agencyPhone>35 32 22 50</oa:agencyPhone>
+        <oa:agencyEmail>bcb@snm.ku.dk</oa:agencyEmail>
+        <oa:postalAddress>Sølvgade 83, opg. S</oa:postalAddress>
+        <oa:postalCode>1307</oa:postalCode>
+        <oa:pickupAgency>
+            <oa:branchId>850650</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>35 32 22 50</oa:branchPhone>
+            <oa:branchName>Botanisk Centralbibliotek</oa:branchName>
+            <oa:branchEmail>bcb@snm.ku.dk</oa:branchEmail>
+            <oa:postalAddress>Sølvgade 83, opg. S</oa:postalAddress>
+            <oa:postalCode>1307</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-850650</oa:isil>
+            <oa:branchWebsiteUrl>http://www.botaniskcentralbibliotek.ku.dk</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://www.botaniskcentralbibliotek.ku.dk</oa:serviceDeclarationUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Mon, Tues and Thurs 12.30-16.00
+                Ekspedition from magazines
+                Mon, Tues and Thurs 12.30-15.30
+            </oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>850840</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Museologisk Bibliotek</oa:agencyName>
+        <oa:agencyPhone>49 14 39 66</oa:agencyPhone>
+        <oa:agencyEmail>mub@dkmuseer.dk.</oa:agencyEmail>
+        <oa:postalAddress>ODM Vartov</oa:postalAddress>
+        <oa:postalCode>1463</oa:postalCode>
+        <oa:city>K?havn K</oa:city>
+        <oa:agencyWebsiteUrl>www.dkmuseer.dk/museologiskbibliotek.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>850840</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>21628406</oa:branchPhone>
+            <oa:branchName>Museologisk Bibliotek</oa:branchName>
+            <oa:branchEmail>mub@dkmuseer.dk</oa:branchEmail>
+            <oa:postalAddress>Farvergade 27 A, 1.sal</oa:postalAddress>
+            <oa:postalCode>1463</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-850840</oa:isil>
+            <oa:branchWebsiteUrl>http://www.dkmuseer.dk/museologiskbibliotek/</oa:branchWebsiteUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Wednesday, Thursday and Friday, 9.30-15.30</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>850950</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Rigshospitalet, Medicinsk Bibliotek</oa:agencyName>
+        <oa:agencyPhone>35 45 41 65</oa:agencyPhone>
+        <oa:agencyEmail>mb@rh.regionh.dk</oa:agencyEmail>
+        <oa:postalAddress>Afsnit 5801, Rigshospitalet</oa:postalAddress>
+        <oa:postalCode>2100</oa:postalCode>
+        <oa:city>København Ø</oa:city>
+        <oa:pickupAgency>
+            <oa:branchId>850950</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>35 45 41 65</oa:branchPhone>
+            <oa:branchName>Rigshospitalet, Medicinsk Bibliotek</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Blegdamsvej 9</oa:postalAddress>
+            <oa:postalCode>2100</oa:postalCode>
+            <oa:city>København Ø</oa:city>
+            <oa:isil>DK-850950</oa:isil>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>850990</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Skatteministeriets Bibliotek</oa:agencyName>
+        <oa:agencyPhone>72 37 32 08 - 72 37 29 96</oa:agencyPhone>
+        <oa:agencyEmail>bibliotek@skat.dk</oa:agencyEmail>
+        <oa:postalAddress>Nicolai Eigtveds Gade 28</oa:postalAddress>
+        <oa:postalCode>1402</oa:postalCode>
+        <oa:city>København K</oa:city>
+        <oa:pickupAgency>
+            <oa:branchId>850990</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>33 92 33 92</oa:branchPhone>
+            <oa:branchName>Skattedepartementets Bibliotek</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Nicolai Eigtveds Gade 28</oa:postalAddress>
+            <oa:postalCode>1402</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-850990</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>851470</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Polarbiblioteket</oa:agencyName>
+        <oa:agencyPhone>35 32 96 69</oa:agencyPhone>
+        <oa:agencyEmail>polarlibrary@hum.ku.dk</oa:agencyEmail>
+        <oa:postalAddress>Strandgade 102</oa:postalAddress>
+        <oa:postalCode>1401</oa:postalCode>
+        <oa:city>København K</oa:city>
+        <oa:agencyWebsiteUrl>http://eskimologi.ku.dk/bibliotek/</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>851470</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>32 88 01 48</oa:branchPhone>
+            <oa:branchName>Polarbiblioteket</oa:branchName>
+            <oa:branchEmail>library@fist.dk</oa:branchEmail>
+            <oa:postalAddress>Strandgade 102</oa:postalAddress>
+            <oa:postalCode>1401</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-851470</oa:isil>
+            <oa:branchWebsiteUrl>http://www.dpc.dk/sw196.asp</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://www.dpc.dk/sw10681.asp</oa:serviceDeclarationUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday, Tuesday, Thursday, and Friday
+                1 pm  3 pm
+                Wednesday closed
+            </oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>851700</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>RCT Documentation Centre</oa:agencyName>
+        <oa:agencyPhone>33 76 06 00</oa:agencyPhone>
+        <oa:agencyEmail>rctdoc@rct.dk</oa:agencyEmail>
+        <oa:postalAddress>Postboks 2107</oa:postalAddress>
+        <oa:postalCode>1014</oa:postalCode>
+        <oa:city>København K</oa:city>
+        <oa:agencyWebsiteUrl>http:/www.rct.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>851700</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>33 76 06 00</oa:branchPhone>
+            <oa:branchName>RCT Documentation Centre</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Borgergade 13</oa:postalAddress>
+            <oa:postalCode>1300</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-851700</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>852600</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Banedanmark, Biblioteket</oa:agencyName>
+        <oa:agencyPhone>82 34 06 67</oa:agencyPhone>
+        <oa:agencyEmail>bibliotek@bane.dk</oa:agencyEmail>
+        <oa:postalAddress>Amerika Plads 15</oa:postalAddress>
+        <oa:postalCode>2100</oa:postalCode>
+        <oa:city>København Ø</oa:city>
+        <oa:agencyWebsiteUrl>http://primo-17.kb.dk/primo_library/libweb/action/search.do?dscnt=1&amp;fromLogin=true&amp;dstmp=13385570131</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>852600</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>82 34 70 40</oa:branchPhone>
+            <oa:branchName>Banedanmark, Økonomi, Personale, Dokumenthåndtering</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Amerika Plads 15</oa:postalAddress>
+            <oa:postalCode>2100</oa:postalCode>
+            <oa:city>København Ø</oa:city>
+            <oa:isil>DK-852600</oa:isil>
+            <oa:registrationFormUrl>E. Z39.50 URL</oa:registrationFormUrl>
+            <oa:userStatusUrl>http://www.minibib.dk:/F?func=BOR-LOGIN&amp;func_option=login-bor&amp;file_name=login-session&amp;local_base=bst</oa:userStatusUrl>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>852620</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Socialstyrelsen, Biblioteket</oa:agencyName>
+        <oa:agencyPhone>72 42 37 00</oa:agencyPhone>
+        <oa:agencyEmail>bibliotek@servicestyrelsen.dk</oa:agencyEmail>
+        <oa:postalAddress>Edisonsvej 18 1.</oa:postalAddress>
+        <oa:postalCode>5000</oa:postalCode>
+        <oa:city>Odense C</oa:city>
+        <oa:pickupAgency>
+            <oa:branchId>852620</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>76 10 91 54</oa:branchPhone>
+            <oa:branchName>Socialstyrelsen, Biblioteket</oa:branchName>
+            <oa:branchEmail>hpe@servicestyrelsen.dk</oa:branchEmail>
+            <oa:postalAddress>Åbenrå 5, 1. sal</oa:postalAddress>
+            <oa:postalCode>1124</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-852620</oa:isil>
+            <oa:branchWebsiteUrl>www.vfcudsatte.dk</oa:branchWebsiteUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>852621</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>76109154</oa:branchPhone>
+            <oa:branchName>Socialstyrelsen, Udsatteenheden Esbjerg</oa:branchName>
+            <oa:branchEmail>hkp@vfcudsatte.dk</oa:branchEmail>
+            <oa:postalAddress>Bavnehøjvej 6</oa:postalAddress>
+            <oa:postalCode>6700</oa:postalCode>
+            <oa:city>Esbjerg</oa:city>
+            <oa:isil>DK-852621</oa:isil>
+            <oa:branchWebsiteUrl>http://www.vfcudsatte.dk</oa:branchWebsiteUrl>
+            <oa:openingHours oa:language="dan">Der kan ikke bestilles bøger gennem bibliotek.dk</oa:openingHours>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>852622</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone></oa:branchPhone>
+            <oa:branchName>Socialstyrelsen, Biblioteket, København</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:isil>DK-852622</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>852623</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone></oa:branchPhone>
+            <oa:branchName>Socialstyrelsen, ViHS, Aalborg</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:isil>DK-852623</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>852640</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>S?tens Biblioteks Studiecenter</oa:agencyName>
+        <oa:agencyPhone>35 42 26 10</oa:agencyPhone>
+        <oa:agencyEmail>sbib@sbib.dk</oa:agencyEmail>
+        <oa:postalAddress>Blegdamsvej 114</oa:postalAddress>
+        <oa:postalCode>2100</oa:postalCode>
+        <oa:city>K?havn ?</oa:city>
+        <oa:agencyWebsiteUrl>http://www.sbib.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>852640</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>35 42 26 10</oa:branchPhone>
+            <oa:branchName>S?tens Biblioteks Studiecenter</oa:branchName>
+            <oa:branchEmail>sbib@sbib.dk</oa:branchEmail>
+            <oa:postalAddress>Blegdamsvej 114</oa:postalAddress>
+            <oa:postalCode>2100</oa:postalCode>
+            <oa:city>København Ø</oa:city>
+            <oa:isil>DK-852640</oa:isil>
+            <oa:branchWebsiteUrl>http://www.sbib.dk</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://www.sbib.dk</oa:serviceDeclarationUrl>
+            <oa:userStatusUrl>http://bookit.bibits.no/pls/bookit12/pkg_www_misc.print_index?in_user_id=opac_st&amp;in_password=opac-_st&amp;in_ccl_query=</oa:userStatusUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">tuesday-friday: 09-16
+                saturday: 9-13
+            </oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>860100</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Folketingets Bibliotek, Arkiv og Oplysning</oa:agencyName>
+        <oa:agencyPhone>33 37 34 34</oa:agencyPhone>
+        <oa:agencyEmail>Biblioteket@ft.dk</oa:agencyEmail>
+        <oa:postalAddress>Christiansborg</oa:postalAddress>
+        <oa:postalCode>1240</oa:postalCode>
+        <oa:city>København K</oa:city>
+        <oa:pickupAgency>
+            <oa:branchId>860100</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>33 37 34 34</oa:branchPhone>
+            <oa:branchName>Folketingets Bibliotek, Arkiv og Oplysning</oa:branchName>
+            <oa:branchEmail>biblioteket@ft.dk</oa:branchEmail>
+            <oa:postalAddress>Christiansborg</oa:postalAddress>
+            <oa:postalCode>1240</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-860100</oa:isil>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>860550</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>EUROPA-Kommissionen. Repræsentation i Danmark. Dokumentationsafdelingen</oa:agencyName>
+        <oa:agencyPhone>33 14 41 40</oa:agencyPhone>
+        <oa:agencyEmail>luc@europa-kommissionen.dk</oa:agencyEmail>
+        <oa:postalAddress>Gothersgade 115</oa:postalAddress>
+        <oa:postalCode>1123</oa:postalCode>
+        <oa:city>København K</oa:city>
+        <oa:agencyWebsiteUrl>http://www.europa-kommissionen.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>860550</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>33 14 41 40</oa:branchPhone>
+            <oa:branchName>EUROPA-Kommissionen. Repræsentationi Danmark, Dokumentationsafdelingen</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Østergade 61</oa:postalAddress>
+            <oa:postalCode>1004</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-860550</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>860900</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Københavns Erhvervsakademi Bibliotek</oa:agencyName>
+        <oa:agencyPhone>4646 03240</oa:agencyPhone>
+        <oa:agencyEmail>heg@kea.dk</oa:agencyEmail>
+        <oa:postalAddress>Landskronagade 64-70</oa:postalAddress>
+        <oa:postalCode>2100</oa:postalCode>
+        <oa:city>København Ø</oa:city>
+        <oa:agencyWebsiteUrl>http://www.kea.dk/</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>860900</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>35 86 37 27</oa:branchPhone>
+            <oa:branchName>Københavns Erhvervsakademi Bibliotek, Landskronagade</oa:branchName>
+            <oa:branchEmail>heth@kts.dk</oa:branchEmail>
+            <oa:postalAddress>Stevnsgade 17</oa:postalAddress>
+            <oa:postalCode>2200</oa:postalCode>
+            <oa:city>København N.</oa:city>
+            <oa:isil>DK-860900</oa:isil>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>860901</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone></oa:branchPhone>
+            <oa:branchName>Københavns Erhvervsakademi Bibliotek, Prinsesse Charlottes Gade</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:isil>DK-860901</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>861150</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>SOPU. Sundhed, omsorg, pædagosik. København &amp; Nordsjælland. Biblioteket</oa:agencyName>
+        <oa:agencyPhone>35 28 71 62</oa:agencyPhone>
+        <oa:agencyEmail>jolund@sosukbh.dk</oa:agencyEmail>
+        <oa:postalAddress>Vognmagergade 8</oa:postalAddress>
+        <oa:postalCode>1120</oa:postalCode>
+        <oa:city>København K</oa:city>
+        <oa:agencyWebsiteUrl>http://www.sosukbh.dk/</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>861150</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>35 28 72 71</oa:branchPhone>
+            <oa:branchName>SOPU. Sundhed, omsorg, pædagosik. København &amp; Nordsjælland. Biblioteket</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Vognmagergade 8</oa:postalAddress>
+            <oa:postalCode>1120</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-861150</oa:isil>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>861200</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Det F?ske Hus, Biblioteket B?avnid ??ah?um</oa:agencyName>
+        <oa:agencyPhone>33 23 15 87</oa:agencyPhone>
+        <oa:postalAddress>Vesterbrogade 17 A</oa:postalAddress>
+        <oa:postalCode>1620</oa:postalCode>
+        <oa:city>K?havn V</oa:city>
+        <oa:pickupAgency>
+            <oa:branchId>861200</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>33 23 15 87</oa:branchPhone>
+            <oa:branchName>Det F?ske Hus, BiblioteketB?avnid ??ah?um</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Vesterbrogade 17 A</oa:postalAddress>
+            <oa:postalCode>1620</oa:postalCode>
+            <oa:city>København V</oa:city>
+            <oa:isil>DK-861200</oa:isil>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>862120</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Niels Brock, Biblioteket</oa:agencyName>
+        <oa:agencyPhone>33 41 94 55</oa:agencyPhone>
+        <oa:agencyEmail>bibl@brock.dk</oa:agencyEmail>
+        <oa:postalAddress>Julius Thomsens Plads 10, 5. sal</oa:postalAddress>
+        <oa:postalCode>1925</oa:postalCode>
+        <oa:city>Frederiksberg C</oa:city>
+        <oa:agencyWebsiteUrl>http://www.brock.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>862120</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>33 41 94 55</oa:branchPhone>
+            <oa:branchName>Niels Brock, Biblioteket</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Nørre Voldgade 34</oa:postalAddress>
+            <oa:postalCode>1358</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-862120</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>862210</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Videnscenter for Transkulturel Psykiatri</oa:agencyName>
+        <oa:agencyPhone>38 64 70 38</oa:agencyPhone>
+        <oa:agencyEmail>transkulturel-psykiatri@rh.regionh.dk</oa:agencyEmail>
+        <oa:postalAddress>Blegdamsvej 9, afsnit 6213</oa:postalAddress>
+        <oa:postalCode>2100</oa:postalCode>
+        <oa:city>København Ø</oa:city>
+        <oa:agencyWebsiteUrl>http://www.vftp.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>862210</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>33 69 19 90</oa:branchPhone>
+            <oa:branchName>Videnscenter for Transkulturel Psykiatri</oa:branchName>
+            <oa:branchEmail>transkulturel-psykiatri@rh.hosp.dk</oa:branchEmail>
+            <oa:postalAddress>Rigshospitalet, afsnit 8121 
+                Griffenfeldsgade 46, opgang 81, 2. sal. tv. 
+            </oa:postalAddress>
+            <oa:postalCode>2200</oa:postalCode>
+            <oa:city>København N</oa:city>
+            <oa:isil>DK-862210</oa:isil>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>872000</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>DSI. DSI-biblioteket</oa:agencyName>
+        <oa:agencyPhone>35 29 84 04</oa:agencyPhone>
+        <oa:agencyEmail>is@dsi.dk</oa:agencyEmail>
+        <oa:postalAddress>Postboks 2595</oa:postalAddress>
+        <oa:postalCode>2100</oa:postalCode>
+        <oa:city>København Ø</oa:city>
+        <oa:pickupAgency>
+            <oa:branchId>872000</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>35 29 84 04</oa:branchPhone>
+            <oa:branchName>DSI. DSI-biblioteket</oa:branchName>
+            <oa:branchEmail>bib@dsi.dk</oa:branchEmail>
+            <oa:postalAddress>Dampfærgevej 22
+                Postboks 2595
+            </oa:postalAddress>
+            <oa:postalCode>2100</oa:postalCode>
+            <oa:city>København Ø</oa:city>
+            <oa:isil>DK-872000</oa:isil>
+            <oa:branchWebsiteUrl>http://www.dsi.dk/frz_bibliotek.htm</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://www.dsi.dk/frz_bibliotek.htm</oa:serviceDeclarationUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday-thursday 10-16 Friday 10-15</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>872020</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Skt. Andreas Bibliotek</oa:agencyName>
+        <oa:agencyPhone>33 55 60 90</oa:agencyPhone>
+        <oa:agencyEmail>bibliotek@katolsk.dk</oa:agencyEmail>
+        <oa:postalAddress>Gl. Kongevej 15</oa:postalAddress>
+        <oa:postalCode>1610</oa:postalCode>
+        <oa:city>København V</oa:city>
+        <oa:agencyWebsiteUrl>http://www.sanktandreasbibliotek.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>872020</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>33556090</oa:branchPhone>
+            <oa:branchName>Skt. Andreas Bibliotek</oa:branchName>
+            <oa:branchEmail>bibliotek@katolsk.dk</oa:branchEmail>
+            <oa:postalAddress>Gammel Kongevej 15</oa:postalAddress>
+            <oa:postalCode>1610</oa:postalCode>
+            <oa:city>København V</oa:city>
+            <oa:isil>DK-872020</oa:isil>
+            <oa:branchWebsiteUrl>http://www.sanktandreasbibliotek.dk</oa:branchWebsiteUrl>
+            <oa:openingHours oa:language="dan">Mandag-Fredag
+                kl. 10-12 og 13-16, tirsdag desuden 16-17.30
+            </oa:openingHours>
+            <oa:openingHours oa:language="eng">We are open Monday thru Friday 10a.m.-12 noon, 1-4 p.m.
+                Tuesdays 10a.m.-12 noon, 1-5.30 p.m.
+            </oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>872370</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Gefion Gymnasium. Biblioteket</oa:agencyName>
+        <oa:agencyPhone>3396 4152</oa:agencyPhone>
+        <oa:agencyEmail>tov@gefion-gym.dk</oa:agencyEmail>
+        <oa:postalAddress>Øster Voldgade 10</oa:postalAddress>
+        <oa:city>København K</oa:city>
+        <oa:pickupAgency>
+            <oa:branchId>872370</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>35 36 26 54</oa:branchPhone>
+            <oa:branchName>Gefion Gymnasium. Biblioteket</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Struenseegade 50</oa:postalAddress>
+            <oa:postalCode>2200</oa:postalCode>
+            <oa:city>København N</oa:city>
+            <oa:isil>DK-872370</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>872670</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>AKF, Anvendt KommunalForskning, Biblioteket</oa:agencyName>
+        <oa:agencyPhone>43 33 34 64</oa:agencyPhone>
+        <oa:agencyEmail>lc@akf.dk</oa:agencyEmail>
+        <oa:postalAddress>Købmagergade 22</oa:postalAddress>
+        <oa:postalCode>1150</oa:postalCode>
+        <oa:city>København K</oa:city>
+        <oa:pickupAgency>
+            <oa:branchId>872670</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>33 14 59 49</oa:branchPhone>
+            <oa:branchName>AKF, Anvendt KommunalForskning, Biblioteket</oa:branchName>
+            <oa:branchEmail>lc@akf.dk</oa:branchEmail>
+            <oa:postalAddress>Nyropsgade 37</oa:postalAddress>
+            <oa:postalCode>1602</oa:postalCode>
+            <oa:city>København V</oa:city>
+            <oa:isil>DK-872670</oa:isil>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Monday 8 am to 4 pm, Tuesday &amp; Thursday 8 am to 2 pm, Wednesday &amp; Friday 8 am to 12 am</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>872740</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Thorvaldsens Museums Bibliotek</oa:agencyName>
+        <oa:agencyPhone>33 32 15 32</oa:agencyPhone>
+        <oa:agencyEmail>thm@thorvaldsensmuseum.dk</oa:agencyEmail>
+        <oa:postalAddress>Bertel Thorvaldsens Plads 2</oa:postalAddress>
+        <oa:postalCode>1213</oa:postalCode>
+        <oa:city>København K</oa:city>
+        <oa:agencyWebsiteUrl>http://thorvaldsensmuseum.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>872740</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>33 32 15 32</oa:branchPhone>
+            <oa:branchName>Thorvaldsens Museums Bibliotek</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Porthusgade 2</oa:postalAddress>
+            <oa:postalCode>1213</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-872740</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>873200</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Center for Høretab, Biblioteket</oa:agencyName>
+        <oa:agencyPhone>76 20 11 45</oa:agencyPhone>
+        <oa:agencyEmail>lf@cfh.dk</oa:agencyEmail>
+        <oa:postalAddress>Merkurvænget 2</oa:postalAddress>
+        <oa:postalCode>7000</oa:postalCode>
+        <oa:city>Fredericia</oa:city>
+        <oa:agencyWebsiteUrl>http://www.cfh.dk/</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>873200</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>33120200</oa:branchPhone>
+            <oa:branchName>Center for Høretab, Biblioteket</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Amaliegade 7</oa:postalAddress>
+            <oa:postalCode>1256</oa:postalCode>
+            <oa:city>København K</oa:city>
+            <oa:isil>DK-873200</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>873280</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>NSG StudieCenter</oa:agencyName>
+        <oa:agencyPhone>39 16 23 78</oa:agencyPhone>
+        <oa:agencyEmail>nsgbibl@nsg-gym.dk</oa:agencyEmail>
+        <oa:postalAddress>Skt. Kjeldsgade 3</oa:postalAddress>
+        <oa:postalCode>2100</oa:postalCode>
+        <oa:city>København Ø</oa:city>
+        <oa:agencyWebsiteUrl>http://www.nsg-gym.dk</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>873280</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>39 16 23 78</oa:branchPhone>
+            <oa:branchName>NSG StudieCenter</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:postalAddress>Skt. Kjeldsgade 3</oa:postalAddress>
+            <oa:postalCode>2100</oa:postalCode>
+            <oa:city>København Ø</oa:city>
+            <oa:isil>DK-873280</oa:isil>
+            <oa:branchWebsiteUrl>http://www.studiecenter.dk</oa:branchWebsiteUrl>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>874310</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Nota - Nationalbibliotek for mennesker med læsevanskeligheder</oa:agencyName>
+        <oa:agencyPhone>39 13 46 00</oa:agencyPhone>
+        <oa:agencyEmail>biblioteket@nota.nu</oa:agencyEmail>
+        <oa:postalAddress>Teglværksgade 37</oa:postalAddress>
+        <oa:postalCode>2100</oa:postalCode>
+        <oa:city>København Ø</oa:city>
+        <oa:agencyWebsiteUrl>www.nota.nu</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>874310</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone>39 27 44 44</oa:branchPhone>
+            <oa:branchName>Nota - Nationalbibliotek for mennesker med læsevanskeligheder</oa:branchName>
+            <oa:branchEmail>dbb@dbb.dk</oa:branchEmail>
+            <oa:postalAddress>Teglværksgade 37</oa:postalAddress>
+            <oa:postalCode>2100</oa:postalCode>
+            <oa:city>København Ø</oa:city>
+            <oa:isil>DK-874310</oa:isil>
+            <oa:branchWebsiteUrl>http://www.dbb.dk/</oa:branchWebsiteUrl>
+            <oa:registrationFormUrl>http://www.e17.dk/portalen/hjem/hjaelp.aspx?pid=hjaelp_user1.e17#top</oa:registrationFormUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">The lending department is open on Monday: 9-16, Thursday-Wednesday: 10.00-16.00, Thursday: 10.00-18.00 and Friday: 10.00-15.00. Please call  45 39 27 44 44</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+    <oa:library>
+        <oa:agencyId>875180</oa:agencyId>
+        <oa:agencyType>Forskningsbibliotek</oa:agencyType>
+        <oa:agencyName>Professionshøjskolen Metropol's biblioteker</oa:agencyName>
+        <oa:agencyPhone>29 62 04 08</oa:agencyPhone>
+        <oa:agencyEmail>pefl@phmetropol.dk</oa:agencyEmail>
+        <oa:postalAddress>Sigurdsgade  26</oa:postalAddress>
+        <oa:postalCode>2200</oa:postalCode>
+        <oa:city>København N</oa:city>
+        <oa:agencyWebsiteUrl>http://www.phmetropol.dk/Om+Metropol/Biblioteket</oa:agencyWebsiteUrl>
+        <oa:pickupAgency>
+            <oa:branchId>830130</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>35 31 05 20</oa:branchPhone>
+            <oa:branchName>Metropol - Campusbiblioteket Rådmandsmarken</oa:branchName>
+            <oa:branchEmail>bv@jdmsk.dk</oa:branchEmail>
+            <oa:postalAddress>Haraldsgade 6, 1. sal</oa:postalAddress>
+            <oa:postalCode>2200</oa:postalCode>
+            <oa:city>København N</oa:city>
+            <oa:isil>DK-830130</oa:isil>
+            <oa:branchWebsiteUrl>http://alephext.kb.dk/F/?func=file&amp;file_name=find-b&amp;local_base=JMK01</oa:branchWebsiteUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Mon-Friday: 9.00 -15.00</oa:openingHours>
+            <oa:temporarilyClosed>false</oa:temporarilyClosed>
+            <oa:pickupAllowed>1</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>830870</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>35 24 79 50</oa:branchPhone>
+            <oa:branchName>Metropol - Erhvervspædagogisk Bibliotek</oa:branchName>
+            <oa:branchEmail>del-lib@delud.dk</oa:branchEmail>
+            <oa:postalAddress>Rosenørns Allé 31</oa:postalAddress>
+            <oa:postalCode>1970</oa:postalCode>
+            <oa:city>Frederiksberg C</oa:city>
+            <oa:isil>DK-830870</oa:isil>
+            <oa:branchWebsiteUrl>http://www.reindex.org/DEL/rss/Portal.php?</oa:branchWebsiteUrl>
+            <oa:serviceDeclarationUrl>http://www.delud.dk/default.asp?objtype=article&amp;func=showdetail&amp;id=1271&amp;ilanguage=dansk&amp;menuItem=menuItemA_a_1471_a_Left&amp;curMenu=A</oa:serviceDeclarationUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:openingHours oa:language="eng">Mon.-Thu.: 9-15
+                fri.: 9-14
+            </oa:openingHours>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>831310</oa:branchId>
+            <oa:branchType>f</oa:branchType>
+            <oa:branchPhone>35 45 70 41</oa:branchPhone>
+            <oa:branchName>Metropol - Sygeplejefagligt Bibliotek - København</oa:branchName>
+            <oa:branchEmail>sfb@sud.regionh.dk</oa:branchEmail>
+            <oa:postalAddress>Tagensvej 18</oa:postalAddress>
+            <oa:postalCode>2200</oa:postalCode>
+            <oa:city>København N</oa:city>
+            <oa:isil>DK-831310</oa:isil>
+            <oa:branchWebsiteUrl>http://www.sygeplejefagligtbibliotek.dk</oa:branchWebsiteUrl>
+            <oa:openingHours oa:language="dan">Man-fre kl. 10-19, lør kl. 10-16 (1.10.-31.3)</oa:openingHours>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+        <oa:pickupAgency>
+            <oa:branchId>875180</oa:branchId>
+            <oa:branchType>H</oa:branchType>
+            <oa:branchPhone></oa:branchPhone>
+            <oa:branchName>Professionshøjskolen Metropol's biblioteker. Administrationen</oa:branchName>
+            <oa:branchEmail></oa:branchEmail>
+            <oa:isil>DK-875180</oa:isil>
+            <oa:temporarilyClosed>true</oa:temporarilyClosed>
+            <oa:pickupAllowed>0</oa:pickupAllowed>
+        </oa:pickupAgency>
+    </oa:library>
+</oa:pickupAgencyListResponse>

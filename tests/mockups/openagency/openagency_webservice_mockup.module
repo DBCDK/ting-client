@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Webservice mockup of Open Agency
+ */
+function openagency_webservice_mockup_menu() {
+  $items['openagency_webservice'] = array(
+    'page callback' => 'openagency_webservice_mockup_request',
+    'access callback' => 'openagency_webservice_mockup_access',
+  );
+
+  return $items;
+}
+
+function openagency_webservice_mockup_request() {
+  $path = drupal_get_path('module', 'openagency_webservice_mockup');
+  
+  if (isset($_POST['xml'])) {
+    drupal_add_http_header('Content-Type', 'text/xml; charset=utf-8');
+    $data = file_get_contents($path.'/københavn.xml');
+  } else{
+    drupal_add_http_header('Content-Type', 'application/json');
+    $data = file_get_contents($path.'/københavn.json');
+  }
+  
+  print $data;
+}
+
+function openagency_webservice_mockup_access() {
+  return TRUE;
+}
