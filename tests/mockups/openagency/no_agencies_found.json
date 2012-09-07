@@ -1,0 +1,12 @@
+{
+    "pickupAgencyListResponse":{
+        "error":{
+            "$":"no_agencies_found",
+            "@":"oa"
+        },
+        "@":"oa"
+    },
+    "@namespaces":{
+        "oa":"http:\/\/oss.dbc.dk\/ns\/openagency"
+    }
+}
