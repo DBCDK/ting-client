@@ -9,8 +9,21 @@ function openagency_webservice_mockup_menu() {
     'page callback' => 'openagency_webservice_mockup_request',
     'access callback' => 'openagency_webservice_mockup_access',
   );
+  $items['openagency_webservice'] = array(
+    'page callback' => 'openagency_webservice_mockup_request',
+    'access callback' => 'openagency_webservice_mockup_access',
+  );
+
+  $items['openagency_webservice_test'] = array(
+    'page callback' => 'openagency_webservice_test',
+    'access callback' => TRUE
+  );
 
   return $items;
+}
+
+function openagency_webservice_test() {
+  return '<form name="test" action="openagency_webservice" method="POST" target="_blank"><textarea name="xml"></textarea><input type="submit" name="sub" value="submit"/></form>';
 }
 
 /**
@@ -18,38 +31,86 @@ function openagency_webservice_mockup_menu() {
  * @return String json
  */
 function openagency_webservice_mockup_request() {
-  $path = drupal_get_path('module', 'openagency_webservice_mockup');
-  $data = file_get_contents('php://input');
-  
+  if (isset($_POST['xml'])) {
+    $data = rawurldecode($_POST['xml']);
+  }
+  else {
+    $data = file_get_contents('php://input');
+  }
+
   $envelope = openagency_webservice_mockup_parse_xml($data);
+
+  try {
+    $request = $envelope->Body->children();
+    switch ($request->getName()) {
+      case 'pickupAgencyListRequest':
+        return openagency_webservice_pickupAgencyListRequest($request->pickupAgencyListRequest);
+        break;
+      case 'serviceRequest' :
+        return openagency_webservice_serviceRequest($request->serviceRequest);
+
+      default:
+        return SOAP_FAULT;
+    }
+  } catch (Exception $e) {
+    return SOAP_FAULT;
+  }
+}
+
+/**
+ * Printing the result of the serviceRequest in json
+ */
+function openagency_webservice_serviceRequest($request) {
+  $path = drupal_get_path('module', 'openagency_webservice_mockup');
   
-  $request = $envelope->Body->children()->pickupAgencyListRequest;
+  $agencyId = $request->agencyId;
+  $service = $request->service;
+  switch ($request->outputType) {
+    case 'xml':
+      drupal_add_http_header('Content-Type', 'text/xml; charset=utf-8');
+      $resp = file_get_contents($path . '/openagency_servicerequest.xml');
+      break;
+    case 'json':
+    default :
+      drupal_add_http_header('Content-Type', 'application/json');
+      $resp = file_get_contents($path . '/openagency_servicerequest.json');
+      break;
+  }
+  print $resp;
+}
+
+/**
+ * Printing the result of the pickupAgencyListRequest in xml or json
+ */
+function openagency_webservice_pickupAgencyListRequest($request) {
+  $path = drupal_get_path('module', 'openagency_webservice_mockup');
+  
   $city = $request->city;
   $outPut = $request->outputType;
-  
-  if($city != 'københavn'){
+
+  if ($city != 'københavn') {
     drupal_add_http_header('Content-Type', 'application/json');
-    $resp = file_get_contents($path.'/no_agencies_found.json');
+    $resp = file_get_contents($path . '/no_agencies_found.json');
     print $resp;
     return;
   }
-  
+
   switch ($outPut) {
     case 'json':
       drupal_add_http_header('Content-Type', 'application/json');
-      $resp = file_get_contents($path.'/københavn.json');
+      $resp = file_get_contents($path . '/københavn.json');
       break;
     case 'xml':
       drupal_add_http_header('Content-Type', 'text/xml; charset=utf-8');
-      $resp = file_get_contents($path.'/københavn.xml');
+      $resp = file_get_contents($path . '/københavn.xml');
       break;
     default :
-      case 'json':
+    case 'json':
       drupal_add_http_header('Content-Type', 'application/json');
-      $resp = file_get_contents($path.'/københavn.json');
+      $resp = file_get_contents($path . '/københavn.json');
       break;
   }
-  
+
   print $resp;
 }
 
@@ -58,11 +119,11 @@ function openagency_webservice_mockup_request() {
  * @param type request from ting-client
  * @return \SimpleXMLElement
  */
-function openagency_webservice_mockup_parse_xml($soap){
+function openagency_webservice_mockup_parse_xml($soap) {
   $pattern = "/:?SOAP-ENV:?/";
   $replace = '';
   $xml = preg_replace($pattern, $replace, $soap);
-  
+
   $envelope = new SimpleXMLElement($xml);
   return $envelope;
 }
