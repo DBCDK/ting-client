@@ -23,6 +23,7 @@ files[] = lib/request/TingClientRequest.php
 files[] = lib/request/TingClientRequestFactory.php
 files[] = lib/request/TingClientScanRequest.php
 files[] = lib/request/TingClientAgencyRequest.php
+files[] = lib/request/TingClientAgencyServiceRequest.php
 files[] = lib/request/TingClientSearchRequest.php
 files[] = lib/request/TingClientSpellRequest.php
 files[] = lib/result/agency/TingClientAgencyBranch.php
@@ -41,7 +42,7 @@ files[] = lib/result/spell/TingClientSpellSuggestion.php
 
 ; tests (needs review - testing against live (dead) webservices)
 ;files[] = tests/ting_client_collection.test
-files[] = tests/ting_client_infomedia.test
+;files[] = tests/ting_client_infomedia.test
 ;files[] = tests/ting_client_object_recommendation.test
 ;files[] = tests/ting_client_object.test
 ;files[] = tests/ting_client_scan.test

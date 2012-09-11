@@ -36,6 +36,15 @@ class TingClientRequestFactory {
   }
 
   /**
+   * @return TingClientAgencyServiceRequest
+   */
+  public function getAgencyServiceRequest() {
+    if( isset($this->urls['agency']) ) {
+      return new TingClientAgencyServiceRequest($this->urls['agency']);
+    }
+  }
+
+  /**
    * @return TingClientCollectionRequest
    */
   public function getCollectionRequest() {

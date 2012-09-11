@@ -80,7 +80,28 @@ class ting_client_class {
 
     return $result;
   }
+  
+  
+  public function do_agency_service($params){
+    // get the agencyrequest
+    $request = self::request_factory()->getAgencyServiceRequest();
+    // set parameters NOTICE: searchrequest MUST implement method e.g parameters['format'] => setFormat
+    foreach ($params as $key => $value) {
+      $setter = 'set' . ucfirst($key);
+      if( method_exists( $request,$setter ) ){
+        $request->$setter($value);
+      }
+      else {
+        drupal_set_message('TingClientAgencyServiceRequest does not implement: '.$setter,'error');
+      }
+    }
+    $result = $this->execute($request);
+    return $result;
+  }
 
+  
+  
+  
   private function get_from_cache($request,&$cache) {
     // overall caching variable (for all requests)
     $requestcache = $this->enable_cache;
