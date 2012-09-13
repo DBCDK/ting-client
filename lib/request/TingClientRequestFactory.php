@@ -9,103 +9,17 @@ class TingClientRequestFactory {
   }
 
   /**
-   * return object($className) if it exists
+   * return object($className) if it exists and url is set, else throw TingClientException
+   * @className, the class implementing the request
+   * @name, the name of the request (for mapping in $urls variable)
+   *
+   * @TODO; can $url variable be refactored away??
    **/
   public function getNamedRequest($name, $className) {
     if( class_exists($className) && !empty($this->urls[$name]) ) {
       return new $className($this->urls[$name]);
     }
+    throw new TingClientException('No webservice url or maybe class defined for ' . $name);
   }
-
-  /**
-   * @return TingClientSearchRequest
-   */
-  public function getSearchRequest() {
-    if( isset($this->urls['search']) ) {
-      return new TingClientSearchRequest($this->urls['search']);
-    }
-  }
-
-  /**
-   * @return TingClientScanRequest
-   */
-  public function getScanRequest() {
-    if( isset($this->urls['scan']) ) {
-      return new TingClientScanRequest($this->urls['scan']);
-    }
-  }
-
-  /**
-   * @return TingClientAgencyRequest
-   */
-  public function getAgencyRequest() {
-    if( isset($this->urls['agency']) ) {
-      return new TingClientAgencyRequest($this->urls['agency']);
-    }
-  }
-
-  /**
-   * @return TingClientAgencyServiceRequest
-   */
-  public function getAgencyServiceRequest() {
-    if( isset($this->urls['agency']) ) {
-      return new TingClientAgencyServiceRequest($this->urls['agency']);
-    }
-  }
-
-  /**
-   * @return TingClientCollectionRequest
-   */
-  public function getCollectionRequest() {
-    if( isset($this->urls['collection']) ) {
-      return new TingClientCollectionRequest($this->urls['collection']);
-    }
-
-  }
-
-    /**
-     * @return TingClientObjectRequest
-     */
-    public function getObjectRequest() {
-      if( isset($this->urls['object']) ) {
-	return new TingClientObjectRequest($this->urls['object']);
-      }
-    }
-
-    /**
-     * @return TingClientSpellRequest
-     */
-    public function getSpellRequest() {
-      if( isset($this->urls['spell']) ) {
-	return new TingClientSpellRequest($this->urls['spell']);
-      }
-    }
-
-    /**
-     * @return TingClientObjectRecommendationRequest
-     */
-    function getObjectRecommendationRequest() {
-      if( isset($this->urls['recommendation']) ) {
-	return new TingClientObjectRecommendationRequest($this->urls['recommendation']);
-      }
-    }
-
-    /**
-     * @ return TingClientInfomediaArticleRequest
-     */
-    function getInfomediaArticleRequest() {
-      if( isset($this->urls['infomedia']) ) {
-	return new TingClientInfomediaArticleRequest($this->urls['infomedia']);
-      }
-    }
-
-    /**
-     * @ return TingClientInfomediaReviewRequest
-     */
-    function getInfomediaReviewRequest() {
-      if( isset($this->urls['infomedia']) ) {
-	return new TingClientInfomediaReviewRequest($this->urls['infomedia']);
-      }
-    }
-  }
+}
 
