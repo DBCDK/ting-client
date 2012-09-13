@@ -16,7 +16,6 @@ class ting_client_class {
     // this is done to clear away drupal specific methods, so this library
     // can be used by other frameworks
 
-
     // where is this class used
     // ting_client_class needs to know to get its settings; e.g urls for webservices and cache settings
     // @TODO; get module name from somewhere else
@@ -27,15 +26,70 @@ class ting_client_class {
       self::$enable_cache = call_user_func($function);
     }
 
-    // if( function_exists()
   }
 
-  /** \brief
+  /**
+   * execute a borrowercheckrequest
+   **/
+  public function do_borchk($params) {
+    // we know that the bibdk_borchk class exists (if not this method should not be called)
+    $request = self::request_factory()->getNamedRequest('borchk','bibdk_borchk');
+    if( empty($request) ) {
+      $this->set_message('REMEMBER TO IMPLEMENT bibdk_borchk CLASS BEFORE USING IT', 'error');
+      return;
+    }
+    $this->_set_params($request,$params);
+    return $this->execute($request);
+  }
+
+  /**
+   * getObjectRequest to retreive a single work
+   **/
+  public function do_get_object($params) {
+    $request = self::request_factory()->getObjectRequest();
+    $this->_set_params($request,$params);
+    $result = $this->execute($request);
+    return $result;
+  }
+
+  /**
+   * initialize a search; call execute
+   * method uses a TingClientSearchRequest as parameter
+   **/
+  public function do_search($params) {
+    // get the searchrequest
+    $request = self::request_factory()->getSearchRequest();
+    $this->_set_params($request,$params);
+    $result = $this->execute($request);
+
+    // pass cache key to search
+    $result->cacheKey = $request->cacheKey();
+    return $result;
+  }
+
+  public function do_agency_search($params){
+    // get the agencyrequest
+    $request = self::request_factory()->getAgencyRequest();
+    $this->_set_params($request,$params);
+    $result = $this->execute($request);
+
+
+    return $result;
+  }
+
+  public function do_agency_service($params){
+    // get the agencyrequest
+    $request = self::request_factory()->getAgencyServiceRequest();
+    $this->_set_params($request,$params);
+    $result = $this->execute($request);
+
+    return $result;
+  }
+
+   /** \brief
    * initialize requestfactory
    * return TingClientRequestFactory (@see ting-client/lib/request/TingClientRequestFactory.php
    **/
-
-// @TODO; get variable_get out of this class
   private static function request_factory() {
     if (!isset(self::$request_factory)) {
       $url_variables = array(
@@ -59,49 +113,6 @@ class ting_client_class {
     return self::$request_factory;
   }
 
-  public function do_borchk($params) {
-    // we know that the bibdk_borchk class exists (if not this method would not be executed)
-    $request = self::request_factory()->getNamedRequest('borchk','bibdk_borchk');
-    $this->_set_params($request,$params);
-    return $this->execute($request);
-  }
-
-  private function _set_params($request,$params) {
-    foreach ($params as $key => $value) {
-      $setter = 'set' . ucfirst($key);
-      if( method_exists( $request,$setter ) ){
-        $request->$setter($value);
-      }
-      else {
-        $message = get_class($request).' does not implement: '.$setter;
-        $status = 'error';
-        $this->set_message ($message,$status);
-      }
-    }
-  }
-
-
-  /**
-   * getObjectRequest to retreive a single work
-   **/
-  public function do_get_object($params) {
-    $request = self::request_factory()->getObjectRequest();
-     foreach ($params as $key => $value) {
-      $setter = 'set' . ucfirst($key);
-      if( method_exists( $request,$setter ) ){
-        $request->$setter($value);
-      }
-      else {
-        $message = 'TingClientGetObjectRequest does not implement: '.$setter;
-        $status = 'error';
-        $this->set_message ($message,$status);
-
-      }
-    }
-    $result = $this->execute($request);
-    return $result;
-  }
-
   /**
    * ting_client_class should be kept clean of drupal specific methods etc.
    * wrapper for $module_set_message
@@ -117,76 +128,23 @@ class ting_client_class {
   }
 
   /**
-   * initialize a search; call execute
-   * method uses a TingClientSearchRequest as parameter
+   * helper method to set parameters on a TingClientRequest (or extending) object
    **/
-  public function do_search($params) {
-    // get the searchrequest
-    $request = self::request_factory()->getSearchRequest();
-    // set parameters NOTICE: searchrequest MUST implement method e.g parameters['format'] => setFormat
+  private function _set_params($request,$params) {
     foreach ($params as $key => $value) {
       $setter = 'set' . ucfirst($key);
       if( method_exists( $request,$setter ) ){
         $request->$setter($value);
       }
       else {
-        $message = 'TingClientSearchRequest does not implement: '.$setter;
+        $message = get_class($request).' does not implement: '.$setter;
         $status = 'error';
-        $this->set_message ($message,$status) ;
+        $this->set_message ($message,$status);
       }
     }
-    $result = $this->execute($request);
-
-    if( $result ) {
-    // hand cachekey to calling method
-       $result->cacheKey = $request->cacheKey();
-    }
-
-    return $result;
   }
 
-  public function do_agency_search($params){
-    // get the agencyrequest
-    $request = self::request_factory()->getAgencyRequest();
 
-    // set parameters NOTICE: searchrequest MUST implement method e.g parameters['format'] => setFormat
-    foreach ($params as $key => $value) {
-      $setter = 'set' . ucfirst($key);
-      if( method_exists( $request,$setter ) ){
-        $request->$setter($value);
-      }
-      else {
-        $message= 'TingClientAgencyRequest does not implement: '.$setter;
-        $status = 'error';
-        $this->set_message ($message,$status) ;
-      }
-    }
-    $result = $this->execute($request);
-
-    return $result;
-  }
-  
-  
-  public function do_agency_service($params){
-    // get the agencyrequest
-    $request = self::request_factory()->getAgencyServiceRequest();
-    // set parameters NOTICE: searchrequest MUST implement method e.g parameters['format'] => setFormat
-    foreach ($params as $key => $value) {
-      $setter = 'set' . ucfirst($key);
-      if( method_exists( $request,$setter ) ){
-        $request->$setter($value);
-      }
-      else {
-        drupal_set_message('TingClientAgencyServiceRequest does not implement: '.$setter,'error');
-      }
-    }
-    $result = $this->execute($request);
-    return $result;
-  }
-
-  
-  
-  
   private function get_from_cache($request,&$cache) {
     if( !function_exists(self::$module.'_cache_get') ) {
       return FALSE;
@@ -198,7 +156,7 @@ class ting_client_class {
     // overall caching variable (for all requests)
     $requestcache = self::$enable_cache;
     if( $requestcache && self::_class_implements( $request, 'ITingClientRequestCache' ) ) {
-       if($request->cacheEnable()){
+      if($request->cacheEnable()){
         // everything is okay for caching; set passed cache variable for execute method
         $cache = TRUE;
         //        $cached_result = cache_get($request->cacheKey(),'cache_bibdk_webservices');
@@ -239,10 +197,10 @@ class ting_client_class {
    *  return bool
    */
   private static function _class_implements( $class, $interface ) {
-      $interfaces = class_implements($class);
-      if( in_array($interface, $interfaces) ) {
-        return true;
-      }
+    $interfaces = class_implements($class);
+    if( in_array($interface, $interfaces) ) {
+      return true;
+    }
     return false;
   }
 
@@ -275,9 +233,9 @@ class ting_client_class {
           $expire = REQUEST_TIME + ( 60*$request->cacheTimeout() );
           // cache_set($request->cacheKey() , $res, 'cache_bibdk_webservices', $expire);
           if( function_exists(self::$module.'_cache_set') ) {
-          $function = self::$module.'_cache_set';
-          call_user_func_array ($function, array($request->cacheKey() , $res, 'cache_bibdk_webservices', $expire));
-        }
+            $function = self::$module.'_cache_set';
+            call_user_func_array ($function, array($request->cacheKey() , $res, 'cache_bibdk_webservices', $expire));
+          }
         }
         return $res;
       }
@@ -286,7 +244,7 @@ class ting_client_class {
           $function = self::$module.'_timer';
           call_user_func_array ($function, 'stop', 'search_client');
         }
- // timer_stop('search_client');
+        // timer_stop('search_client');
         // set message if ting-client throws an exeception
         $message = $e->getMessage(). '. ' . self::_set_internal_error_message();
         $status = 'error';
