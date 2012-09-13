@@ -57,6 +57,14 @@ function ting_client_set_request_factory($url_variables) {
     $url_variables = array_merge($url_variables, $more);
   }
 
+   if (module_exists('ting_infomedia') && variable_get('ting_infomedia_url', FALSE)) {
+    $url_variables['infomedia'] = 'ting_infomedia_url';
+  }
+
+  if (module_exists('bibdk_vejviser')) {
+    $url_variables['agency'] = 'agency_search_url';
+  }
+  
   $urls = array();
   foreach ($url_variables as $name => $setting) {
     $urls[$name] = variable_get($setting, FALSE);
@@ -65,13 +73,7 @@ function ting_client_set_request_factory($url_variables) {
     }
   }
 
-  if (module_exists('ting_infomedia') && variable_get('ting_infomedia_url', FALSE)) {
-    $url_variables['infomedia'] = 'ting_infomedia_url';
-  }
-
-  if (module_exists('bibdk_vejviser')) {
-    $url_variables['agency'] = 'agency_search_url';
-  }
+ 
   return $urls;
 }
 
