@@ -64,16 +64,11 @@ function ting_client_set_request_factory($url_variables) {
   if (module_exists('bibdk_vejviser')) {
     $url_variables['agency'] = 'agency_search_url';
   }
-  
+
   $urls = array();
   foreach ($url_variables as $name => $setting) {
     $urls[$name] = variable_get($setting, FALSE);
-    if (!$urls[$name]) {
-      throw new TingClientException('No Ting webservice url defined for ' . $name);
-    }
   }
-
- 
   return $urls;
 }
 
