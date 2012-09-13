@@ -97,7 +97,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
   /** Implementation of ITingClientRequestCache **/
   public function cacheKey() {
     return md5($this->getQuery());
-  } 
+  }
 
   public function cacheEnable($value=NULL) {
     $class_name = get_class($this);
