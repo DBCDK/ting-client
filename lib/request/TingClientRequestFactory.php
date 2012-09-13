@@ -9,6 +9,15 @@ class TingClientRequestFactory {
   }
 
   /**
+   * return object($className) if it exists
+   **/
+  public function getNamedRequest($name, $className) {
+    if( class_exists($className) && !empty($this->urls[$name]) ) {
+      return new $className($this->urls[$name]);
+    }
+  }
+
+  /**
    * @return TingClientSearchRequest
    */
   public function getSearchRequest() {
