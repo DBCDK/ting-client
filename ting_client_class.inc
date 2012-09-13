@@ -46,7 +46,7 @@ class ting_client_class {
    * getObjectRequest to retreive a single work
    **/
   public function do_get_object($params) {
-    $request = self::request_factory()->getObjectRequest();
+    $request = self::request_factory()->getNamedRequest('object','TingClientObjectRequest');
     $this->_set_params($request,$params);
     $result = $this->execute($request);
     return $result;
@@ -58,7 +58,7 @@ class ting_client_class {
    **/
   public function do_search($params) {
     // get the searchrequest
-    $request = self::request_factory()->getSearchRequest();
+    $request = self::request_factory()->getNamedRequest('search','TingClientSearchRequest');
     $this->_set_params($request,$params);
     $result = $this->execute($request);
 
@@ -69,17 +69,16 @@ class ting_client_class {
 
   public function do_agency_search($params){
     // get the agencyrequest
-    $request = self::request_factory()->getAgencyRequest();
+    $request = self::request_factory()->getNamedRequest('agency','TingClientAgencyRequest');
     $this->_set_params($request,$params);
     $result = $this->execute($request);
-
 
     return $result;
   }
 
   public function do_agency_service($params){
     // get the agencyrequest
-    $request = self::request_factory()->getAgencyServiceRequest();
+    $request = self::request_factory()->getNamedRequest('agency','TingClientAgencyServiceRequest');
     $this->_set_params($request,$params);
     $result = $this->execute($request);
 
