@@ -8,12 +8,78 @@
 class ting_client_class {
   private static $request_factory;
   private static $ting_client;
-  private $enable_cache;
+  private static $enable_cache=FALSE;
+  private static $module;
 
-  // @TODO ; construct parameters ? -- objectFormat etc.
-  public function __construct() {
-    $this->enable_cache = variable_get('search_client_enable_cache',FALSE);
+  public function __construct () {
+    // client_class tries to get some settings from the module using it.
+    // this is done to clear away drupal specific methods, so this library
+    // can be used by other frameworks
+
+
+    // where is this class used
+    // ting_client_class needs to know to get its settings; e.g urls for webservices and cache settings
+    // @TODO; get module name from somewhere else
+    self::$module = 'ting_client';
+
+    if( function_exists(self::$module.'_enable_cache') ) {
+      $function = self::$module.'_enable_cache';
+      self::$enable_cache = call_user_func($function);
+    }
+
+    // if( function_exists()
   }
+
+  /** \brief
+   * initialize requestfactory
+   * return TingClientRequestFactory (@see ting-client/lib/request/TingClientRequestFactory.php
+   **/
+
+// @TODO; get variable_get out of this class
+  private static function request_factory() {
+    if (!isset(self::$request_factory)) {
+      $url_variables = array(
+        'search' =>  'ting_search_url',
+        'scan' => 'ting_scan_url',
+        'object' => 'ting_search_url',
+        'collection' => 'ting_search_url',
+        'spell' => 'ting_spell_url',
+        'recommendation' => 'ting_recommendation_url',
+      );
+
+      $urls = array();
+      // get the real urls from the module using ting-client
+      if( function_exists(self::$module.'_set_request_factory') ) {
+        $function = self::$module.'_set_request_factory';
+        $urls = call_user_func_array($function,array($url_variables));
+      }
+
+      self::$request_factory = new TingClientRequestFactory($urls);
+    }
+    return self::$request_factory;
+  }
+
+  public function do_borchk($params) {
+    // we know that the bibdk_borchk class exists (if not this method would not be executed)
+    $request = self::request_factory()->getNamedRequest('borchk','bibdk_borchk');
+    $this->_set_params($request,$params);
+    return $this->execute($request);
+  }
+
+  private function _set_params($request,$params) {
+    foreach ($params as $key => $value) {
+      $setter = 'set' . ucfirst($key);
+      if( method_exists( $request,$setter ) ){
+        $request->$setter($value);
+      }
+      else {
+        $message = get_class($request).' does not implement: '.$setter;
+        $status = 'error';
+        $this->set_message ($message,$status);
+      }
+    }
+  }
+
 
   /**
    * getObjectRequest to retreive a single work
@@ -26,12 +92,28 @@ class ting_client_class {
         $request->$setter($value);
       }
       else {
-        drupal_set_message('TingClientGetObjectRequest does not implement: '.$setter,'error');
-        watchdog('Openformat search','TingClientGetObjectRequest does not implement %setter called from %file in line %line',array('%setter'=>$setter,'%file'=>__FILE__ ,'%line'=>__LINE__),WATCHDOG_ERROR);
+        $message = 'TingClientGetObjectRequest does not implement: '.$setter;
+        $status = 'error';
+        $this->set_message ($message,$status);
+
       }
     }
     $result = $this->execute($request);
     return $result;
+  }
+
+  /**
+   * ting_client_class should be kept clean of drupal specific methods etc.
+   * wrapper for $module_set_message
+   * @TODO .. some default implementation of setting a message (die($message) or something)
+   **/
+  private function set_message ($message,$type = 'status',$repeat=NULL) {
+    if( !empty(self::$module) ) {
+      if (function_exists(self::$module.'_set_message')) {
+        $function = self::$module.'_set_message';
+        call_user_func_array($function, func_get_args());
+      }
+    }
   }
 
   /**
@@ -48,8 +130,9 @@ class ting_client_class {
         $request->$setter($value);
       }
       else {
-        drupal_set_message('TingClientSearchRequest does not implement: '.$setter,'error');
-        watchdog('Openformat search','TingClientSearchRequest does not implement %setter called from %file in line %line',array('%setter'=>$setter,'%file'=>__FILE__ ,'%line'=>__LINE__),WATCHDOG_ERROR);
+        $message = 'TingClientSearchRequest does not implement: '.$setter;
+        $status = 'error';
+        $this->set_message ($message,$status) ;
       }
     }
     $result = $this->execute($request);
@@ -73,7 +156,9 @@ class ting_client_class {
         $request->$setter($value);
       }
       else {
-        drupal_set_message('TingClientAgencyRequest does not implement: '.$setter,'error');
+        $message= 'TingClientAgencyRequest does not implement: '.$setter;
+        $status = 'error';
+        $this->set_message ($message,$status) ;
       }
     }
     $result = $this->execute($request);
@@ -103,13 +188,21 @@ class ting_client_class {
   
   
   private function get_from_cache($request,&$cache) {
+    if( !function_exists(self::$module.'_cache_get') ) {
+      return FALSE;
+    }
+    else {
+      $cache_function = self::$module.'_cache_get';
+    }
+
     // overall caching variable (for all requests)
-    $requestcache = $this->enable_cache;
+    $requestcache = self::$enable_cache;
     if( $requestcache && self::_class_implements( $request, 'ITingClientRequestCache' ) ) {
        if($request->cacheEnable()){
         // everything is okay for caching; set passed cache variable for execute method
         $cache = TRUE;
-        $cached_result = cache_get($request->cacheKey(),'cache_bibdk_webservices');
+        //        $cached_result = cache_get($request->cacheKey(),'cache_bibdk_webservices');
+        $cached_result = call_user_func_array($cache_function, array($request->cacheKey(),'cache_bibdk_webservices'));
       }
     }
     if( !empty($cached_result) ) {
@@ -164,21 +257,45 @@ class ting_client_class {
     }
     else{
       try {
-        timer_start('search_client');
+        if( function_exists(self::$module.'_timer') ) {
+          $function = self::$module.'_timer';
+          call_user_func_array ($function, array('start', 'search_client'));
+          //          timer_start('search_client');
+        }
         $res = self::ting_client()->execute($request);
-        timer_stop('search_client');
+
+        if( function_exists(self::$module.'_timer') ) {
+          $function = self::$module.'_timer';
+          call_user_func_array ($function, array('stop', 'search_client'));
+          //          timer_start('search_client');
+        }
+        //timer_stop('search_client');
         if( $cache ) {
           //@TODO make request cache table
           $expire = REQUEST_TIME + ( 60*$request->cacheTimeout() );
-          cache_set($request->cacheKey() , $res, 'cache_bibdk_webservices', $expire);
+          // cache_set($request->cacheKey() , $res, 'cache_bibdk_webservices', $expire);
+          if( function_exists(self::$module.'_cache_set') ) {
+          $function = self::$module.'_cache_set';
+          call_user_func_array ($function, array($request->cacheKey() , $res, 'cache_bibdk_webservices', $expire));
+        }
         }
         return $res;
       }
       catch (TingClientException $e) {
-        timer_stop('search_client');
+        if( function_exists(self::$module.'_timer') ) {
+          $function = self::$module.'_timer';
+          call_user_func_array ($function, 'stop', 'search_client');
+        }
+ // timer_stop('search_client');
         // set message if ting-client throws an exeception
-        drupal_set_message( $e->getMessage(). '. ' . self::_set_internal_error_message(),'error');
-        watchdog('ting client', 'Error performing request: ' . $e->getMessage() , NULL, WATCHDOG_ERROR, 'http://' . $_SERVER["HTTP_HOST"] . request_uri());
+        $message = $e->getMessage(). '. ' . self::_set_internal_error_message();
+        $status = 'error';
+        $watchdog['message'] = 'Error performing request: ' . $e->getMessage();
+        $watchdog['variables'] = NULL;
+        $watchdog['link'] = $_SERVER["HTTP_HOST"] . $_SERVER['REQUEST_URI'];
+        $this->set_message($message,$status,$watchdog);
+        //drupal_set_message( $e->getMessage(). '. ' . self::_set_internal_error_message(),'error');
+        //watchdog('ting client', 'Error performing request: ' . $e->getMessage() , NULL, WATCHDOG_ERROR, 'http://' . $_SERVER["HTTP_HOST"] . request_uri());
         return FALSE;
       }
     }
@@ -195,50 +312,17 @@ class ting_client_class {
    * @see ting-client/lib/adapter/TingClientRequestAdapter.php
    * @see ting-client/lib/log/TingClientDrupalWatchDogLogger.php
    **/
+
+  // @TODO; get TingClientDrupalWatchDogLogger out of this class
   private static function ting_client() {
     if (!isset(self::$client)) {
-      $logger = (variable_get('ting_enable_logging', FALSE)) ? new TingClientDrupalWatchDogLogger(self::request_factory()) : new TingClientVoidLogger();
+      // $logger = (variable_get('ting_enable_logging', FALSE)) ? new TingClientDrupalWatchDogLogger(self::request_factory()) : new TingClientVoidLogger();
+      $logger = (self::$enable_cache) ? new TingClientDrupalWatchDogLogger(self::request_factory()) : new TingClientVoidLogger();
       self::$ting_client = new TingClient(new TingClientRequestAdapter(), $logger);
     }
     return self::$ting_client;
   }
 
-  /** \brief
-   * initialize requestfactory
-   * return TingClientRequestFactory (@see ting-client/lib/request/TingClientRequestFactory.php
-   **/
-  private static function request_factory() {
-    if (!isset(self::$request_factory)) {
-      $url_variables = array(
-        'search' =>  'ting_search_url',
-        'scan' => 'ting_scan_url',
-        'object' => 'ting_search_url',
-        'collection' => 'ting_search_url',
-        'spell' => 'ting_spell_url',
-        'recommendation' => 'ting_recommendation_url',
-      );
-
-      // TODO: This should probably be rethought.
-      if (module_exists('ting_infomedia') && variable_get('ting_infomedia_url', FALSE)) {
-        $url_variables['infomedia'] = 'ting_infomedia_url';
-      }
-
-      if (module_exists('bibdk_vejviser')) {
-        $url_variables['agency'] = 'agency_search_url';
-      }
-
-      $urls = array();
-      foreach ($url_variables as $name => $setting) {
-        $urls[$name] = variable_get($setting, FALSE);
-        if (!$urls[$name]) {
-
-          // throw new TingClientException('No Ting webservice url defined for ' . $name);
-        }
-      }
-      self::$request_factory = new TingClientRequestFactory($urls);
-    }
-    return self::$request_factory;
-  }
 
 
   /**

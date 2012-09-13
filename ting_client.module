@@ -46,6 +46,86 @@ function ting_client_menu() {
   return $items;
 }
 
+/**
+ * support for ting_client_class
+ * set urls for request factory
+ **/
+function ting_client_set_request_factory($url_variables) {
+  // has other modules any webservices
+  $more = module_invoke_all ('ting_client_webservice');
+  if (!empty($more)) {
+    $url_variables = array_merge($url_variables, $more);
+  }
+
+  $urls = array();
+  foreach ($url_variables as $name => $setting) {
+    $urls[$name] = variable_get($setting, FALSE);
+    if (!$urls[$name]) {
+      throw new TingClientException('No Ting webservice url defined for ' . $name);
+    }
+  }
+
+  if (module_exists('ting_infomedia') && variable_get('ting_infomedia_url', FALSE)) {
+    $url_variables['infomedia'] = 'ting_infomedia_url';
+  }
+
+  if (module_exists('bibdk_vejviser')) {
+    $url_variables['agency'] = 'agency_search_url';
+  }
+  return $urls;
+}
+
+/**
+ * support for ting_client_class
+ * get method for caching
+ * use drupal::cache_get
+ **/
+function ting_client_cache_get ($cache_key, $storage=NULL) {
+  return cache_get($cache_key,$storage);
+}
+
+/**
+ * support for ting_client_class
+ * set method for caching
+ * use drupal::cache_set
+ **/
+function ting_client_cache_set ($cache_key,$data,$storage=NULL,$expire=NULL) {
+  cache_set($cache_key , $data, $storage, $expire);
+}
+
+/**
+ * support for ting_client_class
+ * add a drupal message and write to watchdog
+ **/
+function ting_client_set_message ($message='',$type='status',$repeat=NULL,$watchdog=array()) {
+  if( !empty($message) ) {
+    drupal_set_message($message,$type,$repeat);
+  }
+  if ($status == 'error') {
+    watchdog ('ting_client',$message,array(),WATCHDOG_ERROR,NULL);
+  }
+  if( !empty($watchdog) ) {
+    watchdog($watchdog['type'], $watchdog['message'],WATCHDOG_ERROR,$watchdog['link']);
+  }
+}
+
+/**
+ * support for ting_client_class
+ * enable/disable caching
+ **/
+function ting_client_enable_cache() {
+  return variable_get('search_client_enable_cache',FALSE);
+}
+
+/**
+ * support for ting_client_class
+ * start/stop drupal timer
+ **/
+function ting_client_timer($action,$name) {
+  $function = 'timer_'.$action;
+  call_user_func_array($function,array($name));
+}
+
 
 /**
  * Implements hook_ding_install_tasks().
