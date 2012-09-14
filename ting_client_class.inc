@@ -241,7 +241,7 @@ class ting_client_class {
       catch (TingClientException $e) {
         if( function_exists(self::$module.'_timer') ) {
           $function = self::$module.'_timer';
-          call_user_func_array ($function, 'stop', 'search_client');
+          call_user_func_array ($function, array('stop', 'search_client'));
         }
         // timer_stop('search_client');
         // set message if ting-client throws an exeception
