@@ -25,7 +25,17 @@ class ting_client_class {
       $function = self::$module.'_enable_cache';
       self::$enable_cache = call_user_func($function);
     }
+  }
 
+  public function do_openorder($params){
+    // we know that the bibdk_openorder class exists (if not this method should not be called)
+    $request = self::request_factory()->getNamedRequest('openorder','bibdk_openorder');
+    if( empty($request) ) {
+      $this->set_message('REMEMBER TO IMPLEMENT bibdk_openorder CLASS BEFORE USING IT', 'error');
+      return;
+    }
+    $this->_set_params($request,$params);
+    return $this->execute($request);
   }
 
   /**
