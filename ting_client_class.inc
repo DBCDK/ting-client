@@ -230,7 +230,7 @@ class ting_client_class {
           //          timer_start('search_client');
         }
         $res = self::ting_client()->execute($request);
-
+        
         if( function_exists(self::$module.'_timer') ) {
           $function = self::$module.'_timer';
           call_user_func_array ($function, array('stop', 'search_client'));

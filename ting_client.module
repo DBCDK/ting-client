@@ -98,7 +98,7 @@ function ting_client_set_message ($message='',$type='status',$repeat=NULL,$watch
   if( !empty($message) ) {
     drupal_set_message($message,$type,$repeat);
   }
-  if ($status == 'error') {
+  if ($type == 'error') {
     watchdog ('ting_client',$message,array(),WATCHDOG_ERROR,NULL);
   }
   if( !empty($watchdog) ) {
