@@ -102,6 +102,7 @@ class ting_client_class {
   private static function request_factory() {
     if (!isset(self::$request_factory)) {
       $url_variables = array(
+        'agency' =>  'agency_search_url',
         'search' =>  'ting_search_url',
         'scan' => 'ting_scan_url',
         'object' => 'ting_search_url',
