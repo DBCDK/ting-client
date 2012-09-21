@@ -98,13 +98,20 @@ class TingClientAgencyRequest extends TingClientRequest implements ITingClientRe
     $counter = 0;
     foreach ($response->library as $value) {
       $agency = new TingClientAgencyAgency();
-      $agency->agencyId = $this->getValue($value->agencyId);
-      $agency->agencyName = $this->getValue($value->agencyName);
-      $agency->agencyPhone = $this->getValue($value->agencyPhone);
-      $agency->agencyEmail = $this->getValue($value->agencyEmail);
-      $agency->postalAddress = $this->getValue($value->postalAddress);
-      $agency->postalCode = $this->getValue($value->postalCode);
-      $agency->city = $this->getValue($value->city);
+      if(isset($value->agencyId))
+        $agency->agencyId = $this->getValue($value->agencyId);
+      if(isset($value->agencyName))
+        $agency->agencyName = $this->getValue($value->agencyName);
+      if(isset($value->agencyPhone))
+        $agency->agencyPhone = $this->getValue($value->agencyPhone);
+      if(isset($value->agencyEmail))
+        $agency->agencyEmail = $this->getValue($value->agencyEmail);
+      if(isset($value->postalAddress))
+        $agency->postalAddress = $this->getValue($value->postalAddress);
+      if(isset($value->postalCode))
+        $agency->postalCode = $this->getValue($value->postalCode);
+      if(isset($value->city))
+        $agency->city = $this->getValue($value->city);
 
       if (isset($value->pickupAgency) && $value->pickupAgency) {
         foreach ($value->pickupAgency as $pickupAgency) {
