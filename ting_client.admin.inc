@@ -23,31 +23,33 @@ function ting_client_cache_admin_form($form_state) {
   );
 
 
-  $cache_classes =  ting_client_class::get_all_cache_classes();
+  $client = new ting_client_class();
+  $cache_classes =  $client->get_all_cache_classes();
   // suffixes to use for variables
-  $cache_lifetime = TingClientRequest::$cache_lifetime;
-  $cache_enable = TingClientRequest::$cache_enable;
+  $cache_lifetime = TingClientRequest::cache_lifetime;
+  $cache_enable = TingClientRequest::cache_enable;
 
   // make cache configuration foreach request that implements ITingClientRequestCache
   foreach( $cache_classes as $cache_class ) {
-    $element_name = $cache_class['element_name'];
+    $element_name = $cache_class['name'];
+    $class_name = $cache_class['className'];
     $form['openformat'][$element_name] = array(
       '#type' => 'fieldset',
       '#title' => $element_name,
     );
 
-     $form['openformat'][$element_name][$element_name.$cache_enable] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Enable cache'),
-    '#description' => t('Enable cache for this type of request' ),
-    '#default_value' => variable_get($element_name.$cache_enable, FALSE),
-  );
+    $form['openformat'][$element_name][$class_name.$cache_enable] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Enable cache'),
+      '#description' => t('Enable cache for this type of request' ),
+      '#default_value' => variable_get($class_name.$cache_enable, FALSE),
+    );
 
-    $form['openformat'][$element_name][$element_name.$cache_lifetime] = array(
+    $form['openformat'][$element_name][$class_name.$cache_lifetime] = array(
       '#type' => 'textfield',
       '#title' => t('Cache lifetime'),
       '#description' => t('For how many minutes do you wish to cache results'),
-      '#default_value' => variable_get($element_name.$cache_lifetime,'10'),
+      '#default_value' => variable_get($class_name.$cache_lifetime,'10'),
     );
   }
 
@@ -65,11 +67,13 @@ function ting_client_cache_admin_form($form_state) {
  * submit handler for search_client_admin_form
  **/
 function ting_client_cache_admin_form_submit($form, $form_state) {
+$client = new ting_client_class();
+$cache_classes =  $client->get_all_cache_classes();
+//  $cache_classes =  ting_client_class::get_all_cache_classes();
 
-  $cache_classes =  ting_client_class::get_all_cache_classes();
   // suffixes for variables
-  $cache_lifetime = TingClientRequest::$cache_lifetime;
-  $cache_enable = TingClientRequest::$cache_enable;
+  $cache_lifetime = TingClientRequest::cache_lifetime;
+  $cache_enable = TingClientRequest::cache_enable;
 
   foreach( $form_state['values'] as $key => $val ) {
     if( strpos($key, $cache_lifetime) || strpos($key, $cache_enable ) ) {

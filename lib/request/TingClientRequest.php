@@ -8,11 +8,11 @@ interface ITingClientRequestCache{
 
 abstract class TingClientRequest {
   /* suffixes to use for cache variables */
-  public static $cache_lifetime;
-  public static $cache_enable;
+  const cache_lifetime  = '_cache_lifetime';
+  const cache_enable = '_cache_enable';
 
   /* attributes to be used by extending classes */
-   protected $cacheKey;
+  protected $cacheKey;
 
   private $wsdlUrl;
   private $parameters = array();
@@ -23,8 +23,6 @@ abstract class TingClientRequest {
 
   public function __construct($wsdlUrl, $serviceName=NULL) {
     $this->wsdlUrl = $wsdlUrl;
-    self::$cache_lifetime = '_cache_lifetime';
-    self::$cache_enable = '_cache_enable';    
   }
 
 

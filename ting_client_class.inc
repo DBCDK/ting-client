@@ -29,7 +29,7 @@ class ting_client_class {
 
   public function do_openorder($params){
     // we know that the bibdk_openorder class exists (if not this method should not be called)
-    $request = self::request_factory()->getNamedRequest('openorder','bibdk_openorder');
+    $request = $this->request_factory()->getNamedRequest('openorder','bibdk_openorder');
     if( empty($request) ) {
       $this->set_message('REMEMBER TO IMPLEMENT bibdk_openorder CLASS BEFORE USING IT', 'error');
       return;
@@ -43,7 +43,7 @@ class ting_client_class {
    **/
   public function do_borchk($params) {
     // we know that the bibdk_borchk class exists (if not this method should not be called)
-    $request = self::request_factory()->getNamedRequest('borchk','bibdk_borchk');
+    $request = $this->request_factory()->getNamedRequest('borchk','bibdk_borchk');
     if( empty($request) ) {
       $this->set_message('REMEMBER TO IMPLEMENT bibdk_borchk CLASS BEFORE USING IT', 'error');
       return;
@@ -56,7 +56,7 @@ class ting_client_class {
    * getObjectRequest to retreive a single work
    **/
   public function do_get_object($params) {
-    $request = self::request_factory()->getNamedRequest('object','TingClientObjectRequest');
+    $request = $this->request_factory()->getNamedRequest('object','TingClientObjectRequest');
     $this->_set_params($request,$params);
     $result = $this->execute($request);
     return $result;
@@ -68,7 +68,7 @@ class ting_client_class {
    **/
   public function do_search($params) {
     // get the searchrequest
-    $request = self::request_factory()->getNamedRequest('search','TingClientSearchRequest');
+    $request = $this->request_factory()->getNamedRequest('search','TingClientSearchRequest');
     $this->_set_params($request,$params);
     $result = $this->execute($request);
 
@@ -79,7 +79,7 @@ class ting_client_class {
 
   public function do_agency_search($params){
     // get the agencyrequest
-    $request = self::request_factory()->getNamedRequest('agency','TingClientAgencyRequest');
+    $request = $this->request_factory()->getNamedRequest('agency','TingClientAgencyRequest');
     $this->_set_params($request,$params);
     $result = $this->execute($request);
 
@@ -88,7 +88,7 @@ class ting_client_class {
 
   public function do_agency_service($params){
     // get the agencyrequest
-    $request = self::request_factory()->getNamedRequest('agency','TingClientAgencyServiceRequest');
+    $request = $this->request_factory()->getNamedRequest('agency','TingClientAgencyServiceRequest');
     $this->_set_params($request,$params);
     $result = $this->execute($request);
 
@@ -99,16 +99,19 @@ class ting_client_class {
    * initialize requestfactory
    * return TingClientRequestFactory (@see ting-client/lib/request/TingClientRequestFactory.php
    **/
-  private static function request_factory() {
+  private function request_factory() {
+
+    self::$request_factory=NULL;
+
     if (!isset(self::$request_factory)) {
       $url_variables = array(
-        'agency' =>  'agency_search_url',
-        'search' =>  'ting_search_url',
-        'scan' => 'ting_scan_url',
-        'object' => 'ting_search_url',
-        'collection' => 'ting_search_url',
-        'spell' => 'ting_spell_url',
-        'recommendation' => 'ting_recommendation_url',
+        'agency' =>  array('url'=>'agency_search_url','class'=>'TingClientAgencyRequest'),
+        'search' =>  array('url'=>'ting_search_url','class'=>'TingClientSearchRequest'),
+        'scan' => array('url'=>'ting_scan_url','class'=>''),
+        'object' => array('url'=>'ting_search_url','class'=>'TingClientObjectRequest'),
+        'collection' => array('url'=>'ting_search_url','class'=>'TingClientSearchRequest'),
+        'spell' => array('url'=>'ting_spell_url','class'=>''),
+        'recommendation' => array('url'=>'ting_recommendation_url','class'=>''),
       );
 
       $urls = array();
@@ -117,6 +120,7 @@ class ting_client_class {
         $function = self::$module.'_set_request_factory';
         $urls = call_user_func_array($function,array($url_variables));
       }
+
 
       self::$request_factory = new TingClientRequestFactory($urls);
     }
@@ -180,13 +184,14 @@ class ting_client_class {
     return FALSE;
   }
 
-  public static function get_all_cache_classes() {
+  public function get_all_cache_classes() {
     static $ret;
     if( !isset($ret) ) {
       $ret = array();
-      $factory = self::request_factory();
+      $factory = $this->request_factory();
+      dpm($factory);
       $request_methods = get_class_methods($factory);
-      foreach( $request_methods as $method ) {
+      /*reach( $request_methods as $method ) {
         if( $method != '__construct' ) {
           $class = $factory->$method();
           if( is_object($class)) {
@@ -194,6 +199,15 @@ class ting_client_class {
               $arr['element_name'] = get_class($class);
               $ret[] = $arr;
             }
+          }
+        }
+        }*/
+      foreach( $factory->urls as $name=>$settings ) {
+        if( !empty($settings['class']) ) {
+          if( class_exists($settings['class']) && self::_class_implements($settings['class'],'ITingClientRequestCache') ) {
+            $arr['name'] = $name;
+            $arr['className'] = $settings['class'];
+            $ret[] = $arr;
           }
         }
       }
@@ -231,7 +245,7 @@ class ting_client_class {
           //          timer_start('search_client');
         }
         $res = self::ting_client()->execute($request);
-        
+
         if( function_exists(self::$module.'_timer') ) {
           $function = self::$module.'_timer';
           call_user_func_array ($function, array('stop', 'search_client'));
@@ -284,8 +298,8 @@ class ting_client_class {
   // @TODO; get TingClientDrupalWatchDogLogger out of this class
   private static function ting_client() {
     if (!isset(self::$client)) {
-      // $logger = (variable_get('ting_enable_logging', FALSE)) ? new TingClientDrupalWatchDogLogger(self::request_factory()) : new TingClientVoidLogger();
-      $logger = (self::$enable_cache) ? new TingClientDrupalWatchDogLogger(self::request_factory()) : new TingClientVoidLogger();
+      // $logger = (variable_get('ting_enable_logging', FALSE)) ? new TingClientDrupalWatchDogLogger($this->request_factory()) : new TingClientVoidLogger();
+      $logger = (self::$enable_cache) ? new TingClientDrupalWatchDogLogger($this->request_factory()) : new TingClientVoidLogger();
       self::$ting_client = new TingClient(new TingClientRequestAdapter(), $logger);
     }
     return self::$ting_client;

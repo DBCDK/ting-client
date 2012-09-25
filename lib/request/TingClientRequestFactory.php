@@ -16,8 +16,8 @@ class TingClientRequestFactory {
    * @TODO; can $url variable be refactored away??
    **/
   public function getNamedRequest($name, $className) {
-    if( class_exists($className) && !empty($this->urls[$name]) ) {
-      return new $className($this->urls[$name]);
+    if( class_exists($className) && !empty($this->urls[$name]['url']) ) {
+      return new $className($this->urls[$name]['url']);
     }
     throw new TingClientException('No webservice url or maybe class defined for ' . $name);
   }

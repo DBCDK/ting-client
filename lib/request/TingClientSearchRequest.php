@@ -101,12 +101,12 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
 
   public function cacheEnable($value=NULL) {
     $class_name = get_class($this);
-    return variable_get($class_name.TingClientRequest::$cache_enable);
+    return variable_get($class_name.TingClientRequest::cache_enable);
   }
 
   public function cacheTimeout($value=NULL) {
     $class_name = get_class($this);
-    return variable_get($class_name.TingClientRequest::$cache_lifetime,'1');
+    return variable_get($class_name.TingClientRequest::cache_lifetime,'1');
   }
 
   /** end ITingClientRequestCache **/

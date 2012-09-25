@@ -39,7 +39,7 @@ class TingClientAgencyRequest extends TingClientRequest implements ITingClientRe
 
   public function cacheEnable($value=NULL) {
     $class_name = get_class($this);
-    return variable_get($class_name.TingClientRequest::$cache_enable);
+    return variable_get($class_name.TingClientRequest::cache_enable);
   }
 
   public function cacheTimeout($value=NULL) {

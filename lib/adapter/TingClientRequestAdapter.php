@@ -25,7 +25,6 @@ class TingClientRequestAdapter {
     if (!isset($soapParameters['outputType'])) {
       $soapParameters['outputType'] = 'json';
     }
-    
     try {
       try {
         $startTime = explode(' ', microtime());
