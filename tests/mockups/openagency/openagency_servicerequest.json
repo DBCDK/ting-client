@@ -285,6 +285,102 @@
                 },
                 "@":"oa"
             }],
+            "agencyParameters":{
+                "borrowerCheckParameters":[{
+                    "borrowerCheckSystem":{
+                        "$":"bibliotek.dk",
+                        "@":"oa"
+                    },
+                    "borrowerCheck":{
+                        "$":"1",
+                        "@":"oa"
+                    },
+                    "@":"oa"
+                },{
+                    "borrowerCheckSystem":{
+                        "$":"netpunkt",
+                        "@":"oa"
+                    },
+                    "borrowerCheck":{
+                        "$":"1",
+                        "@":"oa"
+                    },
+                    "@":"oa"
+                },{
+                    "borrowerCheckSystem":{
+                        "$":"Filmstriben",
+                        "@":"oa"
+                    },
+                    "borrowerCheck":{
+                        "$":"0",
+                        "@":"oa"
+                    },
+                    "@":"oa"
+                },{
+                    "borrowerCheckSystem":{
+                        "$":"SMS service",
+                        "@":"oa"
+                    },
+                    "borrowerCheck":{
+                        "$":"0",
+                        "@":"oa"
+                    },
+                    "@":"oa"
+                },{
+                    "borrowerCheckSystem":{
+                        "$":"Test Fjernadgang 2",
+                        "@":"oa"
+                    },
+                    "borrowerCheck":{
+                        "$":"0",
+                        "@":"oa"
+                    },
+                    "@":"oa"
+                },{
+                    "borrowerCheckSystem":{
+                        "$":"Test Fjernadgang 3",
+                        "@":"oa"
+                    },
+                    "borrowerCheck":{
+                        "$":"0",
+                        "@":"oa"
+                    },
+                    "@":"oa"
+                },{
+                    "borrowerCheckSystem":{
+                        "$":"eBib",
+                        "@":"oa"
+                    },
+                    "borrowerCheck":{
+                        "$":"0",
+                        "@":"oa"
+                    },
+                    "@":"oa"
+                },{
+                    "borrowerCheckSystem":{
+                        "$":"proxyen.dk",
+                        "@":"oa"
+                    },
+                    "borrowerCheck":{
+                        "$":"0",
+                        "@":"oa"
+                    },
+                    "@":"oa"
+                }],
+                "acceptOrderFromUnknownUser":{
+                    "$":"0",
+                    "@":"oa"
+                },
+                "acceptOrderAgencyOffline":{
+                    "$":"1",
+                    "@":"oa"
+                },
+                "payForPostage":{
+                    "$":"1",
+                    "@":"oa"
+                },
+                "@":"oa"
+            },
             "@":"oa"
         },
         "@":"oa"

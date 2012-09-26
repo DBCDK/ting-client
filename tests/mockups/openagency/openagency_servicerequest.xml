@@ -110,5 +110,42 @@
             <oa:orderMaterialType>video</oa:orderMaterialType>
             <oa:orderType>ill</oa:orderType>
         </oa:orderParameters>
+        <oa:agencyParameters>
+            <oa:borrowerCheckParameters>
+                <oa:borrowerCheckSystem>bibliotek.dk</oa:borrowerCheckSystem>
+                <oa:borrowerCheck>1</oa:borrowerCheck>
+            </oa:borrowerCheckParameters>
+            <oa:borrowerCheckParameters>
+                <oa:borrowerCheckSystem>netpunkt</oa:borrowerCheckSystem>
+                <oa:borrowerCheck>1</oa:borrowerCheck>
+            </oa:borrowerCheckParameters>
+            <oa:borrowerCheckParameters>
+                <oa:borrowerCheckSystem>Filmstriben</oa:borrowerCheckSystem>
+                <oa:borrowerCheck>0</oa:borrowerCheck>
+            </oa:borrowerCheckParameters>
+            <oa:borrowerCheckParameters>
+                <oa:borrowerCheckSystem>SMS service</oa:borrowerCheckSystem>
+                <oa:borrowerCheck>0</oa:borrowerCheck>
+            </oa:borrowerCheckParameters>
+            <oa:borrowerCheckParameters>
+                <oa:borrowerCheckSystem>Test Fjernadgang 2</oa:borrowerCheckSystem>
+                <oa:borrowerCheck>0</oa:borrowerCheck>
+            </oa:borrowerCheckParameters>
+            <oa:borrowerCheckParameters>
+                <oa:borrowerCheckSystem>Test Fjernadgang 3</oa:borrowerCheckSystem>
+                <oa:borrowerCheck>0</oa:borrowerCheck>
+            </oa:borrowerCheckParameters>
+            <oa:borrowerCheckParameters>
+                <oa:borrowerCheckSystem>eBib</oa:borrowerCheckSystem>
+                <oa:borrowerCheck>0</oa:borrowerCheck>
+            </oa:borrowerCheckParameters>
+            <oa:borrowerCheckParameters>
+                <oa:borrowerCheckSystem>proxyen.dk</oa:borrowerCheckSystem>
+                <oa:borrowerCheck>0</oa:borrowerCheck>
+            </oa:borrowerCheckParameters>
+            <oa:acceptOrderFromUnknownUser>0</oa:acceptOrderFromUnknownUser>
+            <oa:acceptOrderAgencyOffline>1</oa:acceptOrderAgencyOffline>
+            <oa:payForPostage>1</oa:payForPostage>
+        </oa:agencyParameters>
     </oa:userOrderParameters>
 </oa:serviceResponse>
