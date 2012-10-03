@@ -39,6 +39,7 @@ files[] = lib/result/scan/TingClientScanTerm.php
 files[] = lib/result/search/TingClientFacetResult.php
 files[] = lib/result/search/TingClientSearchResult.php
 files[] = lib/result/spell/TingClientSpellSuggestion.php
+files[] = lib/xsdparse/xsdparse.inc
 
 ; tests (needs review - testing against live (dead) webservices)
 ;files[] = tests/ting_client_collection.test

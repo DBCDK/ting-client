@@ -28,8 +28,10 @@ class ting_client_class {
   }
 
   public function do_openorder($params){
+    //$params = ting_client_validate_xsd("http://guesstimate.dbc.dk/~fvs/OpenLibrary/OpenOrder/trunk/openorder.xsd", $params);
     // we know that the bibdk_openorder class exists (if not this method should not be called)
     $request = $this->request_factory()->getNamedRequest('openorder','bibdk_openorder');
+    $request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openorder'));
     if( empty($request) ) {
       $this->set_message('REMEMBER TO IMPLEMENT bibdk_openorder CLASS BEFORE USING IT', 'error');
       return;
@@ -49,6 +51,7 @@ class ting_client_class {
       return;
     }
     $this->_set_params($request,$params);
+    
     return $this->execute($request);
   }
 
@@ -136,7 +139,8 @@ class ting_client_class {
     if( !empty(self::$module) ) {
       if (function_exists(self::$module.'_set_message')) {
         $function = self::$module.'_set_message';
-        call_user_func_array($function, func_get_args());
+        $func_args = func_get_args();
+        call_user_func_array($function, $func_args);
       }
     }
   }
@@ -232,6 +236,7 @@ class ting_client_class {
    * execute a request
    **/
   private function execute($request) {
+    
     $cache = FALSE;
     //if(FALSE){
     if( $res = $this->get_from_cache($request,$cache) ){
@@ -245,7 +250,6 @@ class ting_client_class {
           //          timer_start('search_client');
         }
         $res = self::ting_client()->execute($request);
-
         if( function_exists(self::$module.'_timer') ) {
           $function = self::$module.'_timer';
           call_user_func_array ($function, array('stop', 'search_client'));

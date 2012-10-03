@@ -1,17 +1,6 @@
 <?php
 // little program to parse fields from xsd
-
-/*$schema = new xml_schema();
-$schema->get_from_file('openfindorder.xsd');
-
-$seq = $schema->get_sequence('order');
-foreach ($seq as $element)
-  $arr[] = $schema->get_element_attributes($element);
-
-foreach ($arr as $a)
-echo $a['name']."=\n";*/
 //print_r($arr);
-
 /*foreach($arr as $key => $val)
   // $ret[] = $val['name'];
   echo '"'.$val['name'].'"=>"'.strtoupper($val['name']).'",'."\n";
@@ -43,6 +32,12 @@ class xml_schema {
   }
 
   public function get_from_file($filename) {
+    $dom = new DOMDocument();
+    if (! @$dom->load($filename))
+      die("could not open file: ".$filename."\n" );
+    $this->xpath = new DOMXPath($dom);
+  }
+  public function get_from_url($filename) {
     $dom = new DOMDocument();
     if (! @$dom->load($filename))
       die("could not open file: ".$filename."\n" );

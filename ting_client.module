@@ -11,6 +11,19 @@
  */
 require_once('ting_client_class.inc');
 
+function ting_client_validate_xsd($xsd, $action){
+$schema = new xml_schema();
+
+$schema->get_from_file($xsd);
+$seq = $schema->get_sequence($action);
+$arr[] = 'action';
+foreach ($seq as $element){
+  $s = $schema->get_element_attributes($element);
+  $arr[] = $s['name']; 
+}
+return $arr;
+}
+
 /* Implements hook_menu */
 function ting_client_menu() {
  $items['admin/config/serviceclient'] = array(

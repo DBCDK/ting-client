@@ -15,6 +15,7 @@ class TingClientRequestAdapter {
   }
  
   public function execute(TingClientRequest $request) {
+    $options = array();
     //Prepare the parameters for the SOAP request
     $soapParameters = $request->getParameters();
     // Separate the action from other parameters
@@ -28,8 +29,9 @@ class TingClientRequestAdapter {
     try {
       try {
         $startTime = explode(' ', microtime());
-        
-        $client = new NanoSOAPClient($request->getWsdlUrl());
+        if ($request->getXsdNameSpace())
+          $options['namespaces'] = $request->getXsdNameSpace();
+        $client = new NanoSOAPClient($request->getWsdlUrl(), $options);
         $response = $client->call($soapAction, $soapParameters);
   
         $stopTime = explode(' ', microtime());

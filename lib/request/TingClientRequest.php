@@ -13,8 +13,9 @@ abstract class TingClientRequest {
 
   /* attributes to be used by extending classes */
   protected $cacheKey;
-
+  private $nameSpace;
   private $wsdlUrl;
+  
   private $parameters = array();
 
   abstract public function processResponse(stdClass $response);
@@ -24,8 +25,16 @@ abstract class TingClientRequest {
   public function __construct($wsdlUrl, $serviceName=NULL) {
     $this->wsdlUrl = $wsdlUrl;
   }
-
-
+  
+  public function setXsdNameSpace($nameSpace){
+    $this->nameSpace = $nameSpace;
+  } 
+  
+  public function getXsdNamespace() {
+    return $this->nameSpace;
+  }
+  
+  
   public function setwsdlUrl($wsdlUrl) {
     $this->wsdlUrl = $wsdlUrl;
   }
