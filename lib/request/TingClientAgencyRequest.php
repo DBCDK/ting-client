@@ -115,31 +115,7 @@ class TingClientAgencyRequest extends TingClientRequest implements ITingClientRe
 
       if (isset($value->pickupAgency) && $value->pickupAgency) {
         foreach ($value->pickupAgency as $pickupAgency) {
-          $branch = new TingClientAgencyBranch();
-
-          $branch->branchId = $this->getValue($pickupAgency->branchId);
-          $branch->branchName = $this->getValue($pickupAgency->branchName);
-          $branch->branchPhone = $this->getValue($pickupAgency->branchPhone);
-          $branch->branchEmail = $this->getValue($pickupAgency->branchEmail);
-          if (isset($pickupAgency->postalAddress))
-            $branch->postalAddress = $this->getValue($pickupAgency->postalAddress);
-          if (isset($pickupAgency->postalCode))
-            $branch->postalCode = $this->getValue($pickupAgency->postalCode);
-          if (isset($pickupAgency->city))
-            $branch->city = $this->getValue($pickupAgency->city);
-          if (isset($pickupAgency->branchWebsiteUrl))
-            $branch->branchWebsiteUrl = $this->getValue($pickupAgency->branchWebsiteUrl);
-          if (isset($pickupAgency->serviceDeclarationUrl))
-            $branch->serviceDeclarationUrl = $this->getValue($pickupAgency->serviceDeclarationUrl);
-          if (isset($pickupAgency->openingHours))
-            $branch->openingHours = $pickupAgency->openingHours;
-          if (isset($pickupAgency->temporarilyClosed))
-            $branch->temporarilyClosed = $this->getValue($pickupAgency->temporarilyClosed);
-          if (isset($pickupAgency->userStatusUrl))
-            $branch->userStatusUrl = $this->getValue($pickupAgency->userStatusUrl);
-          if (isset($pickupAgency->pickupAllowed))
-            $branch->pickupAllowed = $this->getValue($pickupAgency->pickupAllowed);
-
+          $branch = new TingClientAgencyBranch($pickupAgency);
           $agency->pickUpAgencies[] = $branch;
           $counter++;
         }
