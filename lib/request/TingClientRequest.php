@@ -86,7 +86,8 @@ abstract class TingClientRequest {
     return $this->processResponse($response);
   }
 
-  protected static function getValue($object) {
+  // this method needs to called from outside scope.. make it publice
+  public static function getValue($object) {
     if (is_array($object)) {
       return array_map(array('RestJsonTingClientRequest', 'getValue'), $object);
     }
