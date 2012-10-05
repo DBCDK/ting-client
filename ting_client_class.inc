@@ -79,6 +79,21 @@ class ting_client_class {
     $result->cacheKey = $request->cacheKey();
     return $result;
   }
+  
+  /**
+   * \brief general method for requests to openagency
+   * 
+   * @param array $params ; an array of parameters for openagency
+   */
+  public function do_agency($params) {
+    // get the agencyrequest
+    $request = $this->request_factory()->getNamedRequest('agency','AgencyRequest');
+    $this->_set_params($request,$params);
+    $result = $this->execute($request);
+
+    return $result;
+  }
+  
 
   public function do_agency_search($params){
     // get the agencyrequest
@@ -104,7 +119,7 @@ class ting_client_class {
    **/
   private function request_factory() {
 
-    self::$request_factory=NULL;
+ //   self::$request_factory=NULL;
 
     if (!isset(self::$request_factory)) {
       $url_variables = array(
