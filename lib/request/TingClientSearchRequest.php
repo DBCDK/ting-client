@@ -30,6 +30,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
   protected $allObjects;
   protected $allRelations;
   protected $relationData;
+  protected $collectionType;
   protected $agency;
   protected $profile;
   var $userDefinedBoost;
@@ -60,6 +61,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
       'allObjects' => 'allObjects',
       'allRelations' => 'allRelations',
       'relationData' => 'relationData',
+      'collectionType' => 'collectionType',
       'agency' => 'agency',
       'profile' => 'profile',
       'objectFormat' => 'objectFormat',
@@ -111,7 +113,13 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
 
   /** end ITingClientRequestCache **/
 
+  public function getCollectionType() {
+    return $this->collectionType;
+  }
 
+  public function setCollectionType($collectionType) {
+    $this->collectionType = $collectionType;
+  }
 
   public function getQuery() {
     return $this->query;
