@@ -151,15 +151,16 @@ class TingClientObjectRequest extends TingClientRequest implements ITingClientRe
     // Use TingClientSearchRequest::processResponse for processing the
     // response from Ting.
     $searchRequest = new TingClientSearchRequest(NULL);
-    $response = $searchRequest->processResponse($response);
-
+    return $searchRequest->processResponse($response);
+    
+    /*
 //pjo 17082012 hack ... @TODO make this in a more clever way
 if( isset($response->collections[0]->formattedCollection) ) {
 return $response->collections[0]->formattedCollection;
 }
     if (isset($response->collections[0]->objects[0])) {
       return $response->collections[0]->objects[0];
-    }
+    }*/
   }
 }
 

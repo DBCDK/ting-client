@@ -245,8 +245,8 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
 
     if (isset($searchResponse->result->searchResult) && is_array($searchResponse->result->searchResult)) {
       foreach ($searchResponse->result->searchResult as $entry => $result) {
-	// pjo 22-05-12 formatted collections
-	$formattedCollection =  isset( $result->formattedCollection ) ? $result->formattedCollection : NULL;
+          // pjo 22-05-12 formatted collections
+        $formattedCollection =  isset( $result->formattedCollection ) ? $result->formattedCollection : NULL;
         $searchResult->collections[] = $this->generateCollection($result->collection, (array)$response->{'@namespaces'}, $formattedCollection);
 	}
       }
