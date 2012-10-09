@@ -6,7 +6,7 @@
  * Objects requests are much like search request, so this is implemented
  * as a subclass, even though it is a different request type.
  */
-class TingClientObjectRequest extends TingClientRequest {
+class TingClientObjectRequest extends TingClientRequest implements ITingClientRequestCache{
   protected $agency;
   protected $allRelations;
   protected $id;
@@ -17,6 +17,28 @@ class TingClientObjectRequest extends TingClientRequest {
   protected $outputType;
   protected $objectFormat;
 
+  
+   /** Implementation of ITingClientRequestCache **/
+  public function cacheKey() {
+    return md5(serialize($this->getRequest()));
+  }
+
+  public function cacheEnable($value=NULL) {
+    $class_name = get_class($this);
+    return variable_get($class_name.TingClientRequest::cache_enable);
+  }
+
+  public function cacheTimeout($value=NULL) {
+    $class_name = get_class($this);
+    return variable_get($class_name.TingClientRequest::cache_lifetime,'1');
+  }
+
+  /** end ITingClientRequestCache **/
+
+  public function getCollectionType() {
+    return $this->collectionType;
+  }
+  
   public function setObjectFormat($objectFormat) {
     $this->objectFormat = $objectFormat;
   }

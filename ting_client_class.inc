@@ -62,6 +62,7 @@ class ting_client_class {
     $request = $this->request_factory()->getNamedRequest('object','TingClientObjectRequest');
     $this->_set_params($request,$params);
     $result = $this->execute($request);
+    $result->cacheKey = $request->cacheKey();
     return $result;
   }
 
