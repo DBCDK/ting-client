@@ -209,7 +209,6 @@ class ting_client_class {
     if( !isset($ret) ) {
       $ret = array();
       $factory = $this->request_factory();
-      dpm($factory);
       $request_methods = get_class_methods($factory);
       /*reach( $request_methods as $method ) {
         if( $method != '__construct' ) {
