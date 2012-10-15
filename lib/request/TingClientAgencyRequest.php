@@ -1,22 +1,16 @@
 <?php
 
-class TingClientAgencyRequest extends TingClientRequest implements ITingClientRequestCache{
+class TingClientAgencyRequest extends TingClientRequest implements ITingClientRequestCache {
 
-  protected $agencyName;
-  protected $postalCode;
-  protected $city;
-
-
+  protected $anyField;
   protected $cacheKey;
 
   protected function getRequest() {
-    $this->setParameter('action', 'pickupAgencyListRequest');
+    $this->setParameter('action', 'findLibraryRequest');
     $this->setParameter('libraryType', '');
 
     $methodParameterMap = array(
-      'agencyName' => 'agencyName',
-      'postalCode' => 'postalCode',
-      'city' => 'city',
+      'anyField' => 'anyField',
     );
 
     foreach ($methodParameterMap as $method => $parameter) {
@@ -25,64 +19,48 @@ class TingClientAgencyRequest extends TingClientRequest implements ITingClientRe
         $this->setParameter($parameter, $value);
       }
     }
-
     return $this;
   }
 
- /** Implementation of ITingClientRequestCache **/
-  public function cacheKey() { 
-    if( !isset($this->cacheKey) ) {
-      $this->cacheKey.= 'agencyName'.$this->getAgencyName().'postalCode'.$this->getPostalCode().'city'.$this-> getCity();
+  /** Implementation of ITingClientRequestCache * */
+  public function cacheKey() {
+    if (!isset($this->cacheKey)) {
+      $this->cacheKey.= '$anyField' . $this->getAnyField();
     }
     return md5($this->cacheKey);
-  } 
+  }
 
-  public function cacheEnable($value=NULL) {
+  public function cacheEnable($value = NULL) {
     $class_name = get_class($this);
-    return variable_get($class_name.TingClientRequest::cache_enable);
+    return variable_get($class_name . TingClientRequest::cache_enable);
   }
 
-  public function cacheTimeout($value=NULL) {
+  public function cacheTimeout($value = NULL) {
     $class_name = get_class($this);
-    return variable_get($class_name.TingClientRequest::cache_lifetime,'1');
+    return variable_get($class_name . TingClientRequest::cache_lifetime, '1');
   }
 
-  /** end ITingClientRequestCache **/
-
-  public function getAgencyName() {
-    return $this->agencyName;
+  /** end ITingClientRequestCache * */
+  public function getAnyField() {
+    return $this->anyField;
   }
 
-  public function setAgencyName($agencyName) {
-    $this->agencyName = $agencyName;
-  }
-
-  public function getPostalCode() {
-    return $this->postalCode;
-  }
-
-  public function setPostalCode($postalCode) {
-    $this->postalCode = $postalCode;
-  }
-
-  public function getCity() {
-    return $this->city;
-  }
-
-  public function setCity($city) {
-    $this->city = $city;
+  public function setAnyField($anyField) {
+    $this->anyField = $anyField;
   }
 
   public function processResponse(stdClass $response) {
+    if (isset($response->findLibraryResponse) && $response->findLibraryResponse) {
+      $response = $response->findLibraryResponse;
 
-    if (isset($response->pickupAgencyListResponse) && $response->pickupAgencyListResponse) {
-      $response = $response->pickupAgencyListResponse;
-
-      if (isset($response->library) && $response->library) {
-        $agencies = $this->parseResult($response);
+      if (isset($response->pickupAgency) && $response->pickupAgency) {
+        $agencies = $this->parseResult($response->pickupAgency);
       }
       else if (isset($response->error) && $response->error) {
         $agencies['error'] = $this->getValue($response->error);
+      }
+      else if (!isset($response->error) && !isset($response->pickupAgency)) {
+        return $agencies['error'] = t('no_libraries_found_and_no_errors_reported');
       }
     }
     return $agencies;
@@ -91,36 +69,15 @@ class TingClientAgencyRequest extends TingClientRequest implements ITingClientRe
   /**
    * Parsing the response
    * @param type $response
-   * @return \TingClientAgencyAgency 
+   * @return array of TingClientAgencyBranch objects
    */
   private function parseResult($response) {
     $agencies = array();
     $counter = 0;
-    foreach ($response->library as $value) {
-      $agency = new TingClientAgencyAgency();
-      if(isset($value->agencyId))
-        $agency->agencyId = $this->getValue($value->agencyId);
-      if(isset($value->agencyName))
-        $agency->agencyName = $this->getValue($value->agencyName);
-      if(isset($value->agencyPhone))
-        $agency->agencyPhone = $this->getValue($value->agencyPhone);
-      if(isset($value->agencyEmail))
-        $agency->agencyEmail = $this->getValue($value->agencyEmail);
-      if(isset($value->postalAddress))
-        $agency->postalAddress = $this->getValue($value->postalAddress);
-      if(isset($value->postalCode))
-        $agency->postalCode = $this->getValue($value->postalCode);
-      if(isset($value->city))
-        $agency->city = $this->getValue($value->city);
-
-      if (isset($value->pickupAgency) && $value->pickupAgency) {
-        foreach ($value->pickupAgency as $pickupAgency) {
-          $branch = new TingClientAgencyBranch($pickupAgency);
-          $agency->pickUpAgencies[] = $branch;
-          $counter++;
-        }
-      }
+    foreach ($response as $value) {
+      $agency = new TingClientAgencyBranch($value);
       $agencies['libraries'][] = $agency;
+      $counter++;
     }
     $agencies['count'] = $counter;
     return $agencies;
