@@ -42,12 +42,16 @@ function openagency_webservice_mockup_request() {
 
   try {
     $request = $envelope->Body->children();
+    dpm($request);
     switch ($request->getName()) {
       case 'pickupAgencyListRequest':
         return openagency_webservice_pickupAgencyListRequest($request->pickupAgencyListRequest);
         break;
       case 'serviceRequest' :
         return openagency_webservice_serviceRequest($request->serviceRequest);
+      case 'findLibraryRequest ' :
+        return openagency_webservice_pickupAgencyListRequest($request->findLibraryRequest);
+        break;
 
       default:
         return SOAP_FAULT;
@@ -85,10 +89,10 @@ function openagency_webservice_serviceRequest($request) {
 function openagency_webservice_pickupAgencyListRequest($request) {
   $path = drupal_get_path('module', 'openagency_webservice_mockup');
   
-  $city = $request->city;
+  $query = $request->anyField;
   $outPut = $request->outputType;
 
-  if ($city != 'københavn') {
+  if ($query != 'als') {
     drupal_add_http_header('Content-Type', 'application/json');
     $resp = file_get_contents($path . '/no_agencies_found.json');
     print $resp;
@@ -98,16 +102,16 @@ function openagency_webservice_pickupAgencyListRequest($request) {
   switch ($outPut) {
     case 'json':
       drupal_add_http_header('Content-Type', 'application/json');
-      $resp = file_get_contents($path . '/københavn.json');
+      $resp = file_get_contents($path . '/als.json');
       break;
     case 'xml':
       drupal_add_http_header('Content-Type', 'text/xml; charset=utf-8');
-      $resp = file_get_contents($path . '/københavn.xml');
+      $resp = file_get_contents($path . '/als.xml');
       break;
     default :
     case 'json':
       drupal_add_http_header('Content-Type', 'application/json');
-      $resp = file_get_contents($path . '/københavn.json');
+      $resp = file_get_contents($path . '/als.json');
       break;
   }
 
