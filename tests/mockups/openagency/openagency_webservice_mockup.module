@@ -39,26 +39,56 @@ function openagency_webservice_mockup_request() {
   }
 
   $envelope = openagency_webservice_mockup_parse_xml($data);
-
+  
   try {
     $request = $envelope->Body->children();
-    dpm($request);
     switch ($request->getName()) {
-      case 'pickupAgencyListRequest':
+      case 'pickupAgencyListRequest' :
         return openagency_webservice_pickupAgencyListRequest($request->pickupAgencyListRequest);
         break;
       case 'serviceRequest' :
         return openagency_webservice_serviceRequest($request->serviceRequest);
-      case 'findLibraryRequest ' :
-        return openagency_webservice_pickupAgencyListRequest($request->findLibraryRequest);
+      case 'findLibraryRequest' :
+        return openagency_webservice_findLibraryRequest($request->findLibraryRequest);
         break;
-
       default:
         return SOAP_FAULT;
     }
   } catch (Exception $e) {
     return SOAP_FAULT;
   }
+}
+
+function openagency_webservice_findLibraryRequest($request) {
+  $path = drupal_get_path('module', 'openagency_webservice_mockup');
+  
+  $query = $request->anyField;
+  $outPut = $request->outputType;
+
+  if ($query != 'als') {
+    drupal_add_http_header('Content-Type', 'application/json');
+    $resp = file_get_contents($path . '/no_agencies_found.json');
+    print $resp;
+    return;
+  }
+
+  switch ($outPut) {
+    case 'json':
+      drupal_add_http_header('Content-Type', 'application/json');
+      $resp = file_get_contents($path . '/als.json');
+      break;
+    case 'xml':
+      drupal_add_http_header('Content-Type', 'text/xml; charset=utf-8');
+      $resp = file_get_contents($path . '/als.xml');
+      break;
+    default :
+    case 'json':
+      drupal_add_http_header('Content-Type', 'application/json');
+      $resp = file_get_contents($path . '/als.json');
+      break;
+  }
+
+  print $resp;
 }
 
 /**
