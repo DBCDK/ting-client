@@ -1,0 +1,155 @@
+<?php
+/**
+ * @file
+ * Ting Client module for Drupal
+ *
+ * This is a module and not a library due to the dependency on the NanoSOAP
+ * module.
+ *
+ * All code are found in the lib/ directory and subdirectories. Inclusion of
+ * code (classes) is done by ting_client.info.
+ */
+require_once('ting_client_class.inc');
+define('TING_DEFAULT_CACHE_LIFETIME', 0);
+
+function ting_client_validate_xsd($xsd, $action){
+$schema = new xml_schema();
+
+$schema->get_from_file($xsd);
+$seq = $schema->get_sequence($action);
+$arr[] = 'action';
+foreach ($seq as $element){
+  $s = $schema->get_element_attributes($element);
+  $arr[] = $s['name']; 
+}
+return $arr;
+}
+
+/* Implements hook_menu */
+function ting_client_menu() {
+ $items['admin/config/serviceclient'] = array(
+    'title' => 'Webservice client settings',
+    'description' => 'Manage webservices.',
+    'position' => 'right',
+    'weight' => 20,
+    'page callback' => 'system_admin_menu_block_page',
+    'access arguments' => array('access administration pages'),
+    'file' => 'system.admin.inc',
+    'file path' => drupal_get_path('module', 'system'),
+  );
+
+  $items['admin/config/serviceclient/settings'] = array(
+    'title' => 'Urls and settings',
+    'description' => 'Manage webservice settings.',
+    'weight' => -20,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ting_client_admin_webservices_settings'),
+    'access arguments' => array('administer webservices settings'),
+    'file' => 'ting_client.admin.inc'
+  );
+
+  $items['admin/config/serviceclient/cache_settings'] = array(
+    'title' => 'Cache settings',
+    'description' => 'Configure cache settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments'=> array('ting_client_cache_admin_form'),
+    'access arguments' => array('administer webservices settings'),
+    // 'type' => MENU_LOCAL_ACTION,
+    'file' => 'ting_client.admin.inc',
+  );
+  return $items;
+}
+
+/**
+ * support for ting_client_class
+ * set urls for request factory
+ **/
+function ting_client_set_request_factory($url_variables) {
+  // has other modules any webservices
+  $more = module_invoke_all ('ting_client_webservice');
+  if (!empty($more)) {
+    $url_variables = array_merge($url_variables, $more);
+  }
+
+  /*   if (module_exists('ting_infomedia') && variable_get('ting_infomedia_url', FALSE)) {
+    $url_variables['infomedia'] = 'ting_infomedia_url';
+  }
+
+  if (module_exists('bibdk_vejviser')) {
+    $url_variables['agency'] = 'agency_search_url';
+    }*/
+
+  $urls = array();
+
+  foreach ($url_variables as $name => $setting) {
+    $urls[$name]['url'] = variable_get($setting['url'], FALSE);
+    $urls[$name]['class'] = $setting['class'];
+  }
+  return $urls;
+}
+
+/**
+ * support for ting_client_class
+ * get method for caching
+ * use drupal::cache_get
+ **/
+function ting_client_cache_get ($cache_key, $storage=NULL) {
+  return cache_get($cache_key,$storage);
+}
+
+/**
+ * support for ting_client_class
+ * set method for caching
+ * use drupal::cache_set
+ **/
+function ting_client_cache_set ($cache_key,$data,$storage=NULL,$expire=NULL) {
+  cache_set($cache_key , $data, $storage, $expire);
+}
+
+/**
+ * support for ting_client_class
+ * add a drupal message and write to watchdog
+ **/
+function ting_client_set_message ($message='',$type='status',$repeat=NULL,$watchdog=array()) {
+  if( !empty($message) ) {
+    drupal_set_message($message,$type,$repeat);
+  }
+  if ($type == 'error') {
+    watchdog ('ting_client',$message,array(),WATCHDOG_ERROR,NULL);
+  }
+  if( !empty($watchdog) ) {
+    watchdog($watchdog['type'], $watchdog['message'],WATCHDOG_ERROR,$watchdog['link']);
+  }
+}
+
+/**
+ * support for ting_client_class
+ * enable/disable caching
+ **/
+function ting_client_enable_cache() {
+  return variable_get('search_client_enable_cache',FALSE);
+}
+
+/**
+ * support for ting_client_class
+ * start/stop drupal timer
+ **/
+function ting_client_timer($action,$name) {
+  $function = 'timer_'.$action;
+  call_user_func_array($function,array($name));
+}
+
+
+/**
+ * Implements hook_ding_install_tasks().
+ */
+function ting_client_ding_install_tasks() {
+  module_load_include('inc', 'ting_client', 'ting_client.admin');
+  return array(
+    'ting_client_admin_webservices_settings' => array(
+      'display_name' => st('Service settings'),
+      'type' => 'form',
+      'file' => drupal_get_path('module', 'ting_client') . '/ting_client.admin.inc',
+    ),
+  );
+}

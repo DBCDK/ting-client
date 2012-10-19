@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:oa="http://oss.dbc.dk/ns/openagency">
+    <SOAP-ENV:Body>
+        <oa:findLibraryResponse>
+            <oa:pickupAgency>
+                <oa:branchId>784605</oa:branchId>
+                <oa:branchType>f</oa:branchType>
+                <oa:branchPhone>9711 4115</oa:branchPhone>
+                <oa:branchName>Als Bibliotek</oa:branchName>
+                <oa:branchEmail>hadsundbibliotek@mariagerfjord.dk</oa:branchEmail>
+                <oa:branchIsAgency>0</oa:branchIsAgency>
+                <oa:postalAddress>ikke udfyldt</oa:postalAddress>
+                <oa:postalCode>9560</oa:postalCode>
+                <oa:city>Hadsund</oa:city>
+                <oa:isil>DK-784605</oa:isil>
+                <oa:userStatusUrl>http://nobisweb.njl.dk/sites/HOBRO/pub/patronstatus.html</oa:userStatusUrl>
+                <oa:temporarilyClosed>0</oa:temporarilyClosed>
+                <oa:pickupAllowed>1</oa:pickupAllowed>
+                <oa:ncipLookupUser>0</oa:ncipLookupUser>
+                <oa:ncipRenewOrder>0</oa:ncipRenewOrder>
+                <oa:ncipCancelOrder>0</oa:ncipCancelOrder>
+                <oa:ncipUpdateOrder>0</oa:ncipUpdateOrder>
+            </oa:pickupAgency>
+        </oa:findLibraryResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

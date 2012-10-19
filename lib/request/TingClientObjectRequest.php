@@ -6,10 +6,9 @@
  * Objects requests are much like search request, so this is implemented
  * as a subclass, even though it is a different request type.
  */
-class TingClientObjectRequest extends TingClientRequest {
+class TingClientObjectRequest extends TingClientRequest implements ITingClientRequestCache{
   protected $agency;
   protected $allRelations;
-  protected $format;
   protected $id;
   protected $localId;
   protected $relationData;
@@ -18,6 +17,28 @@ class TingClientObjectRequest extends TingClientRequest {
   protected $outputType;
   protected $objectFormat;
 
+  
+   /** Implementation of ITingClientRequestCache **/
+  public function cacheKey() {
+    return md5(serialize($this->getRequest()));
+  }
+
+  public function cacheEnable($value=NULL) {
+    $class_name = get_class($this);
+    return variable_get($class_name.TingClientRequest::cache_enable);
+  }
+
+  public function cacheTimeout($value=NULL) {
+    $class_name = get_class($this);
+    return variable_get($class_name.TingClientRequest::cache_lifetime,'1');
+  }
+
+  /** end ITingClientRequestCache **/
+
+  public function getCollectionType() {
+    return $this->collectionType;
+  }
+  
   public function setObjectFormat($objectFormat) {
     $this->objectFormat = $objectFormat;
   }
@@ -56,14 +77,6 @@ class TingClientObjectRequest extends TingClientRequest {
     $this->allRelations = $allRelations;
   }
 
-  public function getFormat() {
-    return $this->format;
-  }
-
-  public function setFormat($format) {
-    $this->format = $format;
-  }
-
   public function getLocalId() {
     return $this->localId;
   }
@@ -93,8 +106,8 @@ class TingClientObjectRequest extends TingClientRequest {
     // These defaults are always needed.
     $this->setParameter('action', 'getObjectRequest');
 
-    if (!isset($parameters['format']) || empty($parameters['format'])) {
-      $this->setParameter('format', 'dkabm');
+    if (!isset($parameters['objectFormat']) || empty($parameters['objectFormat'])) {
+      $this->setParameter('objectFormat', variable_get('ting_search_openformat', 'dkabm'));
     }
 
     // Determine which id to use and the corresponding index
@@ -111,7 +124,6 @@ class TingClientObjectRequest extends TingClientRequest {
     }
 
     $methodParameterMap = array(
-      'format' => 'format',
       'allRelations' => 'allRelations',
       'relationData' => 'relationData',
       'agency' => 'agency',
@@ -139,11 +151,16 @@ class TingClientObjectRequest extends TingClientRequest {
     // Use TingClientSearchRequest::processResponse for processing the
     // response from Ting.
     $searchRequest = new TingClientSearchRequest(NULL);
-    $response = $searchRequest->processResponse($response);
-
+    return $searchRequest->processResponse($response);
+    
+    /*
+//pjo 17082012 hack ... @TODO make this in a more clever way
+if( isset($response->collections[0]->formattedCollection) ) {
+return $response->collections[0]->formattedCollection;
+}
     if (isset($response->collections[0]->objects[0])) {
       return $response->collections[0]->objects[0];
-    }
+    }*/
   }
 }
 

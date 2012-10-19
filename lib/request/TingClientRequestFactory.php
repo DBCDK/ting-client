@@ -1,64 +1,25 @@
 <?php
 
 class TingClientRequestFactory {
-	public function __construct($urls) {
-		$this->urls = $urls;
-	}
 
-	/**
-	 * @return TingClientSearchRequest
-	 */
-	public function getSearchRequest() {
-		return new TingClientSearchRequest($this->urls['search']);
-	}
+  public $urls;
 
-	/**
-	 * @return TingClientScanRequest
-	 */
-	public function getScanRequest() {
-		return new TingClientScanRequest($this->urls['scan']);
-	}
+  public function __construct($urls) {
+    $this->urls = $urls;
+  }
 
-	/**
-	 * @return TingClientCollectionRequest
-	 */
-	public function getCollectionRequest() {
-		return new TingClientCollectionRequest($this->urls['collection']);
-	}
-
-	/**
-	 * @return TingClientObjectRequest
-	 */
-	public function getObjectRequest() {
-		return new TingClientObjectRequest($this->urls['object']);
-	}
-
-	/**
-	 * @return TingClientSpellRequest
-	 */
-	public function getSpellRequest() {
-		return new TingClientSpellRequest($this->urls['spell']);
-	}
-
-	/**
-	 * @return TingClientObjectRecommendationRequest
-	 */
-	function getObjectRecommendationRequest() {
-		return new TingClientObjectRecommendationRequest($this->urls['recommendation']);
-	}
-
-	/**
-	 * @ return TingClientInfomediaArticleRequest
-	 */
-	function getInfomediaArticleRequest(){
-	  return new TingClientInfomediaArticleRequest($this->urls['infomedia']);
-	}
-	  
-	/**
-	 * @ return TingClientInfomediaReviewRequest
-	 */
-	function getInfomediaReviewRequest(){
-	  return new TingClientInfomediaReviewRequest($this->urls['infomedia']);
-	}
+  /**
+   * return object($className) if it exists and url is set, else throw TingClientException
+   * @className, the class implementing the request
+   * @name, the name of the request (for mapping in $urls variable)
+   *
+   * @TODO; can $url variable be refactored away??
+   **/
+  public function getNamedRequest($name, $className) {
+    if( class_exists($className) && !empty($this->urls[$name]['url']) ) {
+      return new $className($this->urls[$name]['url']);
+    }
+    throw new TingClientException('No webservice url or maybe class defined for ' . $name);
+  }
 }
 

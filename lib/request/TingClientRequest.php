@@ -1,18 +1,40 @@
 <?php
 
+interface ITingClientRequestCache{
+  public function cacheKey();
+  public function cacheEnable($value=NULL);
+  public function cacheTimeout($value=NULL);
+}
+
 abstract class TingClientRequest {
+  /* suffixes to use for cache variables */
+  const cache_lifetime  = '_cache_lifetime';
+  const cache_enable = '_cache_enable';
+
+  /* attributes to be used by extending classes */
+  protected $cacheKey;
+  private $nameSpace;
   private $wsdlUrl;
+  
   private $parameters = array();
 
   abstract public function processResponse(stdClass $response);
 
   abstract protected function getRequest();
 
-  public function __construct($wsdlUrl) {
+  public function __construct($wsdlUrl, $serviceName=NULL) {
     $this->wsdlUrl = $wsdlUrl;
   }
-
-
+  
+  public function setXsdNameSpace($nameSpace){
+    $this->nameSpace = $nameSpace;
+  } 
+  
+  public function getXsdNamespace() {
+    return $this->nameSpace;
+  }
+  
+  
   public function setwsdlUrl($wsdlUrl) {
     $this->wsdlUrl = $wsdlUrl;
   }
@@ -64,7 +86,8 @@ abstract class TingClientRequest {
     return $this->processResponse($response);
   }
 
-  protected static function getValue($object) {
+  // this method needs to called from outside scope.. make it publice
+  public static function getValue($object) {
     if (is_array($object)) {
       return array_map(array('RestJsonTingClientRequest', 'getValue'), $object);
     }
@@ -111,6 +134,4 @@ abstract class TingClientRequest {
       return NULL;
     }
   }
-
 }
-

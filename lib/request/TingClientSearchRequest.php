@@ -1,6 +1,6 @@
 <?php
 
-class TingClientSearchRequest extends TingClientRequest {
+class TingClientSearchRequest extends TingClientRequest implements ITingClientRequestCache{
   /**
    * Prefix to namespace URI map.
    */
@@ -30,17 +30,24 @@ class TingClientSearchRequest extends TingClientRequest {
   protected $allObjects;
   protected $allRelations;
   protected $relationData;
+  protected $collectionType;
   protected $agency;
   protected $profile;
   var $userDefinedBoost;
   var $userDefinedRanking;
+
+  protected $objectFormat;
 
   public function getRequest() {
     $parameters = $this->getParameters();
 
     // These defaults are always needed.
     $this->setParameter('action', 'searchRequest');
-    if (!isset($parameters['format']) || empty($parameters['format'])) {
+
+    if( isset($parameters['objectFormat']) ) {
+      $this->setObjectFormat($parameters['objectFormat']);
+    }
+    elseif (!isset($parameters['format']) || empty($parameters['format'])) {
       $this->setParameter('format', 'dkabm');
     }
 
@@ -54,8 +61,10 @@ class TingClientSearchRequest extends TingClientRequest {
       'allObjects' => 'allObjects',
       'allRelations' => 'allRelations',
       'relationData' => 'relationData',
+      'collectionType' => 'collectionType',
       'agency' => 'agency',
       'profile' => 'profile',
+      'objectFormat' => 'objectFormat',
     );
 
     foreach ($methodParameterMap as $method => $parameter) {
@@ -84,8 +93,32 @@ class TingClientSearchRequest extends TingClientRequest {
     if (is_array($this->userDefinedRanking) && !empty($this->userDefinedRanking)) {
       $this->setParameter('userDefinedRanking', $this->userDefinedRanking);
     }
-
     return $this;
+  }
+
+  /** Implementation of ITingClientRequestCache **/
+  public function cacheKey() {
+    return md5($this->getQuery());
+  }
+
+  public function cacheEnable($value=NULL) {
+    $class_name = get_class($this);
+    return variable_get($class_name.TingClientRequest::cache_enable);
+  }
+
+  public function cacheTimeout($value=NULL) {
+    $class_name = get_class($this);
+    return variable_get($class_name.TingClientRequest::cache_lifetime,'1');
+  }
+
+  /** end ITingClientRequestCache **/
+
+  public function getCollectionType() {
+    return $this->collectionType;
+  }
+
+  public function setCollectionType($collectionType) {
+    $this->collectionType = $collectionType;
   }
 
   public function getQuery() {
@@ -115,9 +148,16 @@ class TingClientSearchRequest extends TingClientRequest {
   public function getFormat() {
     return $this->format;
   }
-
   public function setFormat($format) {
     $this->format = $format;
+  }
+
+  public function getObjectFormat() {
+    return $this->objectFormat;
+  }
+
+  public function setObjectFormat($objectFormat) {
+    $this->objectFormat = $objectFormat;
   }
 
   public function getStart() {
@@ -194,10 +234,6 @@ class TingClientSearchRequest extends TingClientRequest {
 
   public function processResponse(stdClass $response) {
     $searchResult = new TingClientSearchResult();
-
-//pjo testing
-//print_r($response);
-
     $searchResponse = $response->searchResponse;
     if (isset($searchResponse->error)) {
       throw new TingClientException('Error handling search request: '.self::getValue($searchResponse->error));
@@ -209,9 +245,11 @@ class TingClientSearchRequest extends TingClientRequest {
 
     if (isset($searchResponse->result->searchResult) && is_array($searchResponse->result->searchResult)) {
       foreach ($searchResponse->result->searchResult as $entry => $result) {
-        $searchResult->collections[] = $this->generateCollection($result->collection, (array)$response->{'@namespaces'});
+          // pjo 22-05-12 formatted collections
+        $formattedCollection =  isset( $result->formattedCollection ) ? $result->formattedCollection : NULL;
+        $searchResult->collections[] = $this->generateCollection($result->collection, (array)$response->{'@namespaces'}, $formattedCollection);
+	}
       }
-    }
 
     if (isset($searchResponse->result->facetResult->facet) && is_array($searchResponse->result->facetResult->facet)) {
       foreach ($searchResponse->result->facetResult->facet as $facetResult) {
@@ -222,16 +260,22 @@ class TingClientSearchRequest extends TingClientRequest {
             $facet->terms[self::getValue($term->term)] = self::getValue($term->frequence);
           }
         }
-
         $searchResult->facets[$facet->name] = $facet;
       }
     }
-
     return $searchResult;
+  }
+
+  private function generateFormattedCollection( $formattedCollection, $namespaces ) {
+    // @TODO parse formattedCollection
+    return $formattedCollection;
   }
 
   private function generateObject($objectData, $namespaces) {
     $object = new TingClientObject();
+    if (!isset($objectData->identifier))
+      return;
+    
     $object->id = self::getValue($objectData->identifier);
 
     $object->record = array();
@@ -302,14 +346,20 @@ class TingClientSearchRequest extends TingClientRequest {
     return $object;
   }
 
-  private function generateCollection($collectionData, $namespaces) {
+  private function generateCollection($collectionData, $namespaces, $formattedCollection=NULL) {
     $objects = array();
     if (isset($collectionData->object) && is_array($collectionData->object)) {
       foreach ($collectionData->object as $objectData) {
-        $objects[] = $this->generateObject($objectData, $namespaces);
+        $objects[] = $this->generateObject($objectData, $namespaces, $formattedCollection);
       }
     }
-    return new TingClientObjectCollection($objects);
+
+    $ret = new TingClientObjectCollection($objects);
+
+    if( isset($formattedCollection) ) {
+      $ret->formattedCollection = new TingClientFormattedCollection($formattedCollection);
+    }
+    return $ret;
   }
 }
 

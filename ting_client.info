@@ -1,0 +1,54 @@
+name = Ting Client
+description = Ting Client module
+version = 2.1
+core = 7.x
+package = Ding!
+dependencies[] = nanosoap
+
+; classes
+files[] = lib/TingClient.php
+files[] = lib/adapter/TingClientRequestAdapter.php
+files[] = lib/exception/TingClientException.php
+files[] = lib/log/TingClientDrupalDebugLogger.php
+files[] = lib/log/TingClientDrupalWatchDogLogger.php
+files[] = lib/log/TingClientLogger.php
+files[] = lib/log/TingClientVoidLogger.php
+files[] = lib/request/TingClientCollectionRequest.php
+files[] = lib/request/TingClientInfomediaArticleRequest.php
+files[] = lib/request/TingClientInfomediaRequest.php
+files[] = lib/request/TingClientInfomediaReviewRequest.php
+files[] = lib/request/TingClientObjectRecommendationRequest.php
+files[] = lib/request/TingClientObjectRequest.php
+files[] = lib/request/TingClientRequest.php
+files[] = lib/request/TingClientRequestFactory.php
+files[] = lib/request/TingClientScanRequest.php
+files[] = lib/request/TingClientAgencyRequest.php
+files[] = lib/request/TingClientAgencyServiceRequest.php
+files[] = lib/request/TingClientSearchRequest.php
+files[] = lib/request/TingClientSpellRequest.php
+files[] = lib/result/agency/TingClientAgencyBranch.php
+files[] = lib/result/agency/TingClientAgencyAgency.php
+files[] = lib/result/infomedia/TingClientInfomediaResult.php
+files[] = lib/result/object/data/TingClientObjectData.php
+files[] = lib/result/object/TingClientFormattedCollection.php
+files[] = lib/result/object/TingClientObject.php
+files[] = lib/result/object/TingClientObjectCollection.php
+files[] = lib/result/recommendation/TingClientObjectRecommendation.php
+files[] = lib/result/scan/TingClientScanResult.php
+files[] = lib/result/scan/TingClientScanTerm.php
+files[] = lib/result/search/TingClientFacetResult.php
+files[] = lib/result/search/TingClientSearchResult.php
+files[] = lib/result/spell/TingClientSpellSuggestion.php
+files[] = lib/xsdparse/xsdparse.inc
+
+; tests (needs review - testing against live (dead) webservices)
+;files[] = tests/ting_client_collection.test
+;files[] = tests/ting_client_infomedia.test
+;files[] = tests/ting_client_object_recommendation.test
+;files[] = tests/ting_client_object.test
+;files[] = tests/ting_client_scan.test
+;files[] = tests/ting_client_search.test
+;files[] = tests/ting_client_spell.test
+;files[] = tests/ting_client.test
+
+

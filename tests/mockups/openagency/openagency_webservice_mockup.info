@@ -1,0 +1,6 @@
+name = "Openagency mockup"
+description = "Support module for Open Agency test."
+package = Testing
+version = VERSION
+core = 7.x
+hidden = TRUE;
