@@ -10,6 +10,7 @@
  * code (classes) is done by ting_client.info.
  */
 require_once('ting_client_class.inc');
+define('TING_DEFAULT_CACHE_LIFETIME', 0);
 
 function ting_client_validate_xsd($xsd, $action){
 $schema = new xml_schema();
