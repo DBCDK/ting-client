@@ -22,7 +22,6 @@ files[] = lib/request/TingClientObjectRequest.php
 files[] = lib/request/TingClientRequest.php
 files[] = lib/request/TingClientRequestFactory.php
 files[] = lib/request/TingClientScanRequest.php
-files[] = lib/request/TingClientAgencyRequest.php
 files[] = lib/request/TingClientAgencyServiceRequest.php
 files[] = lib/request/TingClientSearchRequest.php
 files[] = lib/request/TingClientSpellRequest.php
