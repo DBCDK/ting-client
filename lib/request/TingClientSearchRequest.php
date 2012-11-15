@@ -38,17 +38,8 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
   protected $objectFormat;
 
   public function getRequest() {
-    $parameters = $this->getParameters();
-
     // These defaults are always needed.
     $this->setParameter('action', 'searchRequest');
-
-    if (isset($parameters['objectFormat'])) {
-      $this->setObjectFormat($parameters['objectFormat']);
-    }
-    else if (!isset($parameters['format']) || empty($parameters['format'])) {
-      $this->setParameter('format', 'dkabm');
-    }
 
     $methodParameterMap = array(
       'query' => 'query',
@@ -71,6 +62,12 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
       if ($value = $this->$getter()) {
         $this->setParameter($parameter, $value);
       }
+    }
+
+    $parameters = $this->getParameters();
+    // default format
+    if (!isset($parameters['objectFormat']) && empty($parameters['format'])) {
+      $this->setParameter('format', 'dkabm');
     }
 
     // If we have facets to display, we need to construct an array of
@@ -241,7 +238,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     $searchResult->numTotalObjects = self::getValue($searchResponse->result->hitCount);
     $searchResult->numTotalCollections = self::getValue($searchResponse->result->collectionCount);
     $searchResult->more = (bool) preg_match('/true/i', self::getValue($searchResponse->result->more));
-    
+
     if (isset($searchResponse->result->searchResult) && is_array($searchResponse->result->searchResult)) {
       foreach ($searchResponse->result->searchResult as $entry => $result) {
         // pjo 22-05-12 formatted collections
