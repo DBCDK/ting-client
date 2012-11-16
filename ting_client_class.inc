@@ -76,8 +76,10 @@ class ting_client_class {
     $this->_set_params($request,$params);
     $result = $this->execute($request);
 
-    // pass cache key to search
-    $result->cacheKey = $request->cacheKey();
+    if (is_object($result)) {
+      $result->cacheKey = $request->cacheKey();
+    }
+
     return $result;
   }
   
