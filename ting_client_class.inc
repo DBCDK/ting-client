@@ -76,8 +76,10 @@ class ting_client_class {
     $this->_set_params($request,$params);
     $result = $this->execute($request);
 
-    // pass cache key to search
-    $result->cacheKey = $request->cacheKey();
+    if (is_object($result)) {
+      $result->cacheKey = $request->cacheKey();
+    }
+
     return $result;
   }
   
@@ -89,6 +91,7 @@ class ting_client_class {
   public function do_agency($params) {
     // get the agencyrequest
     $request = $this->request_factory()->getNamedRequest('agency','AgencyRequest');
+    $request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openagency'));
     $this->_set_params($request,$params);
     $result = $this->execute($request);
 
@@ -97,11 +100,11 @@ class ting_client_class {
   
 
   public function do_agency_search($params){
-    // get the agencyrequest
-    $request = $this->request_factory()->getNamedRequest('agency','TingClientAgencyRequest');
-    $this->_set_params($request,$params);
-    $result = $this->execute($request);
-
+    // get the agencyrequest 
+    
+    $params['action'] = 'findLibraryRequest';
+    $result = $this->do_agency($params);
+    
     return $result;
   }
 

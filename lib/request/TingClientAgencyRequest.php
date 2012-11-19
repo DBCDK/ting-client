@@ -2,8 +2,9 @@
 
 class TingClientAgencyRequest extends TingClientRequest implements ITingClientRequestCache {
 
-  protected $anyField;
   protected $cacheKey;
+  protected $anyField;
+  protected $sort;
 
   protected function getRequest() {
     $this->setParameter('action', 'findLibraryRequest');
@@ -11,6 +12,7 @@ class TingClientAgencyRequest extends TingClientRequest implements ITingClientRe
 
     $methodParameterMap = array(
       'anyField' => 'anyField',
+      'sort' => 'sort',
     );
 
     foreach ($methodParameterMap as $method => $parameter) {
@@ -47,6 +49,14 @@ class TingClientAgencyRequest extends TingClientRequest implements ITingClientRe
 
   public function setAnyField($anyField) {
     $this->anyField = $anyField;
+  }
+  
+  public function getSort() {
+    return $this->sort;
+  }
+
+  public function setSort($sort) {
+    $this->sort = $sort;
   }
 
   public function processResponse(stdClass $response) {
