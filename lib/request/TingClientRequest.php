@@ -50,7 +50,7 @@ abstract class TingClientRequest {
   // pjo removed parameter $name
   // public function setParameters($name, $array) {
   public function setParameters($array) {
-    $this->parameters = array_merge($this->parameters, $array);
+    $this->parameters = $array;
   }
 
   public function getNumResults() {
