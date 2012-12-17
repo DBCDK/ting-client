@@ -16,7 +16,7 @@ class TingClientObjectRequest extends TingClientRequest implements ITingClientRe
   protected $profile;
   protected $outputType;
   protected $objectFormat;
-
+  protected $includeHoldingsCount;
   
    /** Implementation of ITingClientRequestCache **/
   public function cacheKey() {
@@ -41,6 +41,16 @@ class TingClientObjectRequest extends TingClientRequest implements ITingClientRe
   
   public function setObjectFormat($objectFormat) {
     $this->objectFormat = $objectFormat;
+  }
+
+  public function setIncludeHoldingsCount($includeHoldingsCount)
+  {
+    $this->includeHoldingsCount = $includeHoldingsCount;
+  }
+
+  public function getIncludeHoldingsCount()
+  {
+    return $this->includeHoldingsCount;
   }
 
   public function getObjectFormat() {
