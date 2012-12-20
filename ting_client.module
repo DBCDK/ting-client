@@ -27,6 +27,18 @@ function ting_client_validate_xsd($xsd, $action) {
   return $arr;
 }
 
+/**
+ * Implements hook_permission().
+ */
+function ting_openformat_permission() {
+  return array(
+    'administer webservices settings' => array(
+      'title' => t('Administer webservices settings'),
+    ),
+  );
+}
+
+
 /* Implements hook_menu */
 
 function ting_client_menu() {
@@ -48,6 +60,7 @@ function ting_client_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('ting_client_admin_webservices_settings'),
     'access arguments' => array('administer webservices settings'),
+//'access arguments' => TRUE,	
     'file' => 'ting_client.admin.inc'
   );
 
@@ -57,6 +70,7 @@ function ting_client_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('ting_client_cache_admin_form'),
     'access arguments' => array('administer webservices settings'),
+//'access arguments' => TRUE,
     // 'type' => MENU_LOCAL_ACTION,
     'file' => 'ting_client.admin.inc',
   );
