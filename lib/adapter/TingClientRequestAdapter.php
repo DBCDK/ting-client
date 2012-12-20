@@ -1,19 +1,20 @@
 <?php
 
 class TingClientRequestAdapter {
+
   /**
    * @var TingClientLogger
    */
   protected $logger;
- 
+
   function __construct($options = array()) {
     $this->logger = new TingClientVoidLogger();
   }
- 
+
   public function setLogger(TingClientLogger $logger) {
     $this->logger = $logger;
   }
- 
+
   public function execute(TingClientRequest $request) {
     $options = array();
     //Prepare the parameters for the SOAP request
@@ -32,13 +33,19 @@ class TingClientRequestAdapter {
         if ($request->getXsdNameSpace())
           $options['namespaces'] = $request->getXsdNameSpace();
         $client = new NanoSOAPClient($request->getWsdlUrl(), $options);
+
+        // set useragent for simpletest framework
+        if ($simpletest_prefix = drupal_valid_test_ua()) {
+          NanoSOAPClient::setUserAgent(drupal_generate_test_ua($simpletest_prefix));
+        }
+
         $response = $client->call($soapAction, $soapParameters);
-  
+
         $stopTime = explode(' ', microtime());
-        $time = floatval(($stopTime[1]+$stopTime[0]) - ($startTime[1]+$startTime[0]));
-    
+        $time = floatval(($stopTime[1] + $stopTime[0]) - ($startTime[1] + $startTime[0]));
+
         $this->logger->log('Completed SOAP request ' . $soapAction . ' ' . $request->getWsdlUrl() . ' (' . round($time, 3) . 's). Request body: ' . $client->requestBodyString);
-   
+
         // If using JSON and DKABM, we help parse it.
         if ($soapParameters['outputType'] == 'json') {
           return $request->parseResponse($response);
@@ -52,8 +59,9 @@ class TingClientRequestAdapter {
         throw new TingClientException($e->getMessage(), $e->getCode());
       }
     } catch (TingClientException $e) {
-      $this->logger->log('Error handling SOAP request ' . $soapAction . ' ' . $request->getWsdlUrl() .': '. $e->getMessage());
+      $this->logger->log('Error handling SOAP request ' . $soapAction . ' ' . $request->getWsdlUrl() . ': ' . $e->getMessage());
       throw $e;
     }
   }
+
 }
