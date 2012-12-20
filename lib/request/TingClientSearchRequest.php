@@ -20,6 +20,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
   // Query parameter is required, so if not provided, we will just do a
   // wildcard search.
   protected $query = '*:*';
+  protected $queryLanguage;
   protected $facets = array();
   protected $numFacets;
   protected $format;
@@ -43,6 +44,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
 
     $methodParameterMap = array(
       'query' => 'query',
+      'queryLanguage' => 'queryLanguage',
       'format' => 'format',
       'start' => 'start',
       'numResults' => 'stepValue',
@@ -122,6 +124,13 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
 
   public function setQuery($query) {
     $this->query = $query;
+  }
+public function getQueryLanguage() {
+    return $this->queryLanguage;
+  }
+
+  public function setQueryLanguage($queryLanguage) {
+    $this->queryLanguage = $queryLanguage;
   }
 
   public function getFacets() {
