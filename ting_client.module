@@ -110,9 +110,14 @@ function ting_client_set_request_factory($url_variables) {
  * get method for caching
  * use drupal::cache_get
  * */
-function ting_client_cache_get($cache_key, $storage = NULL) {
-  return cache_get($cache_key, $storage);
-}
+ function ting_client_cache_get($cache_key, $storage = NULL) {
+  $cache = cache_get($cache_key, $storage);
+  // handle cache timeout
+  if ($cache && $cache->expire > 0 && $cache->expire > REQUEST_TIME) {
+    return $cache;
+  }
+  return FALSE;
+ }
 
 /**
  * support for ting_client_class
