@@ -8,12 +8,6 @@
 function ting_client_cache_admin_form($form_state) {
   $form = array();
 
-  $form['openformat']['search_client_name'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Search client tab name'),
-    '#default_value' => variable_get('search_client_name', 'HEST'),
-  );
-
   $form['openformat']['search_client_enable_cache'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable cache'),
@@ -81,8 +75,7 @@ $cache_classes =  $client->get_all_cache_classes();
     }
   }
 
-  // overall caching
-  variable_set('search_client_name', $form_state['values']['search_client_name']);
+  // overall caching 
   variable_set('search_client_enable_cache',  $form_state['values']['search_client_enable_cache']);
   // rebuild menu to show search_client_name on search-tab
   menu_rebuild();
