@@ -3,8 +3,6 @@
 /**
  * Get a Ting object by ID.
  *
- * Objects requests are much like search request, so this is implemented
- * as a subclass, even though it is a different request type.
  */
 class TingClientObjectRequest extends TingClientRequest implements ITingClientRequestCache{
   protected $agency;
@@ -20,7 +18,20 @@ class TingClientObjectRequest extends TingClientRequest implements ITingClientRe
   
    /** Implementation of ITingClientRequestCache **/
   public function cacheKey() {
-    return md5(serialize($this->getRequest()));
+    return md5($this->generateCacheKey());
+  }
+  
+  private function generateCacheKey() {
+    $ret = '';
+    if( is_array($this->getObjectId()) ) {
+      foreach ($this->getObjectId() as $id) {
+        $ret.=$id;
+      }
+    }
+    else{
+      $ret = $this->getObjectId();
+    }
+    return $ret;
   }
 
   public function cacheEnable($value=NULL) {
