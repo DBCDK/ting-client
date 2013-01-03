@@ -197,6 +197,8 @@ class ting_client_class {
       if($request->cacheEnable()){
         // everything is okay for caching; set passed cache variable for execute method
         $cache = TRUE;
+        // call getRequest method to set parameters for cachekey
+        $request->getRequest();
         //        $cached_result = cache_get($request->cacheKey(),'cache_bibdk_webservices');
         $cached_result = call_user_func_array($cache_function, array($request->cacheKey(),'cache_bibdk_webservices'));
       }
@@ -213,18 +215,7 @@ class ting_client_class {
     if( !isset($ret) ) {
       $ret = array();
       $factory = $this->request_factory();
-      $request_methods = get_class_methods($factory);
-      /*reach( $request_methods as $method ) {
-        if( $method != '__construct' ) {
-          $class = $factory->$method();
-          if( is_object($class)) {
-            if( self::_class_implements($class,'ITingClientRequestCache') ) {
-              $arr['element_name'] = get_class($class);
-              $ret[] = $arr;
-            }
-          }
-        }
-        }*/
+      $request_methods = get_class_methods($factory);      
       foreach( $factory->urls as $name=>$settings ) {
         if( !empty($settings['class']) ) {
           if( class_exists($settings['class']) && self::_class_implements($settings['class'],'ITingClientRequestCache') ) {
