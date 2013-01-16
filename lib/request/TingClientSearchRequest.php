@@ -25,7 +25,6 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
   protected $numFacets;
   protected $format;
   protected $start;
-  protected $numResults;
   protected $rank;
   protected $sort;
   protected $allObjects;
@@ -37,29 +36,17 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
   var $userDefinedBoost;
   var $userDefinedRanking;
   protected $objectFormat;
+  
 
+  /** \brief this method is called from adapter to set parameters for a webservice call (see lib/adapter/TingClientRequestAdapter.php)
+   *
+   * @return \TingClientSearchRequest 
+   */
   public function getRequest() {
     // These defaults are always needed.
     $this->setParameter('action', 'searchRequest');
 
-    $methodParameterMap = array(
-      'query' => 'query',
-      'queryLanguage' => 'queryLanguage',
-      'format' => 'format',
-      'start' => 'start',
-      'numResults' => 'stepValue',
-      'rank' => 'rank',
-      'sort' => 'sort',
-      'allObjects' => 'allObjects',
-      'allRelations' => 'allRelations',
-      'relationData' => 'relationData',
-      'collectionType' => 'collectionType',
-      'agency' => 'agency',
-      'profile' => 'profile',
-      'objectFormat' => 'objectFormat',
-    );
-
-    foreach ($methodParameterMap as $method => $parameter) {
+    foreach ($this->methodParameters() as $method => $parameter) {
       $getter = 'get' . ucfirst($method);
       if ($value = $this->$getter()) {
         $this->setParameter($parameter, $value);
@@ -91,25 +78,84 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     if (is_array($this->userDefinedRanking) && !empty($this->userDefinedRanking)) {
       $this->setParameter('userDefinedRanking', $this->userDefinedRanking);
     }
+    
+    // numResults is not a valid parameter for search service
+    $this->unsetParameter('numResults');
+
     return $this;
   }
 
-  /** Implementation of ITingClientRequestCache * */
-  public function cacheKey() {
-    return md5($this->getQuery());
+  private function methodParameters() {
+    $methodParameterMap = array(
+      'query' => 'query',
+      'queryLanguage' => 'queryLanguage',
+      'format' => 'format',
+      'start' => 'start',
+      'numResults' => 'stepValue',
+      'rank' => 'rank',
+      'sort' => 'sort',
+      'allObjects' => 'allObjects',
+      'allRelations' => 'allRelations',
+      'relationData' => 'relationData',
+      'collectionType' => 'collectionType',
+      'agency' => 'agency',
+      'profile' => 'profile',
+      'objectFormat' => 'objectFormat',
+    );
+
+    return $methodParameterMap;
   }
 
+  /** \brief ITingClientRequestCache::cacheKey; get a cachekey
+   * 
+   * @return string 
+   */
+  public function cacheKey() {
+    $params = $this->getParameters();
+    $ret = '';
+    $this->make_cache_key($params, $ret);
+
+    return md5($ret);
+  }
+
+  /** \brief make a cachekey based on request parameters
+   *
+   * @param array $params
+   * @param string $ret 
+   */
+  private function make_cache_key($params, &$ret) {
+    foreach ($params as $key => $value) {
+      if (is_array($value)) {
+        // recursive
+        $ret .= $key;
+        $this->make_cache_key($value, $ret);
+      }
+      else {
+        $ret .= $value;
+      }
+    }
+  }
+
+  /** \brief Implementation of ITingClientRequestCache::cacheEnable 
+   *
+   * get value of variable (enable/disable cache)
+   */
   public function cacheEnable($value = NULL) {
     $class_name = get_class($this);
     return variable_get($class_name . TingClientRequest::cache_enable);
   }
 
+  /** \brief Implementation of ITingClientRequestCache::cacheTimeout 
+   *
+   * get value of variable (cachelifetime)
+   */
   public function cacheTimeout($value = NULL) {
     $class_name = get_class($this);
     return variable_get($class_name . TingClientRequest::cache_lifetime, '1');
   }
 
-  /** end ITingClientRequestCache * */
+  /** end ITingClientRequestCache * */  
+
   public function getCollectionType() {
     return $this->collectionType;
   }
@@ -125,7 +171,8 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
   public function setQuery($query) {
     $this->query = $query;
   }
-public function getQueryLanguage() {
+
+  public function getQueryLanguage() {
     return $this->queryLanguage;
   }
 
@@ -171,14 +218,6 @@ public function getQueryLanguage() {
 
   public function setStart($start) {
     $this->start = $start;
-  }
-
-  public function getNumResults() {
-    return $this->numResults;
-  }
-
-  public function setNumResults($numResults) {
-    $this->numResults = $numResults;
   }
 
   public function getRank() {

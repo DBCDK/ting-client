@@ -4,6 +4,7 @@ interface ITingClientRequestCache{
   public function cacheKey();
   public function cacheEnable($value=NULL);
   public function cacheTimeout($value=NULL);
+  public function cacheBin();
 }
 
 abstract class TingClientRequest {
@@ -21,6 +22,12 @@ abstract class TingClientRequest {
   abstract public function processResponse(stdClass $response);
 
   abstract protected function getRequest();
+  
+  // default implementation of ITingClientRequestCache::cacheBin
+  // extending request can implement this method if it wishes it's own bin
+  public function cacheBin() {
+    return 'cache_bibdk_webservices';
+  }
 
   public function __construct($wsdlUrl, $serviceName=NULL) {
     $this->wsdlUrl = $wsdlUrl;
@@ -42,6 +49,12 @@ abstract class TingClientRequest {
   public function setParameter($name, $value) {
     $this->parameters[$name] = $value;
   }
+  
+  protected function unsetParameter($name){
+    if( isset($this->parameters[$name])) {
+      unset($this->parameters[$name]);
+    }
+  }
 
   public function getParameter($name) {
     return $this->parameters[$name];
@@ -53,13 +66,21 @@ abstract class TingClientRequest {
     $this->parameters = $array;
   }
 
+ /** @TODO refactor. these two methods does not belong here 
+ *  move to extending classes. refactor away the 'methodParameterMap'-method
+  * in extending classes .. all they do is map 
+  * numresults to something else  
+ **/ 
+  
   public function getNumResults() {
     return $this->numResults;
-  }
-
+  }  
+ 
   public function setNumResults($numResults) {
     $this->numResults = $numResults;
   }
+  
+  /**   **/
 
   public function getWsdlUrl() {
     return $this->wsdlUrl;
@@ -86,7 +107,7 @@ abstract class TingClientRequest {
     return $this->processResponse($response);
   }
 
-  // this method needs to called from outside scope.. make it publice
+  // this method needs to called from outside scope.. make it public
   public static function getValue($object) {
     if (is_array($object)) {
       return array_map(array('RestJsonTingClientRequest', 'getValue'), $object);
