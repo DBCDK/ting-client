@@ -56,6 +56,21 @@ class ting_client_class {
   }
 
   /**
+   * execute a localisationRequest
+   * */
+  public function do_localisation($params) {
+    // we know that the open_holdingstatus class exists (if not this method should not be called)
+    $request = $this->request_factory()->getNamedRequest('holdingstatus', 'open_holdingstatus');
+    if (empty($request)) {
+      $this->set_message('REMEMBER TO IMPLEMENT open_holdingstatus CLASS BEFORE USING IT', 'error');
+      return;
+    }
+    $this->_set_params($request, $params);
+
+    return $this->execute($request);
+  }
+
+  /**
    * getObjectRequest to retreive a single work
    * */
   public function do_get_object($params) {
@@ -85,7 +100,7 @@ class ting_client_class {
 
   /**
    * \brief general method for requests to openagency
-   * 
+   *
    * @param array $params ; an array of parameters for openagency
    */
   public function do_agency($params) {
@@ -99,7 +114,7 @@ class ting_client_class {
   }
 
   public function do_agency_search($params) {
-    // get the agencyrequest 
+    // get the agencyrequest
 
     $params['action'] = 'findLibraryRequest';
     $result = $this->do_agency($params);
