@@ -58,7 +58,7 @@ class ting_client_class {
   /**
    * execute a localisationRequest
    * */
-  public function do_localisation($params) {
+  public function do_holdingstatus($params) {
     // we know that the open_holdingstatus class exists (if not this method should not be called)
     $request = $this->request_factory()->getNamedRequest('holdingstatus', 'open_holdingstatus');
     if (empty($request)) {
