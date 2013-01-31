@@ -59,6 +59,10 @@ class ting_client_class {
    * execute a localisationRequest
    * */
   public function do_holdingstatus($params) {
+    // for test purposes
+    if ($simpletest_prefix = drupal_valid_test_ua()) {
+      NanoSOAPClient::setUserAgent(drupal_generate_test_ua($simpletest_prefix));
+    }
     // we know that the open_holdingstatus class exists (if not this method should not be called)
     $request = $this->request_factory()->getNamedRequest('holdingstatus', 'open_holdingstatus');
     if (empty($request)) {
