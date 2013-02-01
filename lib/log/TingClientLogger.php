@@ -23,13 +23,13 @@ abstract class TingClientLogger {
    * @param string $message The message to log
    * @param string $severity The severity of the message
    */
-  public function log($message, $severity = self::INFO) {
+  public function log($message, $variables, $severity = self::INFO) {
     if (!in_array($severity, self::$levels)) {
       throw new TingClientException('Unsupported severity: '.$severity);
     }
-    $this->doLog($message, $severity);
+    $this->doLog($message, $variables, $severity);
   }
 
-  abstract protected function doLog($message, $severity);
+  abstract protected function doLog($message, $variables, $severity);
 }
 

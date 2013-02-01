@@ -334,7 +334,7 @@ class ting_client_class {
   private static function ting_client() {
     if (!isset(self::$client)) {
       // $logger = (variable_get('ting_enable_logging', FALSE)) ? new TingClientDrupalWatchDogLogger($this->request_factory()) : new TingClientVoidLogger();
-      $logger = (self::$enable_cache) ? new TingClientDrupalWatchDogLogger($this->request_factory()) : new TingClientVoidLogger();
+      $logger = (self::$enable_cache) ? new TingClientDrupalWatchDogLogger(self::request_factory()) : new TingClientVoidLogger();
       self::$ting_client = new TingClient(new TingClientRequestAdapter(), $logger);
     }
     return self::$ting_client;
