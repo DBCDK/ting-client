@@ -27,6 +27,17 @@ class ting_client_class {
     }
   }
 
+  public function do_adhl($params){
+    $request = $this->request_factory()->getNamedRequest('recommendation', 'TingClientObjectRecommendationRequest');
+    //$request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openorder'));
+    if (empty($request)) {
+      $this->set_message('REMEMBER TO IMPLEMENT bibdk_adhl CLASS BEFORE USING IT', 'error');
+      return;
+    }
+    $this->_set_params($request, $params);
+    return $this->execute($request);
+  }
+
   public function do_openorder($params) {
     //$params = ting_client_validate_xsd("http://guesstimate.dbc.dk/~fvs/OpenLibrary/OpenOrder/trunk/openorder.xsd", $params);
     // we know that the bibdk_openorder class exists (if not this method should not be called)
