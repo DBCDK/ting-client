@@ -4,7 +4,9 @@ class TingClientObjectRecommendationRequest extends TingClientRequest {
   const GENDER_MALE = 'male';
   const GENDER_FEMALE = 'female';
 
+  protected $id;
   protected $isbn;
+  protected $localId;
   protected $numResults;
   protected $gender;
   protected $minAge;
@@ -12,12 +14,28 @@ class TingClientObjectRecommendationRequest extends TingClientRequest {
   protected $fromDate;
   protected $toDate;
 
+  public function setId($id) {
+    $this->id = $id;
+  }
+
+  public function getId() {
+    return $this->id;
+  }
+
   public function getIsbn() {
     return $this->isbn;
   }
 
   public function setIsbn($isbn) {
     $this->isbn = $isbn;
+  }
+
+  public function setLocalId($localId) {
+    $this->localId = $localId;
+  }
+
+  public function getLocalId() {
+    return $this->localId;
   }
 
   function getNumResults() {
@@ -95,7 +113,7 @@ class TingClientObjectRecommendationRequest extends TingClientRequest {
     if (isset($response->error)) {
       throw new TingClientException('Error handling recommendation request: '.$response->error);
     }
-    
+
     $recommendations = array();
     if (isset($response->adhlResponse->record)) {
       foreach($response->adhlResponse->record as $record) {
@@ -104,7 +122,7 @@ class TingClientObjectRecommendationRequest extends TingClientRequest {
           $id = explode('|', $id, 2);
           $recommendation->localId = $id[0];
           $recommendation->ownerId = (isset($id[1])) ? $id[1] : null;
-          
+
           $recommendations[] = $recommendation;
         }
       }
