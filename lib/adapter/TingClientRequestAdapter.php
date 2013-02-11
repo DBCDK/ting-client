@@ -44,7 +44,15 @@ class TingClientRequestAdapter {
         $stopTime = explode(' ', microtime());
         $time = floatval(($stopTime[1] + $stopTime[0]) - ($startTime[1] + $startTime[0]));
 
-        $this->logger->log('Completed SOAP request ' . $soapAction . ' ' . $request->getWsdlUrl() . ' (' . round($time, 3) . 's). Request body: ' . $client->requestBodyString);
+        // Logging changed to make more granular logging
+        $log = array(
+          '@action' => $soapAction,
+          '@time' => round($time, 2),
+          '@requestBody' => $client->requestBodyString,
+          '@wsdlUrl' => $request->getWsdlUrl(),
+        );
+        $this->logger->log('Completed SOAP request @action @wsdlUrl ( @time s). Request body: @requestBody', $log);
+        //$this->logger->log('Completed SOAP request ' . $soapAction . ' ' . $request->getWsdlUrl() . ' (' . round($time, 3) . 's). Request body: ' . $client->requestBodyString);
 
         // If using JSON and DKABM, we help parse it.
         if ($soapParameters['outputType'] == 'json') {
@@ -59,7 +67,14 @@ class TingClientRequestAdapter {
         throw new TingClientException($e->getMessage(), $e->getCode());
       }
     } catch (TingClientException $e) {
-      $this->logger->log('Error handling SOAP request ' . $soapAction . ' ' . $request->getWsdlUrl() . ': ' . $e->getMessage());
+      // Logging changed to make more granular logging
+      $log = array(
+        '@action' => $soapAction,
+        '@wsdlUrl' => $request->getWsdlUrl(),
+        '@error' => $e->getMessage(),
+      );
+      $this->logger->log('Error handling SOAP request @action @wsdlUrl: @error', $log);
+      //$this->logger->log('Error handling SOAP request ' . $soapAction . ' ' . $request->getWsdlUrl() . ': ' . $e->getMessage());
       throw $e;
     }
   }
