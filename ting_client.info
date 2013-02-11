@@ -1,6 +1,6 @@
 name = Ting Client
 description = Ting Client module
-version = 2.4
+version = 2.5
 core = 7.x
 package = Ding!
 dependencies[] = nanosoap
