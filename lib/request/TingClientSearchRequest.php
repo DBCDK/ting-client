@@ -33,6 +33,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
   protected $collectionType;
   protected $agency;
   protected $profile;
+  protected $includeHoldingsCount;
   var $userDefinedBoost;
   var $userDefinedRanking;
   protected $objectFormat;
@@ -121,7 +122,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
   /** \brief make a cachekey based on request parameters
    *
    * @param array $params
-   * @param string $ret 
+   * @param string $ret
    */
   private function make_cache_key($params, &$ret) {
     foreach ($params as $key => $value) {
@@ -136,7 +137,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     }
   }
 
-  /** \brief Implementation of ITingClientRequestCache::cacheEnable 
+  /** \brief Implementation of ITingClientRequestCache::cacheEnable
    *
    * get value of variable (enable/disable cache)
    */
@@ -145,7 +146,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     return variable_get($class_name . TingClientRequest::cache_enable);
   }
 
-  /** \brief Implementation of ITingClientRequestCache::cacheTimeout 
+  /** \brief Implementation of ITingClientRequestCache::cacheTimeout
    *
    * get value of variable (cachelifetime)
    */
@@ -154,7 +155,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     return variable_get($class_name . TingClientRequest::cache_lifetime, '1');
   }
 
-  /** end ITingClientRequestCache * */  
+  /** end ITingClientRequestCache * */
 
   public function getCollectionType() {
     return $this->collectionType;
@@ -162,6 +163,14 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
 
   public function setCollectionType($collectionType) {
     $this->collectionType = $collectionType;
+  }
+
+  public function setIncludeHoldingsCount($includeHoldingsCount) {
+    $this->includeHoldingsCount = $includeHoldingsCount;
+  }
+
+  public function getIncludeHoldingsCount() {
+    return $this->includeHoldingsCount;
   }
 
   public function getQuery() {
