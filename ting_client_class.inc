@@ -10,6 +10,7 @@ class ting_client_class {
   private static $request_factory;
   private static $ting_client;
   private static $enable_cache = FALSE;
+  private static $enable_logging = FALSE;
   private static $module;
 
   public function __construct() {
@@ -24,6 +25,11 @@ class ting_client_class {
     if (function_exists(self::$module . '_enable_cache')) {
       $function = self::$module . '_enable_cache';
       self::$enable_cache = call_user_func($function);
+    }
+    
+    if( function_exists(self::$module . '_enable_logging') ) {
+      $function = self::$module . '_enable_logging';
+      self::$enable_logging = call_user_func($function);
     }
   }
 
@@ -345,7 +351,7 @@ class ting_client_class {
   private static function ting_client() {
     if (!isset(self::$client)) {
       // $logger = (variable_get('ting_enable_logging', FALSE)) ? new TingClientDrupalWatchDogLogger($this->request_factory()) : new TingClientVoidLogger();
-      $logger = (self::$enable_cache) ? new TingClientDrupalWatchDogLogger(self::request_factory()) : new TingClientVoidLogger();
+      $logger = (self::$enable_logging) ? new TingClientDrupalWatchDogLogger(self::request_factory()) : new TingClientVoidLogger();
       self::$ting_client = new TingClient(new TingClientRequestAdapter(), $logger);
     }
     return self::$ting_client;
