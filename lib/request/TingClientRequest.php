@@ -100,13 +100,42 @@ abstract class TingClientRequest {
     $response = json_decode($responseString);
 
     if (!$response) {
-      throw new TingClientException('Unable to decode response as JSON: ' . $responseString);
+      $faultstring = $this->parseForFaultString($responseString);
+      if (isset($faultstring)) {
+        throw new TingClientException($faultstring);
+      }
+      else {
+        throw new TingClientException('Unable to decode response as JSON: ' . $responseString);
+      }
     }
 
     if (!is_object($response)) {
       throw new TingClientException('Unexpected JSON response: ' . var_export($response, true));
     }
     return $this->processResponse($response);
+  }
+
+  /** \brief response from webservice is ALWAYS xml if validation fails
+   * elemants <faultCode> and <faultString> will be present in that case
+   * @param string $xml 
+   * @return mixed $faultstring if valid xml is given, NULL if not 
+   */
+  private function parseForFaultString($xml) {
+    $dom = new DOMDocument();
+    if (@$dom->loadXML($xml)) {
+      $xpath = new DOMXPath($dom);
+    }
+    else {
+      return NULL;
+    }
+
+    $query = '//faultstring';
+    $nodelist = $xpath->query($query);
+    if ( empty($nodelist) ) {
+      return NULL;
+    }
+
+    return $nodelist->item(0)->nodeValue;
   }
 
   // this method needs to called from outside scope.. make it public
