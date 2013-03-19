@@ -100,7 +100,7 @@ abstract class TingClientRequest {
     $response = json_decode($responseString);
 
     if (!$response) {
-      $faultstring = $this->parseForFaultString($responseString);
+      $faultstring = self::parseForFaultString($responseString);
       if (isset($faultstring)) {
         throw new TingClientException($faultstring);
       }
@@ -120,7 +120,7 @@ abstract class TingClientRequest {
    * @param string $xml 
    * @return mixed $faultstring if valid xml is given, NULL if not 
    */
-  private function parseForFaultString($xml) {
+  public static function parseForFaultString($xml) {
     $dom = new DOMDocument();
     if (@$dom->loadXML($xml)) {
       $xpath = new DOMXPath($dom);
@@ -131,10 +131,9 @@ abstract class TingClientRequest {
 
     $query = '//faultstring';
     $nodelist = $xpath->query($query);
-    if ( empty($nodelist) ) {
+    if ( $nodelist->length < 1 ) {
       return NULL;
     }
-
     return $nodelist->item(0)->nodeValue;
   }
 
