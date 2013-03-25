@@ -26,7 +26,7 @@ class ting_client_class {
       $function = self::$module . '_enable_cache';
       self::$enable_cache = call_user_func($function);
     }
-    
+
     if( function_exists(self::$module . '_enable_logging') ) {
       $function = self::$module . '_enable_logging';
       self::$enable_logging = call_user_func($function);
@@ -98,7 +98,9 @@ class ting_client_class {
     $request = $this->request_factory()->getNamedRequest('object', 'TingClientObjectRequest');
     $this->_set_params($request, $params);
     $result = $this->execute($request);
-    $result->cacheKey = $request->cacheKey();
+    if (is_object($result)) {
+      $result->cacheKey = $request->cacheKey();
+    }
     return $result;
   }
 
