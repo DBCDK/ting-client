@@ -1,0 +1,69 @@
+<?php
+
+class TingClientUnitTestCase extends DrupalUnitTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'TING client unit test',
+      'description' => 'Test Ting client functions.',
+      'group' => 'Ding! - Ting Client',
+    );
+  }
+
+  public function setUp() { 
+    module_load_include('php', 'ting_client', 'lib/request/TingClientRequest');
+    parent::setUp();
+  }
+  
+  // test parseForFaultString method (TingClientRequest.php)
+  public function testparseForFaultString() {
+    // fault string in response
+    $data = $this->faultstring_in_response();
+    $expected = 'Error in request validation';
+    $result = TingClientRequest::parseForFaultString($data);
+    $pos = strpos($result, $expected);
+    $this->assertTrue($pos === 0); 
+    
+    // empty fault string
+    $data = $this->empty_fault_string();
+    $result = TingClientRequest::parseForFaultString($data);
+    $this->assertNull($result);
+    
+    //invalid xml
+    $data = $this->invalid_xml();
+    $result = TingClientRequest::parseForFaultString($data);
+    $this->assertNull($result);    
+  }
+  
+  private function faultstring_in_response(){
+    $ret = '<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Body>
+    <SOAP-ENV:Fault>
+    <faultcode>SOAP-ENV:Server</faultcode>
+    <faultstring>Error in request validation.
+ Error: Element \'{http://oss.dbc.dk/ns/openagency}outputtype\': This element is not expected. Expected is one of ( {http://oss.dbc.dk/ns/openagency}agencyName, {http://oss.dbc.dk/ns/openagency}agencyAddress, {http://oss.dbc.dk/ns/openagency}postalCode, {http://oss.dbc.dk/ns/openagency}city, {http://oss.dbc.dk/ns/openagency}anyField, {http://oss.dbc.dk/ns/openagency}libraryType, {http://oss.dbc.dk/ns/openagency}libraryStatus, {http://oss.dbc.dk/ns/openagency}pickupAllowed, {http://oss.dbc.dk/ns/openagency}sort, {http://oss.dbc.dk/ns/openagency}callback ). on line 6</faultstring>
+    </SOAP-ENV:Fault>
+    </SOAP-ENV:Body>
+    </SOAP-ENV:Envelope>';
+    return $ret;
+  }
+  
+  private function empty_fault_string(){
+    $ret = '<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Body>
+    <SOAP-ENV:Fault>
+    <faultcode>SOAP-ENV:Server</faultcode>
+    </SOAP-ENV:Fault>
+    </SOAP-ENV:Body>
+    </SOAP-ENV:Envelope>';
+    return $ret;
+  }
+  
+  private function invalid_xml(){
+    $ret = 'TESTHESTXML';
+    return $ret;
+  } 
+}
+
+
+
+?>

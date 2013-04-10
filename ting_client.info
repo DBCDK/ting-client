@@ -41,6 +41,8 @@ files[] = lib/result/spell/TingClientSpellSuggestion.php
 files[] = lib/xsdparse/xsdparse.inc
 
 ; tests (needs review - testing against live (dead) webservices)
+;simple unit testing
+files[] = tests/ting_client_unit.test
 ;files[] = tests/ting_client_collection.test
 ;files[] = tests/ting_client_infomedia.test
 ;files[] = tests/ting_client_object_recommendation.test

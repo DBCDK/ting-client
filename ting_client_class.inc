@@ -97,10 +97,12 @@ class ting_client_class {
   public function do_get_object($params) {
     $request = $this->request_factory()->getNamedRequest('object', 'TingClientObjectRequest');
     $this->_set_params($request, $params);
+    
     $result = $this->execute($request);
     if (is_object($result)) {
       $result->cacheKey = $request->cacheKey();
     }
+    
     return $result;
   }
 
@@ -209,7 +211,8 @@ class ting_client_class {
       $setter = 'set' . ucfirst($key);
       if (method_exists($request, $setter)) {
         $request->$setter($value);
-        $request->setParameter($key, $value);
+        // pjo testing ... value is set twice; delete this line
+       // $request->setParameter($key, $value);
       }
       else {
         $message = get_class($request) . ' does not implement: ' . $setter;
