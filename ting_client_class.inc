@@ -10,6 +10,7 @@ class ting_client_class {
   private static $request_factory;
   private static $ting_client;
   private static $enable_cache = FALSE;
+  private static $enable_logging = FALSE;
   private static $module;
 
   public function __construct() {
@@ -24,6 +25,11 @@ class ting_client_class {
     if (function_exists(self::$module . '_enable_cache')) {
       $function = self::$module . '_enable_cache';
       self::$enable_cache = call_user_func($function);
+    }
+
+    if( function_exists(self::$module . '_enable_logging') ) {
+      $function = self::$module . '_enable_logging';
+      self::$enable_logging = call_user_func($function);
     }
   }
 
@@ -91,8 +97,12 @@ class ting_client_class {
   public function do_get_object($params) {
     $request = $this->request_factory()->getNamedRequest('object', 'TingClientObjectRequest');
     $this->_set_params($request, $params);
+    
     $result = $this->execute($request);
-    $result->cacheKey = $request->cacheKey();
+    if (is_object($result)) {
+      $result->cacheKey = $request->cacheKey();
+    }
+    
     return $result;
   }
 
@@ -201,7 +211,8 @@ class ting_client_class {
       $setter = 'set' . ucfirst($key);
       if (method_exists($request, $setter)) {
         $request->$setter($value);
-        $request->setParameter($key, $value);
+        // pjo testing ... value is set twice; delete this line
+       // $request->setParameter($key, $value);
       }
       else {
         $message = get_class($request) . ' does not implement: ' . $setter;
@@ -345,7 +356,7 @@ class ting_client_class {
   private static function ting_client() {
     if (!isset(self::$client)) {
       // $logger = (variable_get('ting_enable_logging', FALSE)) ? new TingClientDrupalWatchDogLogger($this->request_factory()) : new TingClientVoidLogger();
-      $logger = (self::$enable_cache) ? new TingClientDrupalWatchDogLogger(self::request_factory()) : new TingClientVoidLogger();
+      $logger = (self::$enable_logging) ? new TingClientDrupalWatchDogLogger(self::request_factory()) : new TingClientVoidLogger();
       self::$ting_client = new TingClient(new TingClientRequestAdapter(), $logger);
     }
     return self::$ting_client;

@@ -154,6 +154,14 @@ function ting_client_enable_cache() {
 
 /**
  * support for ting_client_class
+ * enable/disable logging
+ * */
+function ting_client_enable_logging() {
+  return variable_get('ting_enable_logging', FALSE);
+}
+
+/**
+ * support for ting_client_class
  * start/stop drupal timer
  * */
 function ting_client_timer($action, $name) {
