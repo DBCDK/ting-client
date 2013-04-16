@@ -97,12 +97,12 @@ class ting_client_class {
   public function do_get_object($params) {
     $request = $this->request_factory()->getNamedRequest('object', 'TingClientObjectRequest');
     $this->_set_params($request, $params);
-    
+
     $result = $this->execute($request);
     if (is_object($result)) {
       $result->cacheKey = $request->cacheKey();
     }
-    
+
     return $result;
   }
 
@@ -189,21 +189,6 @@ class ting_client_class {
   }
 
   /**
-   * ting_client_class should be kept clean of drupal specific methods etc.
-   * wrapper for $module_set_message
-   * @TODO .. some default implementation of setting a message (die($message) or something)
-   * */
-  private function set_message($message, $type = 'status', $repeat = NULL) {
-    if (!empty(self::$module)) {
-      if (function_exists(self::$module . '_set_message')) {
-        $function = self::$module . '_set_message';
-        $func_args = func_get_args();
-        call_user_func_array($function, $func_args);
-      }
-    }
-  }
-
-  /**
    * helper method to set parameters on a TingClientRequest (or extending) object
    * */
   private function _set_params($request, $params) {
@@ -238,7 +223,7 @@ class ting_client_class {
         $cache = TRUE;
         // call getRequest method to set parameters for cachekey
         $request->getRequest();
-        //        $cached_result = cache_get($request->cacheKey(),'cache_bibdk_webservices');
+        // $cached_result = cache_get($request->cacheKey(),'cache_bibdk_webservices');
         $cached_result = call_user_func_array($cache_function, array($request->cacheKey(), 'cache_bibdk_webservices'));
       }
     }
@@ -291,52 +276,57 @@ class ting_client_class {
    * */
   private function execute($request) {
 
+    // set useragent for simpletest framework
+    if ($simpletest_prefix = drupal_valid_test_ua()) {
+      NanoSOAPClient::setUserAgent(drupal_generate_test_ua($simpletest_prefix));
+    }
+
     $cache = FALSE;
-    //if(FALSE){
     if ($res = $this->get_from_cache($request, $cache)) {
       return $res;
     }
     else {
+
       try {
-        if (function_exists(self::$module . '_timer')) {
-          $function = self::$module . '_timer';
-          call_user_func_array($function, array('start', 'search_client'));
-          //          timer_start('search_client');
-        }
+        // Start timer
+        self::_invoke('timer', array('start', 'search_client'));
+        // make request
         $res = self::ting_client()->execute($request);
-        if (function_exists(self::$module . '_timer')) {
-          $function = self::$module . '_timer';
-          call_user_func_array($function, array('stop', 'search_client'));
-          //          timer_start('search_client');
-        }
-        //timer_stop('search_client');
+        // stop timer
+        self::_invoke('timer', array('stop', 'search_client'));
+
         if ($cache) {
           //@TODO make request cache table
-          $expire = REQUEST_TIME + ( 60 * $request->cacheTimeout() );
-          // cache_set($request->cacheKey() , $res, 'cache_bibdk_webservices', $expire);
-          if (function_exists(self::$module . '_cache_set')) {
-            $function = self::$module . '_cache_set';
-            call_user_func_array($function, array($request->cacheKey(), $res, 'cache_bibdk_webservices', $expire));
-          }
+          $expire = REQUEST_TIME + (60 * $request->cacheTimeout());
+          self::_invoke('cache_set', array($request->cacheKey(), $res, 'cache_bibdk_webservices', $expire));
         }
         return $res;
-      } catch (TingClientException $e) {
-        if (function_exists(self::$module . '_timer')) {
-          $function = self::$module . '_timer';
-          call_user_func_array($function, array('stop', 'search_client'));
-        }
-        // timer_stop('search_client');
-        // set message if ting-client throws an exeception
-        $message = $e->getMessage() . '. ' . self::_set_internal_error_message();
-        $status = 'error';
-        $watchdog['message'] = 'Error performing request: ' . $e->getMessage();
-        $watchdog['variables'] = NULL;
-        $watchdog['link'] = $_SERVER["HTTP_HOST"] . $_SERVER['REQUEST_URI'];
-        $this->set_message($message, $status, $watchdog);
-        //drupal_set_message( $e->getMessage(). '. ' . self::_set_internal_error_message(),'error');
-        //watchdog('ting client', 'Error performing request: ' . $e->getMessage() , NULL, WATCHDOG_ERROR, 'http://' . $_SERVER["HTTP_HOST"] . request_uri());
+      }
+      catch (Exception $e) {
+        self::_invoke('timer', array('stop', 'search_client'));
+        $this->_handleRequestExceptions($e);
         return FALSE;
       }
+    }
+  }
+
+  private function _handleRequestExceptions($e){
+    // set message if ting-client throws an exeception
+    $message = "The service you are trying to use in currently unavailable";
+    $status = 'error';
+    $watchdog['message'] = 'Error performing request: ' . $e->getMessage();
+    $watchdog['variables'] = NULL;
+    $watchdog['link'] = $_SERVER["HTTP_HOST"] . $_SERVER['REQUEST_URI'];
+    self::_invoke('set_message', array($message, $status, $watchdog));
+
+  }
+
+  private static function _invoke($function, $params){
+    if (empty(self::$module))
+      return;
+    $function = self::$module . '_'.$function;
+    if (function_exists($function)) {
+      call_user_func_array($function, $params);
     }
   }
 

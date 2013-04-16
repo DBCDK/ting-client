@@ -16,7 +16,12 @@ class TingClientRequestAdapter {
   }
 
   public function execute(TingClientRequest $request) {
+
+    // set options for soap request
     $options = array();
+    if ($request->getXsdNameSpace())
+      $options['namespaces'] = $request->getXsdNameSpace();
+
     //Prepare the parameters for the SOAP request
     $soapParameters = $request->getParameters();
     // Separate the action from other parameters
@@ -28,52 +33,47 @@ class TingClientRequestAdapter {
       $soapParameters['outputType'] = 'json';
     }
     try {
-      try {
-        $startTime = explode(' ', microtime());
-        if ($request->getXsdNameSpace())
-          $options['namespaces'] = $request->getXsdNameSpace();
-        $client = new NanoSOAPClient($request->getWsdlUrl(), $options);
 
-        // set useragent for simpletest framework
-        if ($simpletest_prefix = drupal_valid_test_ua()) {
-          NanoSOAPClient::setUserAgent(drupal_generate_test_ua($simpletest_prefix));
-        }
+        $this->logger->startTime();
+
+        $client = new NanoSOAPClient($request->getWsdlUrl(), $options);
 
         $response = $client->call($soapAction, $soapParameters);
 
-        $stopTime = explode(' ', microtime());
-        $time = floatval(($stopTime[1] + $stopTime[0]) - ($startTime[1] + $startTime[0]));
+        $this->logger->stopTime();
 
         // Logging changed to make more granular logging
         $log = array(
-          '@action' => $soapAction,
-          '@time' => round($time, 2),
-          '@requestBody' => $client->requestBodyString,
-          '@wsdlUrl' => $request->getWsdlUrl(),
+          'action' => $soapAction,
+          'requestBody' => $client->requestBodyString,
+          'wsdlUrl' => $request->getWsdlUrl(),
         );
-        $this->logger->log('Completed SOAP request @action @wsdlUrl ( @time s). Request body: @requestBody', $log);
+        $this->logger->log('soap_request_complete', $log);
         //$this->logger->log('Completed SOAP request ' . $soapAction . ' ' . $request->getWsdlUrl() . ' (' . round($time, 3) . 's). Request body: ' . $client->requestBodyString);
 
-        // If using JSON and DKABM, we help parse it.
+      // check if http_code is a valid url
+      $curl_info = $client->getCurlInfo();
+
+      if($curl_info['http_code'] != 200){
+        throw new TingClientHttpStatusException('Curl returns wrong http code',  $curl_info['http_code'] );
+      }
+
+      // If using JSON and DKABM, we help parse it.
         if ($soapParameters['outputType'] == 'json') {
           return $request->parseResponse($response);
         }
         else {
           return $response;
         }
-      } catch (NanoSOAPcURLException $e) {
-        //Convert NanoSOAP exceptions to TingClientExceptions as callers
-        //should not deal with protocol details
-        throw new TingClientException($e->getMessage(), $e->getCode());
-      }
-    } catch (TingClientException $e) {
+    } catch (Exception $e) {
       // Logging changed to make more granular logging
       $log = array(
-        '@action' => $soapAction,
-        '@wsdlUrl' => $request->getWsdlUrl(),
-        '@error' => $e->getMessage(),
+        'action' => $soapAction,
+        'wsdlUrl' => $request->getWsdlUrl(),
+        'error' => $e->getMessage(),
       );
-      $this->logger->log('Error handling SOAP request @action @wsdlUrl: @error', $log);
+
+      $this->logger->log('soap_request_error', $log);
       //$this->logger->log('Error handling SOAP request ' . $soapAction . ' ' . $request->getWsdlUrl() . ': ' . $e->getMessage());
       throw $e;
     }

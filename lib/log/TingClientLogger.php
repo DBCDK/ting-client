@@ -17,6 +17,7 @@ abstract class TingClientLogger {
   static public $levels = array(self::EMERGENCY, self::ALERT, self::CRITICAL, self::ERROR,
                                 self::WARNING,  self::NOTICE, self::INFO, self::DEBUG);
 
+  public $log_time = 0;
   /**
    * Log a message.
    *
@@ -28,6 +29,16 @@ abstract class TingClientLogger {
       throw new TingClientException('Unsupported severity: '.$severity);
     }
     $this->doLog($message, $variables, $severity);
+  }
+
+  public function startTime(){
+    $time = explode(' ', microtime());
+    $this->log_time = - ($time[1] + $time[0]);
+  }
+
+  public function stopTime(){
+    $time = explode(' ', microtime());
+    $this->log_time += $time[1] + $time[0];
   }
 
   abstract protected function doLog($message, $variables, $severity);
