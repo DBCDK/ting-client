@@ -125,6 +125,10 @@ class TingClientInfomediaArticleRequest extends TingClientInfomediaRequest Imple
     $this->setUser('0019');
     $this->setPin('0019');
   }
+  
+  public function processResponse(stdClass $response) {
+    return $this->parse($response);
+  } 
 
   /**
    * Parse response
