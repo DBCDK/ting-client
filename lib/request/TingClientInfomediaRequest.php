@@ -1,14 +1,32 @@
 <?php
 abstract class TingClientInfomediaRequest extends TingClientRequest  {
-  const ARTICLE = 'Article';
+  const ARTICLE = 'getArticle';
   const REVIEW  = 'Review';
   protected $method;
   protected $type;
-  protected $pin;
-  protected $user;
+  protected $userPinCode;
+  protected $userId;
   protected $faust;
-
+  protected $articleIdentifier;
+  protected $libraryCode;
+  protected $outputType;
   
+  public function getOutputType(){
+    return $this->outputType;    
+  }
+  
+  public function setOutputType($value) {
+    $this->outputType = $value;
+  }
+    
+  
+  public function getArticleIdentifier(){
+    return $this->articleIdentifier;
+  }
+  
+  public function setArticleIdentifier(array $value){
+    $this->articleIdentifier = $value;
+  }
   
   public function makeGet() {
     $this->method = 'get';
@@ -22,28 +40,28 @@ abstract class TingClientInfomediaRequest extends TingClientRequest  {
     return $this->method;
   }
 
-  public function setAgency($agency) {
-    $this->agency = $agency;
+  public function setLibraryCode($agency) {
+    $this->libraryCode = $agency;
   }
 
-  public function getAgency() {
-    return $this->agency;
+  public function getLibraryCode() {
+    return $this->libraryCode;
   }
 
-  public function setPin($pin) {
-    $this->pin = $pin;
+  public function setUserPinCode($pin) {
+    $this->userPinCode = $pin;
   }
 
-  public function getPin() {
-    return $this->pin;
+  public function getUserPinCode() {
+    return $this->userPinCode;
   }
 
-  public function setUser($user) {
-    $this->user = $user;
+  public function setUserId($user) {
+    $this->userId = $user;
   }
 
-  public function getUser() {
-    return $this->user;
+  public function getUserId() {
+    return $this->userId;
   }
 
   public function setFaust($faust) {

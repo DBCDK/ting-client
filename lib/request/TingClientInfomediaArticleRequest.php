@@ -66,7 +66,19 @@ class TingClientInfomediaArticleRequest extends TingClientInfomediaRequest Imple
   
   
   
-  public function getRequest() {
+   public function getRequest() {
+    $this->setParameter('action', 'getArticleRequest');
+    $params = array('userPinCode', 'userId', 'libraryCode','articleIdentifier','outputType');
+    foreach ($params as $parameter) {
+      $getter = 'get' . ucfirst($parameter);
+      if ($value = $this->$getter()) {
+        $this->setParameter($parameter, $value);
+      }
+    }
+    return $this;
+  }
+  
+  /*public function getRequest() {
     $options = array('articleIdentifier' => array('faust',),
                      'libraryCode' => 'agency',
                      'userId' => 'user',
@@ -91,7 +103,7 @@ class TingClientInfomediaArticleRequest extends TingClientInfomediaRequest Imple
 
     $this->setParameter('outputType', 'xml'); 
     return $this; 
-  }
+  }*/
 
   /**
    * while testing. Set a user that we know is good
