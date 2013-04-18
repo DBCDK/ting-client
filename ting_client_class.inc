@@ -33,6 +33,16 @@ class ting_client_class {
     }
   }
 
+  public function do_navfors($params){
+    $request = $this->request_factory()->getNamedRequest('navfors', 'bibdk_navfors');
+    //$request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openorder'));
+    if (empty($request)) {
+      $this->set_message('REMEMBER TO IMPLEMENT bibdk_navfors CLASS BEFORE USING IT', 'error');
+      return;
+    }
+    $this->_set_params($request, $params);
+  }
+  
   public function do_adhl($params){
     $request = $this->request_factory()->getNamedRequest('recommendation', 'TingClientObjectRecommendationRequest');
     //$request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openorder'));
@@ -254,17 +264,20 @@ class ting_client_class {
     if (!isset($ret)) {
       $ret = array();
       $factory = $this->request_factory();
+
       $request_methods = get_class_methods($factory);
       foreach ($factory->urls as $name => $settings) {
         if (!empty($settings['class'])) {
           if (class_exists($settings['class']) && self::_class_implements($settings['class'], 'ITingClientRequestCache')) {
-            $parents = class_parents($settings['class']);
             // do not handle extending classes
-            if (count($parents) == 1) {
+            // disabled for handling infomediaRequests.
+            // DO NOT DELETE this might come in handy later on
+            // $parents = class_parents($settings['class']);
+            //if (count($parents) == 1) {
               $arr['name'] = $name;
               $arr['className'] = $settings['class'];
               $ret[] = $arr;
-            }
+           // }
           }
         }
       }

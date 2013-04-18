@@ -1,5 +1,5 @@
 <?php
-abstract class TingClientInfomediaRequest extends TingClientRequest {
+abstract class TingClientInfomediaRequest extends TingClientRequest  {
   const ARTICLE = 'Article';
   const REVIEW  = 'Review';
   protected $method;
@@ -8,6 +8,8 @@ abstract class TingClientInfomediaRequest extends TingClientRequest {
   protected $user;
   protected $faust;
 
+  
+  
   public function makeGet() {
     $this->method = 'get';
   }
