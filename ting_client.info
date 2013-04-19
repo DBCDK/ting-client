@@ -9,6 +9,7 @@ dependencies[] = nanosoap
 files[] = lib/TingClient.php
 files[] = lib/adapter/TingClientRequestAdapter.php
 files[] = lib/exception/TingClientException.php
+files[] = lib/exception/TingClientHttpStatusException.php
 files[] = lib/log/TingClientDrupalDebugLogger.php
 files[] = lib/log/TingClientDrupalWatchDogLogger.php
 files[] = lib/log/TingClientLogger.php
