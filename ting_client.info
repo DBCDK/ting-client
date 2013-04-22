@@ -1,6 +1,6 @@
 name = Ting Client
 description = Ting Client module
-version = 7.x-2.7
+version = 7.x-2.8
 core = 7.x
 package = Ding!
 dependencies[] = nanosoap
@@ -9,6 +9,7 @@ dependencies[] = nanosoap
 files[] = lib/TingClient.php
 files[] = lib/adapter/TingClientRequestAdapter.php
 files[] = lib/exception/TingClientException.php
+files[] = lib/exception/TingClientHttpStatusException.php
 files[] = lib/log/TingClientDrupalDebugLogger.php
 files[] = lib/log/TingClientDrupalWatchDogLogger.php
 files[] = lib/log/TingClientLogger.php
