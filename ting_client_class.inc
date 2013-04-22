@@ -249,7 +249,7 @@ class ting_client_class {
         // call getRequest method to set parameters for cachekey
         $request->getRequest();
         //        $cached_result = cache_get($request->cacheKey(),'cache_bibdk_webservices');
-        $cached_result = call_user_func_array($cache_function, array($request->cacheKey(), 'cache_bibdk_webservices'));
+        $cached_result = call_user_func_array($cache_function, array($request->cacheKey(), $request->cacheBin()));
       }
     }
     if (!empty($cached_result)) {
@@ -329,7 +329,7 @@ class ting_client_class {
           // cache_set($request->cacheKey() , $res, 'cache_bibdk_webservices', $expire);
           if (function_exists(self::$module . '_cache_set')) {
             $function = self::$module . '_cache_set';
-            call_user_func_array($function, array($request->cacheKey(), $res, 'cache_bibdk_webservices', $expire));
+            call_user_func_array($function, array($request->cacheKey(), $res, $request->cacheBin(), $expire));
           }
         }
         return $res;
