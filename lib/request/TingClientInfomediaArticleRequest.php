@@ -116,7 +116,7 @@ class TingClientInfomediaArticleRequest extends TingClientInfomediaRequest Imple
 
     //$dom->loadXML($responseString);
     if( !@$dom->loadXML($responseString) ) {
-       throw new TingClientException('malformed xml in infomedia-response: ', $responseString);
+       throw new TingClientException('malformed xml in infomedia-response: '. $responseString);
     }
     $xpath = new DOMXPath($dom);
     $responseNode = '/uaim:' . $this->method . 'getArticleResponse ';
