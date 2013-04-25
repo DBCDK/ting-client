@@ -4,13 +4,42 @@
 	<xs:annotation>
 		<xs:documentation xml:lang="en">This XML Schema describes the data and structure of data of the ORS order-service.</xs:documentation>
 	</xs:annotation>
+	<xs:element name="checkArticleDeliveryRequest">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Check whether articles from a journal (identified either by it's PID or bibliographic record identifier) can be delivered electronically</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="oo:authentication"/>
+				<xs:element ref="oo:pid"/>
+				<xs:element ref="oo:serviceRequester" minOccurs="0"/>
+				<xs:element ref="oo:outputType" minOccurs="0"/>
+				<xs:element ref="oo:callback" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="checkArticleDeliveryResponse">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Response indicating whether articles from a journal can be delivered electronically (true/false) and explanation why</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element ref="oo:articleDeliveryPossible"/>
+					<xs:element ref="oo:articleDeliveryPossibleReason" minOccurs="0"/>
+				    <xs:element ref="oo:articleDirect" minOccurs="0"/>
+				</xs:sequence>
+				<xs:element ref="oo:error"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
 	<xs:element name="checkElectronicDeliveryRequest">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">Check whether articles from a journal (identified either by it's PID or bibliographic record identifier) can be delivered electronically</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="oo:authentication" minOccurs="0"/>
+				<xs:element ref="oo:authentication"/>
 				<xs:element ref="oo:issn"/>
 				<xs:element ref="oo:serviceRequester" minOccurs="0"/>
 				<xs:element ref="oo:outputType" minOccurs="0"/>
@@ -38,7 +67,7 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="oo:authentication" minOccurs="0"/>
+				<xs:element ref="oo:authentication"/>
 				<xs:element ref="oo:bibliographicRecordId" minOccurs="0"/>
 				<xs:element ref="oo:bibliographicRecordAgencyId" minOccurs="0"/>
 				<xs:element ref="oo:pickUpAgencyId"/>
@@ -66,14 +95,42 @@
 			</xs:choice>
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="getTaskStatusRequest">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The service request for getting status for a task</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="oo:authentication"/>
+				<xs:element ref="oo:orderId"/>
+				<xs:element ref="oo:requesterId" minOccurs="0"/>
+				<xs:element ref="oo:outputType" minOccurs="0"/>
+				<xs:element ref="oo:callback" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getTaskStatusResponse">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The service response. When more than one taskStatus, they are sorted with the newest first</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+                    <xs:element ref="oo:taskId"/>
+                    <xs:element ref="oo:taskStatus" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:element ref="oo:error"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
 	<xs:element name="placeOrderRequest">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">The service request for placing an order</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
+				<xs:element ref="oo:authentication"/>
 				<xs:element ref="oo:articleDirect" minOccurs="0"/>
-				<xs:element ref="oo:authentication" minOccurs="0"/>
 				<xs:element ref="oo:author" minOccurs="0"/>
 				<xs:element ref="oo:authorOfComponent" minOccurs="0"/>
 				<xs:element ref="oo:bibliographicCategory" minOccurs="0"/>
@@ -147,7 +204,7 @@
 	<xs:element name="answerRequest">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="oo:authentication" minOccurs="0"/>
+				<xs:element ref="oo:authentication"/>
 				<xs:element ref="oo:expectedDelivery" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation xml:lang="en">Mandatory if providerAnswer is hold_placed or will_supply</xs:documentation>
@@ -165,6 +222,7 @@
 				<xs:element ref="oo:providerOrderState" minOccurs="0"/>
 				<xs:element ref="oo:requesterId"/>
 				<xs:element ref="oo:responderId"/>
+				<xs:element ref="oo:serviceRequester"/>
 				<xs:element ref="oo:outputType" minOccurs="0"/>
 				<xs:element ref="oo:callback" minOccurs="0"/>
 			</xs:sequence>
@@ -184,11 +242,12 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="oo:authentication" minOccurs="0"/>
+				<xs:element ref="oo:authentication"/>
 				<xs:element ref="oo:messageType"/>
 				<xs:element ref="oo:orderId"/>
 				<xs:element ref="oo:requesterId"/>
 				<xs:element ref="oo:responderId"/>
+				<xs:element ref="oo:serviceRequester"/>
 				<xs:element ref="oo:outputType" minOccurs="0"/>
 				<xs:element ref="oo:callback" minOccurs="0"/>
 			</xs:sequence>
@@ -205,13 +264,14 @@
 	<xs:element name="shippedRequest">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="oo:authentication" minOccurs="0"/>
+				<xs:element ref="oo:authentication"/>
 				<xs:element ref="oo:creationDate" minOccurs="0"/>
 				<xs:element ref="oo:dateDue" minOccurs="0"/>
 				<xs:element ref="oo:itemId" minOccurs="0"/>
 				<xs:element ref="oo:orderId"/>
 				<xs:element ref="oo:requesterId"/>
 				<xs:element ref="oo:responderId"/>
+				<xs:element ref="oo:serviceRequester"/>
 				<xs:element ref="oo:shippedDate"/>
 				<xs:element ref="oo:shippedServiceType" minOccurs="0"/>
 				<xs:element ref="oo:outputType" minOccurs="0"/>
@@ -233,7 +293,7 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="oo:authentication" minOccurs="0"/>
+				<xs:element ref="oo:authentication"/>
 				<xs:element ref="oo:orderId"/>
 				<xs:element ref="oo:requesterId"/>
 				<xs:element ref="oo:responderId"/>
@@ -243,6 +303,7 @@
 					<xs:element ref="oo:providerOrderState"/>
 					<xs:element ref="oo:requesterOrderState"/>
 				</xs:choice>
+				<xs:element ref="oo:serviceRequester"/>
 				<xs:element ref="oo:outputType" minOccurs="0"/>
 				<xs:element ref="oo:callback" minOccurs="0"/>
 			</xs:sequence>
@@ -256,9 +317,45 @@
 			</xs:choice>
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="incrementRedirectStatRequest">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The service request incrementing the redirect_stat table</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="oo:authentication"/>
+				<xs:element ref="oo:agencyId"/>
+				<xs:element ref="oo:outputType" minOccurs="0"/>
+				<xs:element ref="oo:callback" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="incrementRedirectStatResponse">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="oo:incrementRedirectStatStatus"/>
+				<xs:element ref="oo:error"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
     <xs:element name="agencyCatalogueUrl" type="xs:string">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">URL for Agency catalogue</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+    <xs:element name="agencyId" type="xs:string">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Agency to increment counter</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="articleDeliveryPossible" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">If true, article delivery of requested item is possible</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="articleDeliveryPossibleReason" type="oo:electronicDeliveryPossibleReasonType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Explanation why articleDeliveryPossible is true or false</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="articleDirect" type="oo:articleDirectType">
@@ -326,6 +423,11 @@
 	</xs:element>
 	<xs:element name="creationDate" type="xs:dateTime"/>
 	<xs:element name="dateDue" type="xs:dateTime"/>
+	<xs:element name="description" type="xs:string">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Desctiption of an error or success</xs:documentation>
+		</xs:annotation>
+	</xs:element>
 	<xs:element name="edition" type="xs:string">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">Edition-information from the bibliographic record, in orders without locations.</xs:documentation>
@@ -368,6 +470,11 @@
 			<xs:documentation xml:lang="en">Identifier of the group (most often a library number) the user belongs to (for authentication purposes)</xs:documentation>
 		</xs:annotation>
 	</xs:element>
+    <xs:element name="incrementRedirectStatStatus" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">success or not</xs:documentation>
+		</xs:annotation>
+	</xs:element>
 	<xs:element name="isbn" type="xs:string">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">ISBN-information from the bibliographic record, in orders without locations.</xs:documentation>
@@ -397,6 +504,11 @@
 	<xs:element name="localHoldingsId" type="xs:string">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">The item.s bibliographic identifier, retrieved from local systems (e.g. via z3950 holdings request).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="logTime" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Time for the status</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="lookUpUrl" type="xs:string">
@@ -586,6 +698,34 @@
 	</xs:element>
 	<xs:element name="shippedDate" type="xs:dateTime"/>
 	<xs:element name="shippedServiceType" type="oo:shippedServiceTypeType"/>
+	<xs:element name="statusCode" type="xs:integer">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">code of a task status, all but zero is an error</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statusType" type="xs:string">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">type of a task status, like waiting, error, done</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="taskId" type="xs:integer">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">ID of an order task</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="taskStatus">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">status of an order task</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="oo:statusCode"/>
+				<xs:element ref="oo:description"/>
+				<xs:element ref="oo:logTime"/>
+				<xs:element ref="oo:statusType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 	<xs:element name="title" type="xs:string">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">Title of the requested material.</xs:documentation>
@@ -685,6 +825,7 @@
 	</xs:simpleType>
 	<xs:simpleType name="electronicDeliveryPossibleReasonType">
 		<xs:restriction base="xs:string">
+			<xs:enumeration value="article not found"/>
 			<xs:enumeration value="issn not found"/>
 			<xs:enumeration value="no electronic supplier found"/>
 		</xs:restriction>
@@ -697,8 +838,10 @@
 			<xs:enumeration value="operation not authorized for specified responderId"/>
 			<xs:enumeration value="invalid_order"/>
 			<xs:enumeration value="providerAnswerReason is mandatory with specified providerAnswer"/>
+			<xs:enumeration value="requesterId should be specified for the given orderId"/>
 			<xs:enumeration value="service_unavailable"/>
 			<xs:enumeration value="service_error"/>
+			<xs:enumeration value="no_task_found"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="fullTextLinkTypeType">
