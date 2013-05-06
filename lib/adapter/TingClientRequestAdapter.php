@@ -52,9 +52,12 @@ class TingClientRequestAdapter {
         //$this->logger->log('Completed SOAP request ' . $soapAction . ' ' . $request->getWsdlUrl() . ' (' . round($time, 3) . 's). Request body: ' . $client->requestBodyString);
 
       // check if http_code is a valid url
-      $curl_info = $client->getCurlInfo();
+      if (method_exists($client, 'getCurlInfo')){
+        $curl_info = $client->getCurlInfo();
+      }
 
-      if($curl_info['http_code'] != 200){
+
+      if(isset($curl_info) && $curl_info['http_code'] != 200){
         throw new TingClientHttpStatusException('Curl returns wrong http code',  $curl_info['http_code'] );
       }
 

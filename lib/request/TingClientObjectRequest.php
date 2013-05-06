@@ -31,7 +31,7 @@ class TingClientObjectRequest extends TingClientRequest implements ITingClientRe
     else{
       $ret = $this->getObjectId();
     }
-    return $ret;
+    return $ret.$this->objectFormat;
   }
 
   public function cacheEnable($value=NULL) {
