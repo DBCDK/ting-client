@@ -33,7 +33,18 @@ class ting_client_class {
     }
   }
 
-  public function do_navfors($params) {
+  public function do_infomedia($params){
+    $request = $this->request_factory()->getNamedRequest('infomediaArticle', 'TingClientInfomediaArticleRequest');
+    //$request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openorder'));
+    if (empty($request)) {
+      $this->set_message('REMEMBER TO IMPLEMENT TingClientInfomediaArticleRequest CLASS BEFORE USING IT', 'error');
+      return;
+    }
+    $this->_set_params($request, $params);
+    return $request->parse($this->execute($request));
+  }
+
+  public function do_navfors($params){
     $request = $this->request_factory()->getNamedRequest('navfors', 'bibdk_navfors');
     //$request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openorder'));
     if (empty($request)) {
@@ -41,9 +52,11 @@ class ting_client_class {
       return;
     }
     $this->_set_params($request, $params);
+
+    return $this->execute($request);
   }
 
-  public function do_adhl($params) {
+  public function do_adhl($params){
     $request = $this->request_factory()->getNamedRequest('recommendation', 'TingClientObjectRecommendationRequest');
     //$request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openorder'));
     if (empty($request)) {
