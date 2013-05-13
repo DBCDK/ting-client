@@ -44,6 +44,17 @@ class ting_client_class {
     return $request->parse($this->execute($request));
   }
 
+  public function do_loanerstatus($params){
+    $request = $this->request_factory()->getNamedRequest('openuserstatus', 'bibdk_loanerstatus');
+    $request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openuserstatus'));
+    if (empty($request)) {
+      $this->set_message('REMEMBER TO IMPLEMENT bibdk_loanerstatus CLASS BEFORE USING IT', 'error');
+      return;
+    }
+    $this->_set_params($request, $params);
+    return $this->execute($request);
+  }
+
   public function do_navfors($params){
     $request = $this->request_factory()->getNamedRequest('navfors', 'bibdk_navfors');
     //$request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openorder'));
