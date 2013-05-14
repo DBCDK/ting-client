@@ -33,6 +33,7 @@ class ting_client_class {
     }
   }
 
+
   public function do_infomedia($params){
     $request = $this->request_factory()->getNamedRequest('infomediaArticle', 'TingClientInfomediaArticleRequest');
     //$request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openorder'));
@@ -44,7 +45,42 @@ class ting_client_class {
     return $request->parse($this->execute($request));
   }
 
-  public function do_navfors($params){
+
+  public function do_request($requestName, $params) {
+    // set appropiate agent for testing
+    if ($simpletest_prefix = drupal_valid_test_ua()) {
+      NanoSOAPClient::setUserAgent(drupal_generate_test_ua($simpletest_prefix));
+    }
+
+    $settings = $this->request_factory()->getSettings($requestName);
+
+    $request = $this->request_factory()->getNamedRequest($requestName, $settings['class']);
+
+    if (empty($request)) {
+      $this->set_message('REMEMBER TO IMPLEMENT ' . $requestName . ' CLASS BEFORE USING IT', 'error');
+      return;
+    }
+
+    // set namespace(s) if set in settings
+    if (isset($settings['xsdNamespace'])) {
+      $request->setXsdNamespace($settings['xsdNamespace']);
+    }
+
+    $this->_set_params($request, $params);
+
+    $result = $this->execute($request);
+    
+    // add cachekey to result
+    if (is_object($result)) {
+      if (method_exists($request, 'cacheKey')) {
+        $result->cacheKey = $request->cacheKey();
+      }
+    }
+    return $result;
+  }
+
+  public function do_navfors($params) {
+
     $request = $this->request_factory()->getNamedRequest('navfors', 'bibdk_navfors');
     //$request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openorder'));
     if (empty($request)) {
@@ -204,8 +240,6 @@ class ting_client_class {
         $function = self::$module . '_set_request_factory';
         $urls = call_user_func_array($function, array($url_variables));
       }
-
-
       self::$request_factory = new TingClientRequestFactory($urls);
     }
     return self::$request_factory;
@@ -225,7 +259,9 @@ class ting_client_class {
       else {
         $message = get_class($request) . ' does not implement: ' . $setter;
         $status = 'error';
-        $this->set_message($message, $status);
+        $params['message'] = $message;
+        $params['status'] = 'error';
+        // self::_invoke('set_message', $params);
       }
     }
   }
@@ -291,6 +327,7 @@ class ting_client_class {
 
   private static function _class_implements($class, $interface) {
     $interfaces = class_implements($class);
+
     if (in_array($interface, $interfaces)) {
       return true;
     }
@@ -329,8 +366,7 @@ class ting_client_class {
           }
         }
         return $res;
-      }
-      catch (Exception $e) {
+      } catch (Exception $e) {
         self::_invoke('timer', array('stop', 'search_client'));
         $this->_handleRequestExceptions($e);
         return FALSE;
@@ -340,13 +376,14 @@ class ting_client_class {
 
   private function _handleRequestExceptions($e) {
     // set message if ting-client throws an exeception
-    $message = "The service you are trying to use in currently unavailable";
+    $message = 'The service you are trying to use in currently unavailable' . $e->getMessage();
     $status = 'error';
+    $watchdog['type'] = 'ting_client';
     $watchdog['message'] = 'Error performing request: ' . $e->getMessage();
     $watchdog['variables'] = NULL;
+    $watchdog['status'] = $status;
     $watchdog['link'] = $_SERVER["HTTP_HOST"] . $_SERVER['REQUEST_URI'];
-    self::_invoke('set_message', array($message, $status, $watchdog));
-
+    self::_invoke('set_message', array($message, 'error', NULL, $watchdog));
   }
 
   private static function _invoke($function, $params) {
