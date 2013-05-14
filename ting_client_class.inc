@@ -33,8 +33,7 @@ class ting_client_class {
     }
   }
 
-
-  public function do_infomedia($params){
+  public function do_infomedia($params) {
     $request = $this->request_factory()->getNamedRequest('infomediaArticle', 'TingClientInfomediaArticleRequest');
     //$request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openorder'));
     if (empty($request)) {
@@ -44,7 +43,6 @@ class ting_client_class {
     $this->_set_params($request, $params);
     return $request->parse($this->execute($request));
   }
-
 
   public function do_request($requestName, $params) {
     // set appropiate agent for testing
@@ -60,20 +58,23 @@ class ting_client_class {
       $this->set_message('REMEMBER TO IMPLEMENT ' . $requestName . ' CLASS BEFORE USING IT', 'error');
       return;
     }
-
     // set namespace(s) if set in settings
     if (isset($settings['xsdNamespace'])) {
       $request->setXsdNamespace($settings['xsdNamespace']);
     }
-
     $this->_set_params($request, $params);
-
     $result = $this->execute($request);
-    
+
     // add cachekey to result
     if (is_object($result)) {
       if (method_exists($request, 'cacheKey')) {
         $result->cacheKey = $request->cacheKey();
+      }
+    }
+
+    if (isset($settings['custom_parse'])) {
+      if (method_exists($request, $settings['custom_parse'])) {
+        return $request->$settings['custom_parse']($result);
       }
     }
     return $result;
@@ -92,7 +93,7 @@ class ting_client_class {
     return $this->execute($request);
   }
 
-  public function do_adhl($params){
+  public function do_adhl($params) {
     $request = $this->request_factory()->getNamedRequest('recommendation', 'TingClientObjectRecommendationRequest');
     //$request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openorder'));
     if (empty($request)) {
@@ -349,7 +350,6 @@ class ting_client_class {
       return $res;
     }
     else {
-
       try {
         // Start timer
         self::_invoke('timer', array('start', 'search_client'));
