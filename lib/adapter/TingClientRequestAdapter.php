@@ -35,7 +35,6 @@ class TingClientRequestAdapter {
     try {
 
         $this->logger->startTime();
-
         $client = new NanoSOAPClient($request->getWsdlUrl(), $options);
 
         $response = $client->call($soapAction, $soapParameters);
@@ -56,9 +55,8 @@ class TingClientRequestAdapter {
         $curl_info = $client->getCurlInfo();
       }
 
-
-      if(isset($curl_info) && $curl_info['http_code'] != 200){
-        throw new TingClientHttpStatusException('Curl returns wrong http code',  $curl_info['http_code'] );
+      if($curl_info['http_code'] != 200){
+        throw new TingClientHttpStatusException('Curl returns wrong http code ('.$curl_info['http_code'].')',  $curl_info['http_code'] );
       }
 
       // If using JSON and DKABM, we help parse it.
