@@ -21,5 +21,10 @@ class TingClientRequestFactory {
     }
     throw new TingClientException('No webservice url or maybe class defined for ' . $name);
   }
+  
+  //  @TODO this function should replace getNamedRequest
+  public function getSettings($name){
+    return $this->urls[$name];
+  }
 }
 
