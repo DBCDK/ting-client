@@ -232,7 +232,7 @@ class ting_client_class {
         'object' => array('url' => 'ting_search_url', 'class' => 'TingClientObjectRequest'),
         'collection' => array('url' => 'ting_search_url', 'class' => 'TingCollectionRequest'),
         'spell' => array('url' => 'ting_spell_url', 'class' => ''),
-        'recommendation' => array('url' => 'ting_recommendation_url', 'class' => ''),
+        'recommendation' => array('url' => 'ting_recommendation_url', 'class' => 'TingClientObjectRecommendationRequest'),
       );
 
       $urls = array();
