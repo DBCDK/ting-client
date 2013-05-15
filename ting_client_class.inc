@@ -368,15 +368,15 @@ class ting_client_class {
         return $res;
       } catch (Exception $e) {
         self::_invoke('timer', array('stop', 'search_client'));
-        $this->_handleRequestExceptions($e);
+        $this->_handleRequestExceptions($e, $request->getWsdlUrl());
         return FALSE;
       }
     }
   }
 
-  private function _handleRequestExceptions($e) {
+  private function _handleRequestExceptions($e, $url) {
     // set message if ting-client throws an exeception
-    $message = 'The service you are trying to use in currently unavailable' . $e->getMessage();
+    $message = 'The service you are trying to use '.($url).' is currently unavailable' . $e->getMessage();
     $status = 'error';
     $watchdog['type'] = 'ting_client';
     $watchdog['message'] = 'Error performing request: ' . $e->getMessage();
