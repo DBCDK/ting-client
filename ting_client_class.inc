@@ -44,6 +44,11 @@ class ting_client_class {
     return $request->parse($this->execute($request));
   }
 
+  /**
+   * @param $requestName
+   * @param $params
+   * @return bool|stdClass|string
+   */
   public function do_request($requestName, $params) {
     // set appropiate agent for testing
     if ($simpletest_prefix = drupal_valid_test_ua()) {
