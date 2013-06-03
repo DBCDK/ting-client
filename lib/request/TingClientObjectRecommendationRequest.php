@@ -6,6 +6,7 @@ class TingClientObjectRecommendationRequest extends TingClientRequest {
 
   protected $id;
   protected $isbn;
+  protected $pid;
   protected $localId;
   protected $numResults;
   protected $gender;
@@ -28,6 +29,14 @@ class TingClientObjectRecommendationRequest extends TingClientRequest {
 
   public function setIsbn($isbn) {
     $this->isbn = $isbn;
+  }
+
+  public function getPid() {
+    return $this->pid;
+  }
+
+  public function setPid($pid) {
+    $this->isbn = $pid;
   }
 
   public function setLocalId($localId) {
@@ -75,8 +84,8 @@ class TingClientObjectRecommendationRequest extends TingClientRequest {
   protected function getRequest() {
     $this->setParameter('action', 'adhlRequest');
 
-    if ($this->isbn) {
-      $this->setParameter('id', array('isbn' => $this->isbn));
+    if ($this->id) {
+      $this->setParameter('id', $this->id);
     }
 
     if ($this->numResults) {
@@ -114,21 +123,7 @@ class TingClientObjectRecommendationRequest extends TingClientRequest {
       throw new TingClientException('Error handling recommendation request: '.$response->error);
     }
 
-    $recommendations = array();
-    if (isset($response->adhlResponse->record)) {
-      foreach($response->adhlResponse->record as $record) {
-        $recommendation = new TingClientObjectRecommendation();
-        if ($id = $this->getValue($record->recordId)) {
-          $id = explode('|', $id, 2);
-          $recommendation->localId = $id[0];
-          $recommendation->ownerId = (isset($id[1])) ? $id[1] : null;
-
-          $recommendations[] = $recommendation;
-        }
-      }
-    }
-
-    return $recommendations;
+    return $response->adhlResponse;
   }
 }
 
