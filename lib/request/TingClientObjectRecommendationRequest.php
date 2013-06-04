@@ -1,6 +1,6 @@
 <?php
 
-class TingClientObjectRecommendationRequest extends TingClientRequest {
+class TingClientObjectRecommendationRequest extends TingClientRequest implements ITingClientRequestCache {
   const GENDER_MALE = 'male';
   const GENDER_FEMALE = 'female';
 
@@ -14,6 +14,36 @@ class TingClientObjectRecommendationRequest extends TingClientRequest {
   protected $maxAge;
   protected $fromDate;
   protected $toDate;
+
+  /** Implementation of ITingClientRequestCache **/
+  public function cacheKey() {
+    return md5($this->generateCacheKey());
+  }
+
+  private function generateCacheKey() {
+    $ret = '';
+    if( is_array($this->getId()) ) {
+      foreach ($this->getId() as $id) {
+        $ret.=$id;
+      }
+    }
+    else{
+      $ret = $this->getId();
+    }
+    return $ret.$this->getNumResults();
+  }
+
+  public function cacheEnable($value=NULL) {
+    $class_name = get_class($this);
+    return variable_get($class_name.TingClientRequest::cache_enable);
+  }
+
+  public function cacheTimeout($value=NULL) {
+    $class_name = get_class($this);
+    return variable_get($class_name.TingClientRequest::cache_lifetime,'1');
+  }
+
+  /** end ITingClientRequestCache **/
 
   public function setId($id) {
     $this->id = $id;
@@ -81,7 +111,7 @@ class TingClientObjectRecommendationRequest extends TingClientRequest {
     $this->toDate = $toDate;
   }
 
-  protected function getRequest() {
+  public function getRequest() {
     $this->setParameter('action', 'adhlRequest');
 
     if ($this->id) {
