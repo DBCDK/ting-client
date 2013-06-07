@@ -88,12 +88,12 @@ class ting_client_class {
     return $result;
   }
 
-  public function do_navfors($params) {
+  public function do_forsrights($params) {
 
-    $request = $this->request_factory()->getNamedRequest('navfors', 'bibdk_navfors');
+    $request = $this->request_factory()->getNamedRequest('forsrights', 'bibdk_forsrights');
     //$request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openorder'));
     if (empty($request)) {
-      $this->set_message('REMEMBER TO IMPLEMENT bibdk_navfors CLASS BEFORE USING IT', 'error');
+      $this->set_message('REMEMBER TO IMPLEMENT bibdk_forsrights CLASS BEFORE USING IT', 'error');
       return;
     }
     $this->_set_params($request, $params);
