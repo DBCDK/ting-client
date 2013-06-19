@@ -109,7 +109,7 @@ function ting_client_admin_webservices_settings($form_state) {
   $form['webservices']['ting_search_url'] = array(
     '#type' => 'textfield',
     '#title' => t('Search service URL'),
-    '#description' => t('URL to the Ting search webservice, e.g. http://opensearch.addi.dk/2.1/'),
+    '#description' => t('URL to the Ting search webservice, e.g. http://bibliotek.dk/openbibdk/next/'),
     '#required' => TRUE,
     '#default_value' => variable_get('ting_search_url', ''),
   );
