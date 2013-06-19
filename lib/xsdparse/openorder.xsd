@@ -4,6 +4,7 @@
 	<xs:annotation>
 		<xs:documentation xml:lang="en">This XML Schema describes the data and structure of data of the ORS order-service.</xs:documentation>
 	</xs:annotation>
+
 	<xs:element name="checkArticleDeliveryRequest">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">Check whether articles from a journal (identified either by it's PID or bibliographic record identifier) can be delivered electronically</xs:documentation>

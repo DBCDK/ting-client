@@ -67,7 +67,9 @@ class ting_client_class {
     if (isset($settings['xsdNamespace'])) {
       $request->setXsdNamespace($settings['xsdNamespace']);
     }
+
     $this->_set_params($request, $params);
+
     $result = $this->execute($request);
 
     // add cachekey to result
@@ -82,15 +84,16 @@ class ting_client_class {
         return $request->$settings['custom_parse']($result);
       }
     }
+
     return $result;
   }
 
-  public function do_navfors($params) {
+  public function do_forsrights($params) {
 
-    $request = $this->request_factory()->getNamedRequest('navfors', 'bibdk_navfors');
+    $request = $this->request_factory()->getNamedRequest('forsrights', 'bibdk_forsrights');
     //$request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openorder'));
     if (empty($request)) {
-      $this->set_message('REMEMBER TO IMPLEMENT bibdk_navfors CLASS BEFORE USING IT', 'error');
+      $this->set_message('REMEMBER TO IMPLEMENT bibdk_forsrights CLASS BEFORE USING IT', 'error');
       return;
     }
     $this->_set_params($request, $params);
@@ -259,15 +262,20 @@ class ting_client_class {
       $setter = 'set' . ucfirst($key);
       if (method_exists($request, $setter)) {
         $request->$setter($value);
-        // pjo testing ... value is set twice; delete this line
-        // $request->setParameter($key, $value);
       }
       else {
         $message = get_class($request) . ' does not implement: ' . $setter;
-        $status = 'error';
-        $params['message'] = $message;
-        $params['status'] = 'error';
-        // self::_invoke('set_message', $params);
+
+        $error['message'] = $message;
+        $error['status'] = 'error';
+        $error['repeat'] = FALSE;
+        $error['watchdog'] = array(
+          'type' => 'error',
+          'message' => $message,
+          'link' => '',
+        );
+
+        self::_invoke('set_message', $error);
       }
     }
   }
