@@ -15,22 +15,34 @@ class TingClientObjectRecommendationRequest extends TingClientRequest implements
   protected $fromDate;
   protected $toDate;
 
-  /** Implementation of ITingClientRequestCache **/
+  /** \brief ITingClientRequestCache::cacheKey; get a cachekey
+   * 
+   * @return string 
+   */
   public function cacheKey() {
-    return md5($this->generateCacheKey());
+    $params = $this->getParameters();
+    $ret = '';
+    $this->make_cache_key($params, $ret);
+
+    return md5($ret);
   }
 
-  private function generateCacheKey() {
-    $ret = '';
-    if( is_array($this->getId()) ) {
-      foreach ($this->getId() as $id) {
-        $ret.=$id;
+  /** \brief make a cachekey based on request parameters
+   *
+   * @param array $params
+   * @param string $ret 
+   */
+  private function make_cache_key($params, &$ret) {
+    foreach ($params as $key => $value) {
+      if (is_array($value)) {
+        // recursive
+        $ret.=$key;
+        $this->make_cache_key($value, $ret);
+      }
+      else {
+        $ret.=$value;
       }
     }
-    else{
-      $ret = $this->getId();
-    }
-    return $ret.$this->getNumResults();
   }
 
   public function cacheEnable($value=NULL) {
