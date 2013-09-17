@@ -102,6 +102,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
       'agency' => 'agency',
       'profile' => 'profile',
       'objectFormat' => 'objectFormat',
+      'trackingId' => 'trackingId',
     );
 
     return $methodParameterMap;

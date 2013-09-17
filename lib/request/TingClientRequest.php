@@ -17,8 +17,10 @@ abstract class TingClientRequest {
   const cache_lifetime = '_cache_lifetime';
   const cache_enable = '_cache_enable';
 
+  // for tracing the request
+  private $trackingId;
+  
   /* attributes to be used by extending classes */
-
   protected $cacheKey;
   private $nameSpace;
   private $wsdlUrl;
@@ -36,6 +38,14 @@ abstract class TingClientRequest {
 
   public function __construct($wsdlUrl, $serviceName = NULL) {
     $this->wsdlUrl = $wsdlUrl;
+  }
+  
+  public function setTrackingId($value){
+    $this->trackingId = $value;
+  }
+  
+  public function getTrackingId() {
+    return $this->trackingId;
   }
 
   public function setXsdNameSpace($nameSpace) {
