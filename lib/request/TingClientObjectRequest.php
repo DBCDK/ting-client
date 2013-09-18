@@ -151,6 +151,7 @@ class TingClientObjectRequest extends TingClientRequest implements ITingClientRe
       'profile' => 'profile',
       'outputType' => 'outputType',
       'objectFormat' => 'objectFormat',
+      'trackingId' => 'trackingId',
     );
 
     foreach ($methodParameterMap as $method => $parameter) {
