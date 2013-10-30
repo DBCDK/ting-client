@@ -7,6 +7,9 @@ class TestTingClientFormattedCollection extends DrupalUnitTestCase {
   private $fullViewResponse;
   private $shortViewResponse;
 
+  /**
+   * @return array
+   */
   public static function getInfo() {
     return array(
       'name' => 'TestTingClientFormattedCollection',
