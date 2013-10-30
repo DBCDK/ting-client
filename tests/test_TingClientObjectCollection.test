@@ -1,0 +1,59 @@
+<?php
+/**
+ * Author: Martin Møller
+ */ 
+class TestTingClientObjectCollection extends DrupalUnitTestCase {
+
+  private $fullViewResponse;
+  private $shortViewResponse;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'TestTingClientObjectCollection',
+      'description' => 'Tests the TingClientObjectCollection object',
+      'group' => 'Ting Client',
+    );
+  }
+  
+  public function setUp() {
+    $path = drupal_get_path('module', 'ting_client');
+    require_once($path . '/lib/result/object/TingClientObjectCollection.php');
+    require_once($path . '/lib/result/object/TingClientFormattedCollection.php');
+
+    $this->fullViewResponse = json_decode(file_get_contents($path . '/tests/mockups/processResponse_response_dump_full_view_search.json'));
+    $this->shortViewResponse = json_decode(file_get_contents($path . '/tests/mockups/processResponse_response_dump_short_view_search.json'));
+
+    parent::setUp();
+  }
+
+  public function testEmptyObjectCollection() {
+    $objectCollection = new TingClientObjectCollection();
+
+    $this->assertTrue(is_array($objectCollection->getObjects()), 'Objects is array');
+    $this->assertNull($objectCollection->getFormattedCollection(), 'getFormattedCollection returns NULL as expected');
+
+    $objectCollection = new TingClientObjectCollection(NULL);
+
+    $this->assertNull($objectCollection->getObjects(), 'Objects is array');
+  }
+
+  public function testFullViewFormattedCollection() {
+    $objectCollection = new TingClientObjectCollection();
+    $formattedCollection = new TingClientFormattedCollection($this->fullViewResponse->searchResponse->result->searchResult[0]->formattedCollection);
+
+    $objectCollection->setFormattedCollection($formattedCollection);
+
+    $this->assertTrue(is_array($objectCollection->getObjects()), 'Objects is array');
+    $this->assertEqual($objectCollection->getFormattedCollection(), $formattedCollection, 'Correct obejct returned');
+  }
+
+  public function testShortViewFormattedCollection() {
+    $objectCollection = new TingClientObjectCollection();
+    $formattedCollection = new TingClientFormattedCollection($this->shortViewResponse->searchResponse->result->searchResult[0]->formattedCollection);
+
+    $objectCollection->setFormattedCollection($formattedCollection);
+
+    $this->assertTrue(is_array($objectCollection->getObjects()), 'Objects is array');
+    $this->assertEqual($objectCollection->getFormattedCollection(), $formattedCollection, 'Correct obejct returned');
+  }
+}
