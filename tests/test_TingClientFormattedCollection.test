@@ -3,6 +3,9 @@
  * Author: Martin Møller
  */ 
 class TestTingClientFormattedCollection extends DrupalUnitTestCase {
+
+  private $fullViewResponse;
+
   public static function getInfo() {
     return array(
       'name' => 'TestTingClientFormattedCollection',
@@ -12,13 +15,26 @@ class TestTingClientFormattedCollection extends DrupalUnitTestCase {
   }
   
   public function setUp() {
+    $path = drupal_get_path('module', 'ting_client');
+    $this->fullViewResponse = json_decode(file_get_contents($path . '/tests/mockups/processResponse_response_dump_full_view_search.json'));
+
     parent::setUp();
   }
 
-  public function testHest(){
-    $path = drupal_get_path('module', 'ting_client');
-    $response = json_decode(file_get_contents($path . '/tests/mockups/processResponse_response_dump_full_view_search.json'));
+  public function testEmptyFormattedCollection(){
+    $formattedCollection = new TingClientFormattedCollection(NULL);
 
+    $this->assertNull($formattedCollection->getBriefDisplay(), 'briefDisplay is NULL as expected');
+    $this->assertNull($formattedCollection->getWorkDisplay(), 'workDisplay is NULL as expected');
+  }
 
+  public function testFullViewFormattedCollection(){
+    $formattedCollection = new TingClientFormattedCollection($this->fullViewResponse->searchResponse->result->searchResult[0]->formattedCollection);
+
+    $this->assertNotNull($formattedCollection->getBriefDisplay(), 'briefDisplay is not NULL - as expected');
+    $this->assertTrue(is_object($formattedCollection->getBriefDisplay()), 'briefDisplay is of type Object');
+
+    $this->assertNotNull($formattedCollection->getWorkDisplay(), 'workDisplay is not NULL - as expected');
+    $this->assertTrue(is_object($formattedCollection->getWorkDisplay()), 'workDisplay is of type Object');
   }
 }
