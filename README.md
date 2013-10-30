@@ -46,5 +46,7 @@ of service on April 27 2012 and is not available any longer.
 
 Mockups
 -------
+Mockups are static dumps of objects found in the tests/mockups folder. Primarialy used as objects in unittests.
+
 ### processResponse_response_dump_full_view_search:
 JSON encoded dump of the response object dumped from the first line in the processResponse method in the TingClientObjectCollection object.
