@@ -1,9 +1,9 @@
 <?php
 
-class TingClientUnitTestCase extends DrupalUnitTestCase {
+class TingClientWebTestCase extends DrupalWebTestCase {
   public static function getInfo() {
     return array(
-      'name' => 'TING client unit test',
+      'name' => 'TING client web test',
       'description' => 'Test Ting client functions.',
       'group' => 'Ding! - Ting Client',
     );
