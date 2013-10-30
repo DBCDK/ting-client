@@ -5,7 +5,7 @@ class TingClientWebTestCase extends DrupalWebTestCase {
     return array(
       'name' => 'TING client web test',
       'description' => 'Test Ting client functions.',
-      'group' => 'Ding! - Ting Client',
+      'group' => 'Ting Client',
     );
   }
 
@@ -63,7 +63,3 @@ class TingClientWebTestCase extends DrupalWebTestCase {
     return $ret;
   } 
 }
-
-
-
-?>
