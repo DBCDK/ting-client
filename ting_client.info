@@ -53,4 +53,6 @@ files[] = tests/ting_client_web.test
 ;files[] = tests/ting_client_spell.test
 ;files[] = tests/ting_client.test
 
+files[] = tests/test_TingClientFormattedCollection.test
+
 
