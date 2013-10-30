@@ -50,3 +50,8 @@ Mockups are static dumps of objects found in the tests/mockups folder. Primarial
 
 ### processResponse_response_dump_full_view_search:
 JSON encoded dump of the response object dumped from the first line in the processResponse method in the TingClientObjectCollection object.
+Based on a full_view search.
+
+### processResponse_response_dump_short_view_search:
+JSON encoded dump of the response object dumped from the first line in the processResponse method in the TingClientObjectCollection object.
+Based on a short_view search.
