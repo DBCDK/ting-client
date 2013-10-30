@@ -1,34 +1,38 @@
 <?php
 /**
  * Author: Martin Møller
- */ 
+ */
 class TestTingClientFormattedCollection extends DrupalUnitTestCase {
 
   private $fullViewResponse;
+  private $shortViewResponse;
 
   public static function getInfo() {
     return array(
       'name' => 'TestTingClientFormattedCollection',
-      'description' => t('Tests the TingClientFormattedCollection object'),
+      'description' => 'Tests the TingClientFormattedCollection object',
       'group' => 'Ting Client',
     );
   }
-  
+
   public function setUp() {
     $path = drupal_get_path('module', 'ting_client');
+    require_once($path . '/lib/result/object/TingClientFormattedCollection.php');
+
     $this->fullViewResponse = json_decode(file_get_contents($path . '/tests/mockups/processResponse_response_dump_full_view_search.json'));
+    $this->shortViewResponse = json_decode(file_get_contents($path . '/tests/mockups/processResponse_response_dump_short_view_search.json'));
 
     parent::setUp();
   }
 
-  public function testEmptyFormattedCollection(){
+  public function testEmptyFormattedCollection() {
     $formattedCollection = new TingClientFormattedCollection(NULL);
 
     $this->assertNull($formattedCollection->getBriefDisplay(), 'briefDisplay is NULL as expected');
     $this->assertNull($formattedCollection->getWorkDisplay(), 'workDisplay is NULL as expected');
   }
 
-  public function testFullViewFormattedCollection(){
+  public function testFullViewFormattedCollection() {
     $formattedCollection = new TingClientFormattedCollection($this->fullViewResponse->searchResponse->result->searchResult[0]->formattedCollection);
 
     $this->assertNotNull($formattedCollection->getBriefDisplay(), 'briefDisplay is not NULL - as expected');
@@ -36,5 +40,14 @@ class TestTingClientFormattedCollection extends DrupalUnitTestCase {
 
     $this->assertNotNull($formattedCollection->getWorkDisplay(), 'workDisplay is not NULL - as expected');
     $this->assertTrue(is_object($formattedCollection->getWorkDisplay()), 'workDisplay is of type Object');
+  }
+
+  public function testShortViewFormattedCollection() {
+    $formattedCollection = new TingClientFormattedCollection($this->shortViewResponse->searchResponse->result->searchResult[0]->formattedCollection);
+
+    $this->assertNotNull($formattedCollection->getBriefDisplay(), 'briefDisplay is not NULL - as expected');
+    $this->assertTrue(is_object($formattedCollection->getBriefDisplay()), 'briefDisplay is of type Object');
+
+    $this->assertNull($formattedCollection->getWorkDisplay(), 'workDisplay is NULL as expected');
   }
 }
