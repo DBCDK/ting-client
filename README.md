@@ -43,3 +43,8 @@ of service on April 27 2012 and is not available any longer.
 *Footnotes:*
 
 <a name="star_mark"> * </a>The library is no longer a library but a module due to the use of Drupal's test framework.
+
+Mockups
+-------
+### processResponse_response_dump_full_view_search:
+JSON encoded dump of the response object dumped from the first line in the processResponse method in the TingClientObjectCollection object.
