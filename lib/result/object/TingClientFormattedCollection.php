@@ -94,4 +94,21 @@ class TingClientFormattedCollection {
   public function getWorkDisplay() {
     return isset($this->workDisplay) ? $this->workDisplay : NULL;
   }
+
+  /**
+   * @return \stdClass
+   */
+  public function getSingleWorkDisplay() {
+    if (!isset($this->workDisplay)) {
+      return NULL;
+    }
+    else {
+      $manifestation = $this->workDisplay->manifestation;
+      if (is_array($manifestation)) {
+        $manifestation = reset($manifestation);
+      }
+
+      return $manifestation;
+    }
+  }
 }
