@@ -107,7 +107,6 @@ class TingClientFormattedCollection {
       if (is_array($manifestation)) {
         $manifestation = reset($manifestation);
       }
-
       return $manifestation;
     }
   }
