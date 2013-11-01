@@ -33,6 +33,7 @@ class TestTingClientFormattedCollection extends DrupalUnitTestCase {
 
     $this->assertNull($formattedCollection->getBriefDisplay(), 'briefDisplay is NULL as expected');
     $this->assertNull($formattedCollection->getWorkDisplay(), 'workDisplay is NULL as expected');
+    $this->assertNull($formattedCollection->getWorkOne(), 'workOne is NULL as expected');
   }
 
   public function testFullViewFormattedCollection() {
@@ -43,6 +44,9 @@ class TestTingClientFormattedCollection extends DrupalUnitTestCase {
 
     $this->assertNotNull($formattedCollection->getWorkDisplay(), 'workDisplay is not NULL - as expected');
     $this->assertTrue(is_object($formattedCollection->getWorkDisplay()), 'workDisplay is of type Object');
+
+    $this->assertNotNull($formattedCollection->getWorkOne(), 'workOne is not NULL - as expected');
+    $this->assertTrue(is_object($formattedCollection->getWorkOne()), 'workDisplay is of type Object');
   }
 
   public function testShortViewFormattedCollection() {
@@ -52,5 +56,7 @@ class TestTingClientFormattedCollection extends DrupalUnitTestCase {
     $this->assertTrue(is_object($formattedCollection->getBriefDisplay()), 'briefDisplay is of type Object');
 
     $this->assertNull($formattedCollection->getWorkDisplay(), 'workDisplay is NULL as expected');
+
+    $this->assertNull($formattedCollection->getWorkOne(), 'workOne is NULL as expected');
   }
 }

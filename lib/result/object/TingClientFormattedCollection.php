@@ -21,6 +21,8 @@ class TingClientFormattedCollection {
    */
   private $workDisplay;
 
+  /* @var stdClass $workOne*/
+  private $workOne;
 
   public $methods = array(
     'work' => 'returns workpart(stdobj) of formattedCollection',
@@ -34,6 +36,7 @@ class TingClientFormattedCollection {
     #$this->formattedCollection = $formattedCollection; //TODO mmj seems to be unsused - remove!
     if (isset($formattedCollection->workDisplay)) {
       $this->workDisplay = $formattedCollection->workDisplay;
+      $this->setWorkOne($formattedCollection->workDisplay);
     }
     if (isset($formattedCollection->briefDisplay)) {
       $this->briefDisplay = $formattedCollection->briefDisplay;
@@ -96,18 +99,30 @@ class TingClientFormattedCollection {
   }
 
   /**
+   * @param \stdClass $workDisplay
+   */
+  public function setWorkOne($workDisplay) {
+    $manifestations = $workDisplay->manifestation;
+
+    if(!is_array($manifestations)){
+      $manifestations = array($manifestations);
+    }
+
+    $workOne = NULL;
+    foreach ($manifestations as $manifestation) {
+      if(!is_null($manifestation) && is_object($manifestation)){
+        $workOne = $manifestation;
+      }
+    }
+
+    $this->workOne = $workOne;
+  }
+
+
+  /**
    * @return \stdClass
    */
-  public function getSingleWorkDisplay() {
-    if (!isset($this->workDisplay)) {
-      return NULL;
-    }
-    else {
-      $manifestation = $this->workDisplay->manifestation;
-      if (is_array($manifestation)) {
-        $manifestation = reset($manifestation);
-      }
-      return $manifestation;
-    }
+  public function getWorkOne() {
+    return isset($this->workOne) ? $this->workOne : NULL;
   }
 }
