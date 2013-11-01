@@ -320,26 +320,35 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     return $searchResult;
   }
 
+  /**
+   * @param $collectionData
+   * @param $namespaces
+   * @param null $formattedCollection
+   * @return TingClientObjectCollection
+   */
   private function generateCollection($collectionData, $namespaces, $formattedCollection = NULL) {
+    //TODO mmj this method needs testing
     $objects = array();
     if (isset($collectionData->object) && is_array($collectionData->object)) {
       foreach ($collectionData->object as $objectData) {
-        $objects[] = $this->generateObject($objectData, $namespaces, $formattedCollection);
+        $objects[] = $this->generateObject($objectData, $namespaces);
       }
     }
 
     $ret = new TingClientObjectCollection($objects);
 
     if (isset($formattedCollection)) {
-      $ret->formattedCollection = new TingClientFormattedCollection($formattedCollection);
+      $ret->setFormattedCollection(new TingClientFormattedCollection($formattedCollection));
     }
+
     return $ret;
   }
 
+  /* //TODO mmj seems to be unused and should propably be deleted
   private function generateFormattedCollection($formattedCollection, $namespaces) {
     // @TODO parse formattedCollection
     return $formattedCollection;
-  }
+  }*/
 
   private function generateObject($objectData, $namespaces) {
     $object = new TingClientObject();
