@@ -112,6 +112,7 @@ class TingClientFormattedCollection {
     foreach ($manifestations as $manifestation) {
       if(!is_null($manifestation) && is_object($manifestation)){
         $workOne = $manifestation;
+        break;
       }
     }
 
