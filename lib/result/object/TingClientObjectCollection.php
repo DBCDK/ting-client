@@ -2,7 +2,7 @@
 
 class TingClientObjectCollection {
 
-  private $objects;
+  public $objects;
 
   /* @var $formattedCollection TingClientFormattedCollection */
   private $formattedCollection;
@@ -15,7 +15,7 @@ class TingClientObjectCollection {
    * @return array
    */
   public function getObjects() {
-    return $this->objects;
+    return isset($this->objects) ? $this->objects : array();
   }
 
   /**
