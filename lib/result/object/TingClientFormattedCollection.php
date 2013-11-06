@@ -24,16 +24,10 @@ class TingClientFormattedCollection {
   /* @var stdClass $workOne*/
   private $workOne;
 
-  public $methods = array(
-    'work' => 'returns workpart(stdobj) of formattedCollection',
-    'manifestation' => 'returns array of manifestions(stdojb)',
-  );
-
   /**
    * @param stdClass $formattedCollection
    */
   public function __construct($formattedCollection) {
-    #$this->formattedCollection = $formattedCollection; //TODO mmj seems to be unsused - remove!
     if (isset($formattedCollection->workDisplay)) {
       $this->workDisplay = $formattedCollection->workDisplay;
       $this->setWorkOne($formattedCollection->workDisplay);
@@ -42,47 +36,6 @@ class TingClientFormattedCollection {
       $this->briefDisplay = $formattedCollection->briefDisplay;
     }
   }
-
-  //TODO mmj seems to be unsused - remove!
-  /**
-   * @return mixed
-   * @deprecated
-   */
-  /*
-  public function all() {
-    return $this->formattedCollection;
-  }
-  */
-
-  //TODO mmj seems to be unsused - remove!
-  /**
-   * @return bool
-   * @deprecated
-   */
-  /*
-    public function work() {
-    if (isset($this->formattedColletion->work)) {
-      return $this->formattedColletion->work;
-    }
-
-    return FALSE;
-  }
-  */
-
-  //TODO mmj seems to be unsused - remove!
-  /**
-   * @return bool
-   * @deprecated
-   */
-  /*
-  public function manifestations() {
-    if (isset($this->formattedColletion->manifestation)) {
-      return $this->formattedColletion->manifestation;
-    }
-
-    return FALSE;
-  }
-  */
 
   /**
    * @return \stdClass
