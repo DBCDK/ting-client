@@ -7,12 +7,6 @@ class TingClientFormattedCollection {
 
   /**
    * @var stdClass
-   * @deprecated TODO mmj redundant as content is held in $briefDisplay & $workDisplay
-   */
-  private $formattedCollection;
-
-  /**
-   * @var stdClass
    */
   private $briefDisplay;
 
