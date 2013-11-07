@@ -344,12 +344,6 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     return $ret;
   }
 
-  /* //TODO mmj seems to be unused and should propably be deleted
-  private function generateFormattedCollection($formattedCollection, $namespaces) {
-    // @TODO parse formattedCollection
-    return $formattedCollection;
-  }*/
-
   private function generateObject($objectData, $namespaces) {
     $object = new TingClientObject();
     if (!isset($objectData->identifier))
