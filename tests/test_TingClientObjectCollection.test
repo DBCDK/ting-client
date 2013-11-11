@@ -33,8 +33,7 @@ class TestTingClientObjectCollection extends DrupalUnitTestCase {
     $this->assertNull($objectCollection->getFormattedCollection(), 'getFormattedCollection returns NULL as expected');
 
     $objectCollection = new TingClientObjectCollection(NULL);
-
-    $this->assertNull($objectCollection->getObjects(), 'Objects is array');
+    $this->assertTrue(is_array($objectCollection->getObjects()), 'Objects is array');
   }
 
   public function testFullViewFormattedCollection() {
