@@ -1,7 +1,7 @@
 <?php
 /**
  * Author: Martin Møller
- */ 
+ */
 class TestTingClientSearchRequest extends DrupalUnitTestCase {
 
   private $fullViewResponse;
@@ -30,7 +30,7 @@ class TestTingClientSearchRequest extends DrupalUnitTestCase {
       'group' => 'Ting Client',
     );
   }
-  
+
   public function setUp() {
     $this->path = drupal_get_path('module', 'ting_client');
     $this->_loadRequired();
@@ -43,7 +43,7 @@ class TestTingClientSearchRequest extends DrupalUnitTestCase {
     parent::setUp();
   }
 
-  public function testProcessResponseShort(){
+  public function testProcessResponseShort() {
     $TingClientSearchRequest = new TingClientSearchRequest('');
     $result = $TingClientSearchRequest->processResponse($this->shortViewResponse);
 
@@ -84,7 +84,7 @@ class TestTingClientSearchRequest extends DrupalUnitTestCase {
     $this->assertNull($formattedCollection->getWorkOne(), 'workDisplay is NULL');
   }
 
-  public function testProcessResponseFull(){
+  public function testProcessResponseFull() {
     $TingClientSearchRequest = new TingClientSearchRequest('');
     $result = $TingClientSearchRequest->processResponse($this->fullViewResponse);
 
@@ -127,9 +127,9 @@ class TestTingClientSearchRequest extends DrupalUnitTestCase {
     $this->assertNotNull($formattedCollection->getWorkOne(), 'workDisplay is NULL');
   }
 
-  private function _loadRequired(){
+  private function _loadRequired() {
     $path = $this->path;
-    foreach($this->required as $filename) {
+    foreach ($this->required as $filename) {
       $file = $path . $filename;
       require_once($file);
     }
