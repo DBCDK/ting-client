@@ -327,7 +327,6 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
    * @return TingClientObjectCollection
    */
   private function generateCollection($collectionData, $namespaces, $formattedCollection = NULL) {
-    //TODO mmj this method needs testing
     $objects = array();
     if (isset($collectionData->object) && is_array($collectionData->object)) {
       foreach ($collectionData->object as $objectData) {
