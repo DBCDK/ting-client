@@ -7,9 +7,6 @@ class TestTingClientSearchRequest extends DrupalUnitTestCase {
   private $fullViewResponse;
   private $shortViewResponse;
 
-  private $fullViewResult;
-  private $shortViewResult;
-
   private $path;
 
   private $required = array(
@@ -37,9 +34,6 @@ class TestTingClientSearchRequest extends DrupalUnitTestCase {
 
     $this->fullViewResponse = json_decode(file_get_contents($this->path . '/tests/mockups/processResponse_response_dump_full_view_search.json'));
     $this->shortViewResponse = json_decode(file_get_contents($this->path . '/tests/mockups/processResponse_response_dump_short_view_search.json'));
-
-    $this->fullViewResult = json_decode(file_get_contents($this->path . '/tests/mockups/processResponse_result_full_view.json'));
-    $this->shortViewResult = json_decode(file_get_contents($this->path . '/tests/mockups/processResponse_result_short_view.json'));
     parent::setUp();
   }
 
