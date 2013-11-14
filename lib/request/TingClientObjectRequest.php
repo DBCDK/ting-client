@@ -15,12 +15,12 @@ class TingClientObjectRequest extends TingClientRequest implements ITingClientRe
   protected $outputType;
   protected $objectFormat;
   protected $includeHoldingsCount;
-  
+
    /** Implementation of ITingClientRequestCache **/
   public function cacheKey() {
     return md5($this->generateCacheKey());
   }
-  
+
   private function generateCacheKey() {
     $ret = '';
     if( is_array($this->getObjectId()) ) {
@@ -49,7 +49,7 @@ class TingClientObjectRequest extends TingClientRequest implements ITingClientRe
   public function getCollectionType() {
     return $this->collectionType;
   }
-  
+
   public function setObjectFormat($objectFormat) {
     $this->objectFormat = $objectFormat;
   }
@@ -152,6 +152,7 @@ class TingClientObjectRequest extends TingClientRequest implements ITingClientRe
       'outputType' => 'outputType',
       'objectFormat' => 'objectFormat',
       'trackingId' => 'trackingId',
+      'includeHoldingsCount' => 'includeHoldingsCount',
     );
 
     foreach ($methodParameterMap as $method => $parameter) {
@@ -174,7 +175,7 @@ class TingClientObjectRequest extends TingClientRequest implements ITingClientRe
     // response from Ting.
     $searchRequest = new TingClientSearchRequest(NULL);
     return $searchRequest->processResponse($response);
-    
+
     /*
 //pjo 17082012 hack ... @TODO make this in a more clever way
 if( isset($response->collections[0]->formattedCollection) ) {
