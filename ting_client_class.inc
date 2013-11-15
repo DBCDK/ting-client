@@ -389,7 +389,7 @@ class ting_client_class {
 
   private function _handleRequestExceptions($e, $url) {
     // set message if ting-client throws an exeception
-    $message = 'The service you are trying to use '.($url).' is currently unavailable' . $e->getMessage();
+    $message = t('something_went_wrong');
     $status = 'error';
     $watchdog['type'] = 'ting_client';
     $watchdog['message'] = 'Error performing request: ' . $e->getMessage();
