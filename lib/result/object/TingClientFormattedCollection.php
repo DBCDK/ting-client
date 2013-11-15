@@ -1,37 +1,76 @@
 <?php
 
+/**
+ * Class TingClientFormattedCollection
+ */
 class TingClientFormattedCollection {
 
-  public $formattedCollection;
-  public $methods =
-      array('work' => 'returns workpart(stdobj) of formattedCollection',
-    'manifestation' => 'returns array of manifestions(stdojb)',);
+  /**
+   * @var stdClass
+   */
+  private $briefDisplay;
 
+  /**
+   * @var stdClass
+   */
+  private $workDisplay;
+
+  /* @var stdClass $workOne*/
+  private $workOne;
+
+  /**
+   * @param stdClass $formattedCollection
+   */
   public function __construct($formattedCollection) {
     if (isset($formattedCollection->workDisplay)) {
-      $this->formattedCollection = $formattedCollection->workDisplay;
-    } elseif(isset($formattedCollection->briefDisplay)){
-      $this->formattedCollection = $formattedCollection->briefDisplay;
+      $this->workDisplay = $formattedCollection->workDisplay;
+      $this->setWorkOne($formattedCollection->workDisplay);
+    }
+    if (isset($formattedCollection->briefDisplay)) {
+      $this->briefDisplay = $formattedCollection->briefDisplay;
     }
   }
 
-  public function all() {
-    return $this->formattedCollection;
+  /**
+   * @return \stdClass
+   */
+  public function getBriefDisplay() {
+    return isset($this->briefDisplay) ? $this->briefDisplay : NULL;
   }
 
-  public function work() {
-    if (isset($this->formattedColletion->work)) {
-      return $this->formattedColletion->work;
-    }
-    return FALSE;
+  /**
+   * @return \stdClass
+   */
+  public function getWorkDisplay() {
+    return isset($this->workDisplay) ? $this->workDisplay : NULL;
   }
 
-  public function manifestations() {
-    if (isset($this->formattedColletion->manifestation)) {
-      return $this->formattedColletion->manifestation;
+  /**
+   * @param \stdClass $workDisplay
+   */
+  public function setWorkOne($workDisplay) {
+    $manifestations = $workDisplay->manifestation;
+
+    if(!is_array($manifestations)){
+      $manifestations = array($manifestations);
     }
-    return FALSE;
+
+    $workOne = NULL;
+    foreach ($manifestations as $manifestation) {
+      if(!is_null($manifestation) && is_object($manifestation)){
+        $workOne = $manifestation;
+        break;
+      }
+    }
+
+    $this->workOne = $workOne;
+  }
+
+
+  /**
+   * @return \stdClass
+   */
+  public function getWorkOne() {
+    return isset($this->workOne) ? $this->workOne : NULL;
   }
 }
-
-?>

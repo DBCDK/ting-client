@@ -1,19 +1,20 @@
 <?php
 
-class TingClientUnitTestCase extends DrupalUnitTestCase {
+class TingClientWebTestCase extends DrupalWebTestCase {
+
   public static function getInfo() {
     return array(
-      'name' => 'TING client unit test',
+      'name' => 'TING client web test',
       'description' => 'Test Ting client functions.',
-      'group' => 'Ding! - Ting Client',
+      'group' => 'Ting Client',
     );
   }
 
-  public function setUp() { 
+  public function setUp() {
     module_load_include('php', 'ting_client', 'lib/request/TingClientRequest');
     parent::setUp();
   }
-  
+
   // test parseForFaultString method (TingClientRequest.php)
   public function testparseForFaultString() {
     // fault string in response
@@ -21,20 +22,20 @@ class TingClientUnitTestCase extends DrupalUnitTestCase {
     $expected = 'Error in request validation';
     $result = TingClientRequest::parseForFaultString($data);
     $pos = strpos($result, $expected);
-    $this->assertTrue($pos === 0); 
-    
+    $this->assertTrue($pos === 0);
+
     // empty fault string
     $data = $this->empty_fault_string();
     $result = TingClientRequest::parseForFaultString($data);
     $this->assertNull($result);
-    
+
     //invalid xml
     $data = $this->invalid_xml();
     $result = TingClientRequest::parseForFaultString($data);
-    $this->assertNull($result);    
+    $this->assertNull($result);
   }
-  
-  private function faultstring_in_response(){
+
+  private function faultstring_in_response() {
     $ret = '<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
     <SOAP-ENV:Body>
     <SOAP-ENV:Fault>
@@ -44,10 +45,11 @@ class TingClientUnitTestCase extends DrupalUnitTestCase {
     </SOAP-ENV:Fault>
     </SOAP-ENV:Body>
     </SOAP-ENV:Envelope>';
+
     return $ret;
   }
-  
-  private function empty_fault_string(){
+
+  private function empty_fault_string() {
     $ret = '<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
     <SOAP-ENV:Body>
     <SOAP-ENV:Fault>
@@ -55,15 +57,13 @@ class TingClientUnitTestCase extends DrupalUnitTestCase {
     </SOAP-ENV:Fault>
     </SOAP-ENV:Body>
     </SOAP-ENV:Envelope>';
+
     return $ret;
   }
-  
-  private function invalid_xml(){
+
+  private function invalid_xml() {
     $ret = 'TESTHESTXML';
+
     return $ret;
-  } 
+  }
 }
-
-
-
-?>

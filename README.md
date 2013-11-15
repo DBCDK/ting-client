@@ -43,3 +43,15 @@ of service on April 27 2012 and is not available any longer.
 *Footnotes:*
 
 <a name="star_mark"> * </a>The library is no longer a library but a module due to the use of Drupal's test framework.
+
+Mockups
+-------
+Mockups are static dumps of objects found in the tests/mockups folder. Primarialy used as objects in unittests.
+
+### processResponse_response_dump_full_view_search:
+JSON encoded dump of the response object dumped from the first line in the processResponse method in the TingClientObjectCollection object.
+Based on a full_view search.
+
+### processResponse_response_dump_short_view_search:
+JSON encoded dump of the response object dumped from the first line in the processResponse method in the TingClientObjectCollection object.
+Based on a short_view search.
