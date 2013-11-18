@@ -10,14 +10,14 @@ class TestTingClientSearchRequest extends DrupalUnitTestCase {
   private $path;
 
   private $required = array(
-    '/lib/result/object/TingClientObjectCollection.php',
-    '/lib/result/object/TingClientFormattedCollection.php',
+    '/lib/request/TingClientRequest.php',
     '/lib/request/TingClientSearchRequest.php',
     '/lib/result/search/TingClientSearchResult.php',
-    '/lib/exception/TingClientException.php',
-    '/lib/request/TingClientRequest.php',
     '/lib/result/search/TingClientFacetResult.php',
     '/lib/result/object/TingClientObject.php',
+    '/lib/result/object/TingClientObjectCollection.php',
+    '/lib/result/object/TingClientFormattedCollection.php',
+    '/lib/exception/TingClientException.php',
   );
 
   public static function getInfo() {
