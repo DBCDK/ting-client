@@ -389,7 +389,7 @@ class ting_client_class {
 
   private function _handleRequestExceptions($e, $url) {
     // set message if ting-client throws an exeception
-    $message = t('something_went_wrong');
+    $message = t('something_went_wrong', array(), array('context' => 'ting_client'));
     $status = 'error';
     $watchdog['type'] = 'ting_client';
     $watchdog['message'] = 'Error performing request: ' . $e->getMessage();
