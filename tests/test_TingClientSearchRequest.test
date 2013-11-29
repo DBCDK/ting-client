@@ -1,0 +1,131 @@
+<?php
+/**
+ * Author: Martin Møller
+ */
+class TestTingClientSearchRequest extends DrupalUnitTestCase {
+
+  private $fullViewResponse;
+  private $shortViewResponse;
+
+  private $path;
+
+  private $required = array(
+    '/lib/request/TingClientRequest.php',
+    '/lib/request/TingClientSearchRequest.php',
+    '/lib/result/search/TingClientSearchResult.php',
+    '/lib/result/search/TingClientFacetResult.php',
+    '/lib/result/object/TingClientObject.php',
+    '/lib/result/object/TingClientObjectCollection.php',
+    '/lib/result/object/TingClientFormattedCollection.php',
+    '/lib/exception/TingClientException.php',
+  );
+
+  public static function getInfo() {
+    return array(
+      'name' => 'TestTingClientSearchRequest ',
+      'description' => 'Tests the TingClientSearchRequest object',
+      'group' => 'Ting Client',
+    );
+  }
+
+  public function setUp() {
+    $this->path = drupal_get_path('module', 'ting_client');
+    $this->_loadRequired();
+
+    $this->fullViewResponse = json_decode(file_get_contents($this->path . '/tests/mockups/processResponse_response_dump_full_view_search.json'));
+    $this->shortViewResponse = json_decode(file_get_contents($this->path . '/tests/mockups/processResponse_response_dump_short_view_search.json'));
+    parent::setUp();
+  }
+
+  public function testProcessResponseShort() {
+    $TingClientSearchRequest = new TingClientSearchRequest('');
+    $result = $TingClientSearchRequest->processResponse($this->shortViewResponse);
+
+    $this->assertTrue(is_a($result, 'TingClientSearchResult'), 'Got TingClientSearchResult in return');
+
+    $this->assertEqual(5127, $result->numTotalObjects, 'numTotalObjects is as expected');
+    $this->assertEqual(10, $result->numTotalCollections, 'numTotalCollections is as expected');
+
+    $this->assertTrue(is_array($result->collections), 'Field collections is array');
+    $this->assertEqual(10, count($result->collections), 'Counted 10 collections');
+
+    $this->assertTrue(is_array($result->facets), 'Field facets is array');
+    $this->assertEqual(0, count($result->facets), 'Counted 0 facets');
+
+    $this->assertTrue(isset($result->collections), 'Found collections');
+
+    $this->assertTrue($result->more, 'Found \'more\' being true');
+
+    /* @var $collection TingClientObjectCollection */
+    $collection = $result->collections[0];
+    $this->assertTrue(is_a($collection, 'TingClientObjectCollection'), 'Found TingClientObjectCollection');
+
+    $objects = $collection->getObjects();
+    $this->assertTrue(is_array($objects), 'objects is array');
+
+    $object = $objects[0];
+    $this->assertTrue(is_a($object, 'TingClientObject'), 'Found TingClientObject');
+    $this->assertEqual($object->id, '125610-katalog:90226185', 'Found id: 125610-katalog:90226185');
+
+    /* @var $formattedCollection TingClientFormattedCollection */
+    $formattedCollection = $collection->getFormattedCollection();
+    $this->assertTrue(is_a($formattedCollection, 'TingClientFormattedCollection'), 'Found TingClientFormattedCollection');
+
+    $this->assertNotNull($formattedCollection->getBriefDisplay(), 'Got briefDisplay');
+    $this->assertTrue(is_a($formattedCollection->getBriefDisplay(), 'stdClass'), 'briefDisplay is of type stdClass');
+
+    $this->assertNull($formattedCollection->getWorkDisplay(), 'workDisplay is NULL');
+    $this->assertNull($formattedCollection->getWorkOne(), 'workDisplay is NULL');
+  }
+
+  public function testProcessResponseFull() {
+    $TingClientSearchRequest = new TingClientSearchRequest('');
+    $result = $TingClientSearchRequest->processResponse($this->fullViewResponse);
+
+    $this->assertTrue(is_a($result, 'TingClientSearchResult'), 'Got TingClientSearchResult in return');
+
+    $this->assertEqual(5127, $result->numTotalObjects, 'numTotalObjects is as expected');
+    $this->assertEqual(10, $result->numTotalCollections, 'numTotalCollections is as expected');
+
+    $this->assertTrue(is_array($result->collections), 'Field collections is array');
+    $this->assertEqual(10, count($result->collections), 'Counted 10 collections');
+
+    $this->assertTrue(is_array($result->facets), 'Field facets is array');
+    $this->assertEqual(0, count($result->facets), 'Counted 0 facets');
+
+    $this->assertTrue(isset($result->collections), 'Found collections');
+
+    $this->assertTrue($result->more, 'Found \'more\' being true');
+
+    /* @var $collection TingClientObjectCollection */
+    $collection = $result->collections[0];
+    $this->assertTrue(is_a($collection, 'TingClientObjectCollection'), 'Found TingClientObjectCollection');
+
+    $objects = $collection->getObjects();
+    $this->assertTrue(is_array($objects), 'objects is array');
+
+    $object = $objects[0];
+    $this->assertTrue(is_a($object, 'TingClientObject'), 'Found TingClientObject');
+    $this->assertEqual($object->id, '125610-katalog:90226185', 'Found id: 125610-katalog:90226185');
+
+    $this->assertTrue(is_a($collection->getFormattedCollection(), 'TingClientFormattedCollection'), 'Found TingClientFormattedCollection');
+
+    /* @var $formattedCollection TingClientFormattedCollection */
+    $formattedCollection = $collection->getFormattedCollection();
+    $this->assertTrue(is_a($formattedCollection, 'TingClientFormattedCollection'), 'Found TingClientFormattedCollection');
+
+    $this->assertNotNull($formattedCollection->getBriefDisplay(), 'Got briefDisplay');
+    $this->assertTrue(is_a($formattedCollection->getBriefDisplay(), 'stdClass'), 'briefDisplay is of type stdClass');
+
+    $this->assertNotNull($formattedCollection->getWorkDisplay(), 'workDisplay is NULL');
+    $this->assertNotNull($formattedCollection->getWorkOne(), 'workDisplay is NULL');
+  }
+
+  private function _loadRequired() {
+    $path = $this->path;
+    foreach ($this->required as $filename) {
+      $file = $path . $filename;
+      require_once($file);
+    }
+  }
+}

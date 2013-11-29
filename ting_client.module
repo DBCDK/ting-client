@@ -125,12 +125,13 @@ function ting_client_set_message($message = '', $type = 'status', $repeat = NULL
   if (!empty($message)) {
     drupal_set_message($message, $type, $repeat);
   }
-  if ($type == 'error') {
-    watchdog('ting_client', $message, array(), WATCHDOG_ERROR, NULL);
-  }
   if (!empty($watchdog)) {
     watchdog($watchdog['type'], $watchdog['message'], array(), WATCHDOG_ERROR, $watchdog['link']);
   }
+  else if ($type == 'error') {
+    watchdog('ting_client', $message, array(), WATCHDOG_ERROR, NULL);
+  }
+
 }
 
 /**
