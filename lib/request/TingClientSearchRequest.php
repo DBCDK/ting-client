@@ -37,6 +37,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
   var $userDefinedBoost;
   var $userDefinedRanking;
   protected $objectFormat;
+  protected $outputType;
   
 
   /** \brief this method is called from adapter to set parameters for a webservice call (see lib/adapter/TingClientRequestAdapter.php)
@@ -103,6 +104,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
       'profile' => 'profile',
       'objectFormat' => 'objectFormat',
       'trackingId' => 'trackingId',
+      'outputType'=>'outputType',
     );
 
     return $methodParameterMap;
@@ -154,6 +156,14 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
   public function cacheTimeout($value = NULL) {
     $class_name = get_class($this);
     return variable_get($class_name . TingClientRequest::cache_lifetime, '1');
+  }
+  
+  public function setOutputType($value){
+    $this->outputType = $value;
+  }
+  
+  public function getOutputType(){
+    return $this->outputType;
   }
 
   /** end ITingClientRequestCache * */
