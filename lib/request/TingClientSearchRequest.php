@@ -129,6 +129,9 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
    */
   private function make_cache_key($params, &$ret) {
     foreach ($params as $key => $value) {
+      if($key == 'trackingId'){
+        continue;
+      }
       if (is_array($value)) {
         // recursive
         $ret .= $key;
