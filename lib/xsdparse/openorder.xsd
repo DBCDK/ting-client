@@ -511,10 +511,14 @@
 			<xs:documentation xml:lang="en">Time for the status</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="lookUpUrl" type="xs:string">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">URL for item in local opac (if item can only be ordered from opac)</xs:documentation>
-		</xs:annotation>
+	<xs:element name="lookUpUrl">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute ref="oo:agencyId"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
 	</xs:element>
 	<xs:element name="mediumType" type="oo:mediumTypeType">
 		<xs:annotation>
@@ -806,6 +810,7 @@
 			<xs:documentation xml:lang="en">Volume-number in article-requests. If volume and issue are received combined, 'Issue' is preferred.</xs:documentation>
 		</xs:annotation>
 	</xs:element>
+    <xs:attribute name="agencyId" type="xs:string"/>
 	<xs:attribute name="language" type="oo:languageType"/>
 	<xs:simpleType name="articleDirectType">
 		<xs:restriction base="xs:string">
@@ -843,6 +848,7 @@
 			<xs:enumeration value="service_unavailable"/>
 			<xs:enumeration value="service_error"/>
 			<xs:enumeration value="no_task_found"/>
+			<xs:enumeration value="needBeforeDate must be tomorrow or later"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="fullTextLinkTypeType">
@@ -923,6 +929,7 @@
 			<xs:enumeration value="not_owned_wrong_ILL_mediumType"/>
 			<xs:enumeration value="not_owned_no_ILL_loc"/>
 			<xs:enumeration value="owned_own_catalogue"/>
+			<xs:enumeration value="not_owned_accepted_by_consortia"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="placeOrderErrorType">
@@ -938,6 +945,7 @@
 			<xs:enumeration value="ORS_error"/>
 			<xs:enumeration value="no_serviceRequester"/>
 			<xs:enumeration value="authentication_error"/>
+			<xs:enumeration value="not_owned_accepted_by_consortia"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="providerAnswerType">
