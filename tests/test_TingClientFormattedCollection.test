@@ -59,4 +59,94 @@ class TestTingClientFormattedCollection extends DrupalUnitTestCase {
 
     $this->assertNull($formattedCollection->getWorkOne(), 'workOne is NULL as expected');
   }
+
+  public function testAddRelationsToElement() {
+    // Relations are added if they exist
+    $element = new stdClass();
+    $tingClientObject = new stdClass();
+    $tingClientObject->relationsData = 'relationData';
+    $tingClientFormattedCollection = new TingClientFormattedCollectionTestClass();
+
+    $result = $tingClientFormattedCollection->addRelationsToElementTest($element, array($tingClientObject));
+
+    $expected_relations = 'relationData';
+    $this->assertEqual($result->relationsData, $expected_relations, 'Relations are set');
+
+    // No Relations are added if they do not exist
+    $element = new stdClass();
+    $tingClientObjectNoRelationData = new stdClass();
+    $tingClientFormattedCollection = new TingClientFormattedCollectionTestClass();
+
+    $result = $tingClientFormattedCollection->addRelationsToElementTest($element, array($tingClientObjectNoRelationData));
+
+    $this->assertFalse(isset($result->relationsData), 'Relations are not set');
+  }
+
+  public function testsetWorkOne() {
+
+    // Test work one not set
+    $tingClientFormattedCollection = new TingClientFormattedCollectionTestClass();
+    $workdisplay = new stdClass();
+    $tingClientFormattedCollection->setWorkOneTest($workdisplay);
+
+    $this->assertFalse($tingClientFormattedCollection->getWorkOne(), 'Work one not set');
+
+    // Test work one with single manifestation
+    $tingClientFormattedCollection = new TingClientFormattedCollectionTestClass();
+    $workdisplay->manifestation = new stdClass();
+    $tingClientFormattedCollection->setWorkOneTest($workdisplay);
+
+    $this->assertEqual($tingClientFormattedCollection->getWorkOne(), $workdisplay->manifestation, 'Work one is set');
+
+    // Test work one where manifestation is null
+    $tingClientFormattedCollection = new TingClientFormattedCollectionTestClass();
+    $workdisplay->manifestation = null;
+    $tingClientFormattedCollection->setWorkOneTest($workdisplay);
+
+    $this->assertEqual($tingClientFormattedCollection->getWorkOne(), $workdisplay->manifestation, 'Manifestation is null and Work one not set');
+
+    // Test work one with array of manifestations
+    $tingClientFormattedCollection = new TingClientFormattedCollectionTestClass();
+    $workdisplay->manifestation = array(new stdClass());
+    $tingClientFormattedCollection->setWorkOneTest($workdisplay);
+
+    $expected_result = new stdClass();
+
+    $this->assertEqual($tingClientFormattedCollection->getWorkOne(), $expected_result, 'Manifestation is null and Work one not set');
+
+    // Test work one with relationData
+    $tingClientObject = new stdClass();
+    $tingClientObject->relationsData = 'relationData';
+
+    $tingClientFormattedCollection = new TingClientFormattedCollectionTestClass();
+    $tingClientFormattedCollection->setObjectCollection(array($tingClientObject));
+    $workdisplay->manifestation = array(new stdClass());
+    $tingClientFormattedCollection->setWorkOneTest($workdisplay);
+
+    $this->assertEqual($tingClientFormattedCollection->getWorkOne()->relationsData, 'relationData', 'Manifestation is null and Work one not set');
+
+  }
+
+}
+
+
+class TingClientFormattedCollectionTestClass extends TingClientFormattedCollection {
+
+  public function __construct(){
+
+  }
+
+  public function setObjectCollection($objectCollection) {
+    $this->objectCollection = $objectCollection;
+  }
+
+  public function setWorkOneTest($workDisplay) {
+    $this->setWorkOne($workDisplay);
+  }
+
+
+  public function addRelationsToElementTest($element, $collection){
+    return $this->addRelationsToElement($element, $collection);
+  }
+
 }
