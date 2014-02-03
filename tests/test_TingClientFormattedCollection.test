@@ -20,7 +20,8 @@ class TestTingClientFormattedCollection extends DrupalUnitTestCase {
 
   public function setUp() {
     $path = drupal_get_path('module', 'ting_client');
-    require_once($path . '/lib/result/object/TingClientFormattedCollection.php');
+    module_load_include('php', 'ting_client', '/lib/result/object/TingClientFormattedCollection');
+    module_load_include('inc', 'ting_client', '/tests/mockups/TingClientFormattedCollectionTestClass');
 
     $this->fullViewResponse = json_decode(file_get_contents($path . '/tests/mockups/processResponse_response_dump_full_view_search.json'));
     $this->shortViewResponse = json_decode(file_get_contents($path . '/tests/mockups/processResponse_response_dump_short_view_search.json'));
@@ -125,28 +126,6 @@ class TestTingClientFormattedCollection extends DrupalUnitTestCase {
 
     $this->assertEqual($tingClientFormattedCollection->getWorkOne()->relationsData, 'relationData', 'Manifestation is null and Work one not set');
 
-  }
-
-}
-
-
-class TingClientFormattedCollectionTestClass extends TingClientFormattedCollection {
-
-  public function __construct(){
-
-  }
-
-  public function setObjectCollection($objectCollection) {
-    $this->objectCollection = $objectCollection;
-  }
-
-  public function setWorkOneTest($workDisplay) {
-    $this->setWorkOne($workDisplay);
-  }
-
-
-  public function addRelationsToElementTest($element, $collection){
-    return $this->addRelationsToElement($element, $collection);
   }
 
 }

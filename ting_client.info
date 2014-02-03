@@ -56,5 +56,6 @@ files[] = tests/ting_client_web.test
 files[] = tests/test_TingClientFormattedCollection.test
 files[] = tests/test_TingClientObjectCollection.test
 files[] = tests/test_TingClientSearchRequest.test
+files[] = tests/mockups/TingClientFormattedCollectionTestClass.inc
 
 
