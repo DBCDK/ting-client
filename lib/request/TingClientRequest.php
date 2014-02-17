@@ -29,11 +29,42 @@ abstract class TingClientRequest {
   abstract public function processResponse(stdClass $response);
 
   abstract protected function getRequest();
-
+  
   // default implementation of ITingClientRequestCache::cacheBin
   // extending request can implement this method if it wishes it's own bin
   public function cacheBin() {
     return 'cache_bibdk_webservices';
+  }
+  
+  
+  /** default Implementation of ITingClientRequestCache::cacheKey 
+   *
+   * @return string
+   **/
+  public function cacheKey() {
+    $params = $this->getParameters();
+    $ret = '';
+    $this->make_cache_key($params, $ret);
+
+    return md5($ret);
+  }
+
+  /** \brief make a cachekey based on request parameters
+   *
+   * @param array $params
+   * @param string $ret
+   **/
+  private function make_cache_key($params, &$ret) {
+    foreach ($params as $key => $value) {
+      if (is_array($value)) {
+        // recursive
+        $ret .= $key;
+        $this->make_cache_key($value, $ret);
+      }
+      else {
+        $ret .= $value;
+      }
+    }
   }
 
   public function __construct($wsdlUrl, $serviceName = NULL) {

@@ -350,7 +350,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     $ret = new TingClientObjectCollection($objects);
 
     if (isset($formattedCollection)) {
-      $ret->setFormattedCollection(new TingClientFormattedCollection($formattedCollection));
+      $ret->setFormattedCollection(new TingClientFormattedCollection($formattedCollection, $objects));
     }
 
     return $ret;
