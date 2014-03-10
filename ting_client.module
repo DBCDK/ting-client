@@ -148,7 +148,7 @@ function ting_client_webservice_check($check_data) {
       ) {
 
       $webservice_check[$name]['url'] = variable_get($settings['url']);
-      if ( isset($settings['xsd_url']) ) {
+      if ( !empty($settings['xsd_url']) ) {
         // update XSD if webservice has changed URL.
         $xsd_url = variable_get($settings['xsd_url']);
 
