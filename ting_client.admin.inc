@@ -211,20 +211,8 @@ function ting_client_admin_webservices_settings($form_state) {
 
 function ting_client_admin_webservices_settings_submit($form, &$form_state) {
 
-  // Exclude unnecessary elements.
-  form_state_values_clean($form_state);
-
-  foreach ($form_state['values'] as $key => $value) {
-    if (is_array($value) && isset($form_state['values']['array_filter'])) {
-      $value = array_keys(array_filter($value));
-    }
-    variable_set($key, $value);
-  }
-
   // force a check for altered XSDs
   $client = new ting_client_class();
   $client->getXSDurls();
-
-  drupal_set_message(t('The configuration options have been saved.'));
 
 }

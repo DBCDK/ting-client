@@ -23,6 +23,7 @@ function ting_client_validate_xsd($classname, $action) {
     }
   }
   if ( !$xsd_url ) {
+    throw new Exception( 'ting-client: Webservice XSD is not defined for ' . $classname);
     return array();
   }
   $parts = parse_url(variable_get($xsd_url));
