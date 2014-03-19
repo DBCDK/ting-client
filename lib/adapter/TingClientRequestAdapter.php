@@ -24,6 +24,7 @@ class TingClientRequestAdapter {
 
     //Prepare the parameters for the SOAP request
     $soapParameters = $request->getParameters();
+
     // Separate the action from other parameters
     $soapAction = $soapParameters['action'];
     unset($soapParameters['action']);

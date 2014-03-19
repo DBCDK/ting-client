@@ -88,6 +88,25 @@ class ting_client_class {
     return $result;
   }
 
+
+  /**
+   * @return array.
+   * List of variable names for XSD URLs. Fex. array('holdingstatus'=>'open_holdingstatus_xsd_url')
+   */
+  public function getXSDurls() {
+    return $this->request_factory()->getXSDurls();
+  }
+
+
+  /**
+   * @return array.
+   * List of variable webservices
+   */
+  public function getUrls() {
+    return $this->request_factory()->getUrls();
+  }
+
+
   public function do_forsrights($params) {
 
     $request = $this->request_factory()->getNamedRequest('forsrights', 'bibdk_forsrights');
@@ -143,6 +162,7 @@ class ting_client_class {
   /**
    * execute a localisationRequest
    * */
+/* // jgn: unused?
   public function do_holdingstatus($params) {
     // for test purposes
     if ($simpletest_prefix = drupal_valid_test_ua()) {
@@ -158,6 +178,7 @@ class ting_client_class {
 
     return $this->execute($request);
   }
+*/
 
   /**
    * getObjectRequest to retreive a single work
