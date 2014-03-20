@@ -197,14 +197,9 @@ function ting_client_admin_webservices_settings($form_state) {
     '#value' => t('Save configuration'),
   );
 
-  if (!empty($_POST) && form_get_errors()) {
-    drupal_set_message(t('The settings have not been saved because of the errors.'), 'error');
-  }
   $form['#submit'][] = 'ting_client_admin_webservices_settings_submit';
 
-  $form['#theme'] = 'system_settings_form';
-
-  return $form;
+  return system_settings_form($form);
 
 }
 
