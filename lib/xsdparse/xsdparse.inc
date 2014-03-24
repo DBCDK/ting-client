@@ -33,10 +33,18 @@ class xml_schema {
 
   public function get_from_file($filename) {
     $dom = new DOMDocument();
-    if (! @$dom->load($filename))
-      die("could not open file: ".$filename."\n" );
+    if ( !@$dom->load($filename) ) {
+      // try to download XSDs from URLs
+      $client = new ting_client_class();
+      $XSDurls = $client->getXSDurls();
+      // try to read file again
+      if ( !@$dom->load($filename) ) {
+        throw new Exception('ting-client: could not open file: ' . $filename);
+      }
+    }
     $this->xpath = new DOMXPath($dom);
   }
+
   public function get_from_url($filename) {
     $dom = new DOMDocument();
     if (! @$dom->load($filename))

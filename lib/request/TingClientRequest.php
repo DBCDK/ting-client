@@ -19,7 +19,7 @@ abstract class TingClientRequest {
 
   // for tracing the request
   private $trackingId;
-  
+
   /* attributes to be used by extending classes */
   protected $cacheKey;
   private $nameSpace;
@@ -28,16 +28,29 @@ abstract class TingClientRequest {
 
   abstract public function processResponse(stdClass $response);
 
-  abstract protected function getRequest();
-  
+  // abstract protected function getRequest();
+  public function getRequest() {
+
+    $params = ting_client_validate_xsd($this->getClassname(), $this->getAction());
+
+    foreach ($params as $parameter) {
+      $getter = 'get' . ucfirst($parameter);
+      if ($value = $this->$getter()) {
+        $this->setParameter($parameter, $value);
+      }
+    }
+
+    return $this;
+  }
+
   // default implementation of ITingClientRequestCache::cacheBin
   // extending request can implement this method if it wishes it's own bin
   public function cacheBin() {
     return 'cache_bibdk_webservices';
   }
-  
-  
-  /** default Implementation of ITingClientRequestCache::cacheKey 
+
+
+  /** default Implementation of ITingClientRequestCache::cacheKey
    *
    * @return string
    **/
@@ -70,11 +83,15 @@ abstract class TingClientRequest {
   public function __construct($wsdlUrl, $serviceName = NULL) {
     $this->wsdlUrl = $wsdlUrl;
   }
-  
+
+  public function getClassname() {
+    return get_class($this);
+  }
+
   public function setTrackingId($value){
     $this->trackingId = $value;
   }
-  
+
   public function getTrackingId() {
     return $this->trackingId;
   }
@@ -111,10 +128,10 @@ abstract class TingClientRequest {
     $this->parameters = $array;
   }
 
-  /** @TODO refactor. these two methods does not belong here 
+  /** @TODO refactor. these two methods does not belong here
    *  move to extending classes. refactor away the 'methodParameterMap'-method
-   * in extending classes .. all they do is map 
-   * numresults to something else  
+   * in extending classes .. all they do is map
+   * numresults to something else
    * */
   public function getNumResults() {
     return $this->numResults;
@@ -158,8 +175,8 @@ abstract class TingClientRequest {
 
   /** \brief response from webservice is ALWAYS xml if validation fails
    * elemants <faultCode> and <faultString> will be present in that case
-   * @param string $xml 
-   * @return mixed $faultstring if valid xml is given, NULL if not 
+   * @param string $xml
+   * @return mixed $faultstring if valid xml is given, NULL if not
    */
   public static function parseForFaultString($xml) {
     $dom = new DOMDocument();

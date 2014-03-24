@@ -57,6 +57,7 @@ function ting_client_cache_admin_form($form_state) {
   return $form;
 }
 
+
 /**
  * submit handler for search_client_admin_form
  **/
@@ -75,7 +76,7 @@ $cache_classes =  $client->get_all_cache_classes();
     }
   }
 
-  // overall caching 
+  // overall caching
   variable_set('search_client_enable_cache',  $form_state['values']['search_client_enable_cache']);
   // rebuild menu to show search_client_name on search-tab
   menu_rebuild();
@@ -93,17 +94,12 @@ function ting_client_admin_webservices_settings($form_state) {
   form_load_include($form_state, 'inc', 'ting', 'ting_client.admin');
   $form = array();
 
-  $form['ting'] = array(
+  $form['webservices'] = array(
     '#type' => 'fieldset',
     '#title' => t('client webservice settings'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
     '#tree' => FALSE,
-  );
-
-  $form['webservices']['ting_agency'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Library code'),
-    '#description' => t('The 6-digit code representing the library organization'),
-    '#default_value' => variable_get('ting_agency', ''),
   );
 
   $form['webservices']['ting_search_url'] = array(
@@ -145,6 +141,27 @@ function ting_client_admin_webservices_settings($form_state) {
     '#weight' => 1,
   );
 
+  $form['webservices']['ting_agency'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Library code'),
+    '#description' => t('The 6-digit code representing the library organization'),
+    '#default_value' => variable_get('ting_agency', ''),
+  );
+
+  $form['webservices']['ting_search_profile'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Search profile'),
+    '#description' => t('Profile name, used for filtering the search based on settings from vip.dbc.dk.'),
+    '#default_value' => variable_get('ting_search_profile', ''),
+  );
+
+  $form['webservices']['ting_search_openformat'] = array(
+    '#type' => 'textfield',
+    '#title' => t('OpenFormat profile'),
+    '#description' => t('OpenFormat format name. Leave blank if using the default search result format (dkabm).'),
+    '#default_value' => variable_get('ting_search_openformat', 'dkabm'),
+  );
+
   $intervals = array(
     60,
     300,
@@ -174,19 +191,23 @@ function ting_client_admin_webservices_settings($form_state) {
     '#weight' => 1,
   );
 
-  $form['webservices']['ting_search_profile'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Search profile'),
-    '#description' => t('Profile name, used for filtering the search based on settings from vip.dbc.dk.'),
-    '#default_value' => variable_get('ting_search_profile', ''),
+  $form['actions']['#type'] = 'actions';
+  $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save configuration'),
   );
 
-  $form['webservices']['ting_search_openformat'] = array(
-    '#type' => 'textfield',
-    '#title' => t('OpenFormat profile'),
-    '#description' => t('OpenFormat format name. Leave blank if using the default search result format (dkabm).'),
-    '#default_value' => variable_get('ting_search_openformat', 'dkabm'),
-  );
+  $form['#submit'][] = 'ting_client_admin_webservices_settings_submit';
 
   return system_settings_form($form);
+
+}
+
+
+function ting_client_admin_webservices_settings_submit($form, &$form_state) {
+
+  // force a check for altered XSDs
+  $client = new ting_client_class();
+  $client->getXSDurls();
+
 }

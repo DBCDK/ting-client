@@ -12,13 +12,14 @@
 /**
  * add a webservice request to ting-client
  * @return array of request settings
- * 
+ *
  * REQUIRED SETTINGS
  *   - class: name of the class extending TingClientRequest (@see lib/request/TingClientRequest.php)
  *   - url: name of variable holding the url of the webservice
  * OPTIONAL SETTINGS
  *   - custom_parse: name of the method to parse the response
  *   - xsdNamespace: array of namespaces to add to the request
+ *   - xsd_url: name of variable holding the url of the webservice's XSD
  **/
 function hook_ting_client_webservice() {
   $ret = array();
