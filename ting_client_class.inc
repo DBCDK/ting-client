@@ -120,17 +120,6 @@ class ting_client_class {
     return $this->execute($request);
   }
 
-  public function do_adhl($params) {
-    $request = $this->request_factory()->getNamedRequest('recommendation', 'TingClientObjectRecommendationRequest');
-    //$request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openorder'));
-    if (empty($request)) {
-      $this->set_message('REMEMBER TO IMPLEMENT bibdk_adhl CLASS BEFORE USING IT', 'error');
-      return;
-    }
-    $this->_set_params($request, $params);
-    return $this->execute($request);
-  }
-
   public function do_openorder($params) {
     //$params = ting_client_validate_xsd("http://guesstimate.dbc.dk/~fvs/OpenLibrary/OpenOrder/trunk/openorder.xsd", $params);
     // we know that the bibdk_openorder class exists (if not this method should not be called)
@@ -158,27 +147,6 @@ class ting_client_class {
 
     return $this->execute($request);
   }
-
-  /**
-   * execute a localisationRequest
-   * */
-/* // jgn: unused?
-  public function do_holdingstatus($params) {
-    // for test purposes
-    if ($simpletest_prefix = drupal_valid_test_ua()) {
-      NanoSOAPClient::setUserAgent(drupal_generate_test_ua($simpletest_prefix));
-    }
-    // we know that the open_holdingstatus class exists (if not this method should not be called)
-    $request = $this->request_factory()->getNamedRequest('holdingstatus', 'open_holdingstatus');
-    if (empty($request)) {
-      $this->set_message('REMEMBER TO IMPLEMENT open_holdingstatus CLASS BEFORE USING IT', 'error');
-      return;
-    }
-    $this->_set_params($request, $params);
-
-    return $this->execute($request);
-  }
-*/
 
   /**
    * getObjectRequest to retreive a single work
@@ -261,7 +229,6 @@ class ting_client_class {
         'object' => array('url' => 'ting_search_url', 'class' => 'TingClientObjectRequest'),
         'collection' => array('url' => 'ting_search_url', 'class' => 'TingCollectionRequest'),
         'spell' => array('url' => 'ting_spell_url', 'class' => ''),
-        'recommendation' => array('url' => 'ting_recommendation_url', 'class' => 'TingClientObjectRecommendationRequest'),
       );
 
       $urls = array();
