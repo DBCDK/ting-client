@@ -11,7 +11,6 @@ Drupal 7 (for testing)
 The client currently supports:
 ------------------------------
 * Searching the API
-* Content recommendation
 * Spelling and autocomplete suggestions
 
 The client has been developed for use with [Drupal][], but we have
