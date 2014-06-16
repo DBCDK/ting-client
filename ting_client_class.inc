@@ -381,6 +381,9 @@ class ting_client_class {
     $status = 'error';
     $watchdog['type'] = 'ting_client';
     $watchdog['message'] = 'Error performing request: ' . $e->getMessage();
+    if ( !empty($url) ) {
+      $watchdog['message'] .= '. URL: ' . $url;
+    }
     $watchdog['variables'] = NULL;
     $watchdog['status'] = $status;
     $watchdog['link'] = $_SERVER["HTTP_HOST"] . $_SERVER['REQUEST_URI'];
