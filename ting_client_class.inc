@@ -12,6 +12,7 @@ class ting_client_class {
   private static $enable_cache = FALSE;
   private static $enable_logging = FALSE;
   private static $module;
+  private static $searchKey;
 
   public function __construct() {
     // client_class tries to get some settings from the module using it.
@@ -71,11 +72,13 @@ class ting_client_class {
     $this->_set_params($request, $params);
 
     $result = $this->execute($request);
-
     // add cachekey to result
     if (is_object($result)) {
       if (method_exists($request, 'cacheKey')) {
         $result->cacheKey = $request->cacheKey();
+      }
+      if (method_exists($request, 'searchKey')) {
+        $result->searchKey = $request->searchKey();
       }
     }
 

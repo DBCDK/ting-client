@@ -143,6 +143,15 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     }
   }
 
+  /**
+   * Generates a md5 hash based on the query value in params array.
+   * @return string md5 hash
+   */
+  public function searchKey() {
+    $params = $this->getParameters();
+    return md5($params['query']);
+  }
+
   /** \brief Implementation of ITingClientRequestCache::cacheEnable
    *
    * get value of variable (enable/disable cache)
