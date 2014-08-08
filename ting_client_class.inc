@@ -34,17 +34,6 @@ class ting_client_class {
     }
   }
 
-  public function do_infomedia($params) {
-    $request = $this->request_factory()->getNamedRequest('infomediaArticle', 'TingClientInfomediaArticleRequest');
-    //$request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openorder'));
-    if (empty($request)) {
-      $this->set_message('REMEMBER TO IMPLEMENT TingClientInfomediaArticleRequest CLASS BEFORE USING IT', 'error');
-      return;
-    }
-    $this->_set_params($request, $params);
-    return $request->parse($this->execute($request));
-  }
-
   /**
    * @param $requestName
    * @param $params
@@ -110,111 +99,6 @@ class ting_client_class {
   }
 
 
-  public function do_forsrights($params) {
-
-    $request = $this->request_factory()->getNamedRequest('forsrights', 'bibdk_forsrights');
-    //$request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openorder'));
-    if (empty($request)) {
-      $this->set_message('REMEMBER TO IMPLEMENT bibdk_forsrights CLASS BEFORE USING IT', 'error');
-      return;
-    }
-    $this->_set_params($request, $params);
-
-    return $this->execute($request);
-  }
-
-  public function do_openorder($params) {
-    //$params = ting_client_validate_xsd("http://guesstimate.dbc.dk/~fvs/OpenLibrary/OpenOrder/trunk/openorder.xsd", $params);
-    // we know that the bibdk_openorder class exists (if not this method should not be called)
-    $request = $this->request_factory()->getNamedRequest('openorder', 'bibdk_openorder');
-    $request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openorder'));
-    if (empty($request)) {
-      $this->set_message('REMEMBER TO IMPLEMENT bibdk_openorder CLASS BEFORE USING IT', 'error');
-      return;
-    }
-    $this->_set_params($request, $params);
-    return $this->execute($request);
-  }
-
-  /**
-   * execute a borrowercheckrequest
-   * */
-  public function do_borchk($params) {
-    // we know that the bibdk_borchk class exists (if not this method should not be called)
-    $request = $this->request_factory()->getNamedRequest('borchk', 'bibdk_borchk');
-    if (empty($request)) {
-      $this->set_message('REMEMBER TO IMPLEMENT bibdk_borchk CLASS BEFORE USING IT', 'error');
-      return;
-    }
-    $this->_set_params($request, $params);
-
-    return $this->execute($request);
-  }
-
-  /**
-   * getObjectRequest to retreive a single work
-   * */
-  public function do_get_object($params) {
-    $request = $this->request_factory()->getNamedRequest('object', 'TingClientObjectRequest');
-    $this->_set_params($request, $params);
-
-    $result = $this->execute($request);
-    if (is_object($result)) {
-      $result->cacheKey = $request->cacheKey();
-    }
-
-    return $result;
-  }
-
-  /**
-   * initialize a search; call execute
-   * method uses a TingClientSearchRequest as parameter
-   * */
-  public function do_search($params) {
-    // get the searchrequest
-    $request = $this->request_factory()->getNamedRequest('search', 'TingClientSearchRequest');
-    $this->_set_params($request, $params);
-    $result = $this->execute($request);
-
-    if (is_object($result)) {
-      $result->cacheKey = $request->cacheKey();
-    }
-
-    return $result;
-  }
-
-  /**
-   * \brief general method for requests to openagency
-   *
-   * @param array $params ; an array of parameters for openagency
-   */
-  public function do_agency($params) {
-    // get the agencyrequest
-    $request = $this->request_factory()->getNamedRequest('agency', 'AgencyRequest');
-    $request->setXsdNamespace(array(0 => 'http://oss.dbc.dk/ns/openagency'));
-    $this->_set_params($request, $params);
-    $result = $this->execute($request);
-
-    return $result;
-  }
-
-  public function do_agency_search($params) {
-    // get the agencyrequest
-
-    $params['action'] = 'findLibraryRequest';
-    $result = $this->do_agency($params);
-
-    return $result;
-  }
-
-  public function do_agency_service($params) {
-    // get the agencyrequest
-    $request = $this->request_factory()->getNamedRequest('agency', 'TingClientAgencyServiceRequest');
-    $this->_set_params($request, $params);
-    $result = $this->execute($request);
-
-    return $result;
-  }
 
   /** \brief
    * initialize requestfactory
