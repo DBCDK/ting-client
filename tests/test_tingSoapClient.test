@@ -1,4 +1,7 @@
 <?php
+ $path = drupal_get_path('module', 'ting_client');
+require_once($path.'/lib/request/TingClientRequest.php');
+
 class tingClientTestRequest extends TingClientRequest{
   public function processResponse(stdClass $response){
     return $response;
