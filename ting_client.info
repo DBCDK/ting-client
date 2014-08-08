@@ -9,6 +9,7 @@ dependencies[] = nanosoap
 files[] = lib/TingClient.php
 files[] = lib/adapter/TingClientRequestAdapter.php
 files[] = lib/exception/TingClientException.php
+files[] = lib/exception/TingClientSoapException.php
 files[] = lib/exception/TingClientHttpStatusException.php
 files[] = lib/log/TingClientDrupalDebugLogger.php
 files[] = lib/log/TingClientDrupalWatchDogLogger.php
@@ -38,6 +39,7 @@ files[] = lib/result/search/TingClientFacetResult.php
 files[] = lib/result/search/TingClientSearchResult.php
 files[] = lib/result/spell/TingClientSpellSuggestion.php
 files[] = lib/xsdparse/xsdparse.inc
+files[] = lib/soapClient/TingSoapClient.php
 
 ; tests (needs review - testing against live (dead) webservices)
 ;simple unit testing
@@ -54,5 +56,7 @@ files[] = tests/test_TingClientFormattedCollection.test
 files[] = tests/test_TingClientObjectCollection.test
 files[] = tests/test_TingClientSearchRequest.test
 files[] = tests/mockups/TingClientFormattedCollectionTestClass.inc
+files[] = tests/test_tingSoapClient.test
+;files[] = tests/tingClientTestRequest_class.php
 
 
