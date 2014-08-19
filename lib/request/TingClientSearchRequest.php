@@ -149,7 +149,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
    */
   public function searchKey() {
     $params = $this->getParameters();
-    return md5($params['query']);
+    return isset($params['query']) ? md5($params['query']) : '';
   }
 
   /** \brief Implementation of ITingClientRequestCache::cacheEnable
