@@ -128,7 +128,7 @@ class TingClientSearchTest extends TingClientTest {
     foreach ($facet->terms as $facetTerm => $facetCount) {
       if ($facetCount < $searchResult->numTotalObjects) {
         $query = $searchRequest->getQuery();
-        $query .= ' AND '.$facet->name.'='.$facetTerm;
+        $query .= ' and '.$facet->name.'='.$facetTerm;
         break;
       }
     }
@@ -158,7 +158,7 @@ class TingClientSearchTest extends TingClientTest {
     $searchRequest = $this->requestFactory->getSearchRequest();
     $searchRequest->setQuery('Harry Potter');
     $searchRequest->setAgency(775100);
-    // Recent versions of Open Search returns TotalCollections = 0 if we 
+    // Recent versions of Open Search returns TotalCollections = 0 if we
     // don't specify a stepValue. So to make this test pass, we now do.
     $searchRequest->setNumResults(10);
     $searchResult = $this->client->execute($searchRequest);
