@@ -1,0 +1,52 @@
+<?php
+ $path = drupal_get_path('module', 'ting_client');
+require_once($path.'/lib/request/TingClientRequest.php');
+
+class tingClientTestRequest extends TingClientRequest{
+  public function processResponse(stdClass $response){
+    return $response;
+  }
+
+  public function getWsdlUrl(){
+    //return 'hello_world.wsdl';
+    // soapclient wants the location of the wsdl
+    $file = __FILE__;
+    $parts = explode('/',$file);
+    // remove last element of array(the name of the file)
+    array_pop($parts);
+    $path = implode('/',$parts);
+    $protocol = 'file://';
+    $path.='/mockups/hello_world.wsdl';
+    return trim($protocol.$path);
+  }
+}
+
+class TestTingClientSoapClientMethods extends DrupalUnitTestCase {
+
+  /**
+   * @return array
+   */
+  public static function getInfo() {
+    return array(
+      'name' => 'TestTingClientSoapClient',
+      'description' => 'Tests the TingSoapClient class',
+      'group' => 'Ting Client',
+    );
+  }
+
+  public function setUp() {
+    $path = drupal_get_path('module', 'ting_client');
+    module_load_include('php', 'ting_client', '/lib/soapClient/TingSoapClient');
+    module_load_include('php', 'ting_client', '/lib/request/TingClientRequest');
+    parent::setUp();
+  }
+
+  public function testSoapClient(){
+    $this->assertTrue(TRUE,'true is true');
+
+    $request = new tingClientTestRequest('hest');
+    $this->assertTrue(is_object($request),'request created');
+    $client = new TingSoapClient($request);
+    $this->assertTrue(is_object($client),'soapClient from wsdl');
+  }
+}

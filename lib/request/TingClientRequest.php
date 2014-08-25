@@ -1,5 +1,4 @@
 <?php
-
 interface ITingClientRequestCache {
 
   public function cacheKey();
@@ -41,6 +40,10 @@ abstract class TingClientRequest {
     }
 
     return $this;
+  }
+
+  public function getClientType(){
+    return 'NANO';
   }
 
   // default implementation of ITingClientRequestCache::cacheBin
