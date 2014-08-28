@@ -3,20 +3,46 @@ class TingSoapClient{
   private $soapClient;
   public $requestBodyString;
   private $curl_info;
+  // for test purpose
+  public static $user_agent;
 
-  public function __construct($request){
+  public function __construct($request, $location = NULL){
+    // get uri of wsdl
     $wsdl = $request->getWsdlUrl();
-    // xdebug causes php to fail FATAL_ERROR before soapclient throws an exception
-    // DISABLE.IT. It shouldn't be in production environment anyway
-    if(function_exists('xdebug_disable')){
-      xdebug_disable();
-    }
     // soapClient is set with trace and exception options to enable proper exceptionhandling and logging
-    $this->soapClient = new SoapClient($wsdl,array('trace' => 1,'exceptions'=>true, ));
+    $options = array(
+      'trace' => 1,
+      'exceptions'=> 1,
+      'soap_version'=> SOAP_1_1,
+      'cache_wsdl' => WSDL_CACHE_NONE,
+    );
+
+    if(isset(self::$user_agent)){
+      $options += array('user_agent'=>self::$user_agent);
+    }
+
+    if(!empty($location)) {
+      $options += array('location'=>$location);
+    }
+
+    try{
+      // developer note: xdebug causes soapclient to fail FATAL before
+      // soapclient throws an exception - disable it. it shouldn't be in
+      // production anyways
+      if(function_exists('xdebug_disable')){
+        xdebug_disable();
+      }
+      $this->soapClient = @new SoapClient($wsdl,$options);
+    }
+    catch(Exception $e){
+      // set status code to 500 (server error)
+      $this->set_curl_info('500');
+    }
   }
 
-  public function call($action, array $params){
-    return $this->send_request($action, $params);
+  public function call($action, $params){
+    $data = $this->send_request($action, $params);
+    return $data;
   }
 
   public function getCurlInfo(){
@@ -28,14 +54,15 @@ class TingSoapClient{
       $data = $this->soapClient->$action($params);
     }
     catch(Exception $e){
-      // set status code to 500 (internal error)
-      $this->set_curl_info('500');
-      // rethrow. TingclientRequestAdapter catches the exception and does the logging
-      throw $e;
+      // set status code to 400 (bad request)
+      $this->set_curl_info('400');
+      return;
     }
+
     // all went well
     $this->requestBodyString = $this->soapClient->__getLastRequest();
     $this->set_curl_info();
+
     return $data;
   }
 
@@ -44,8 +71,8 @@ class TingSoapClient{
       $this->curl_info = array('http_code'=>$errorcode);
       return;
     }
-    $response = $this->soapClient->__getLastResponseHeaders();
-    $this->curl_info = $this->parse_response_header($response);
+    $responseHeaders = $this->soapClient->__getLastResponseHeaders();
+    $this->curl_info = $this->parse_response_header($responseHeaders);
     return;
   }
 
