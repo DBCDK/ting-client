@@ -1,0 +1,69 @@
+<?php
+/*
+ * PHP SOAP - How to create a basic SOAP Server
+ */
+
+//basic response class
+class SoapServerMockup {
+  function sayHello($data) {
+    return 'HELLO '.$data;
+  }
+}
+
+function soapServerMockup_menu() {
+  $items['soapServerMockup/sayHello'] = array(
+    'page callback' => 'soapServerMockup_sayHello',
+    'access callback' => TRUE,
+  );
+
+  $items['soapServerMockup/wsdl'] = array(
+    'page callback' => 'soapServerMockup_wsdl',
+    'access callback' => TRUE,
+  );
+
+  return $items;
+}
+
+function soapServerMockup_wsdl() {
+  $path = soapServerMockup_getWsdlPath();
+
+  $response = file_get_contents($path);
+  echo $response;
+  //print(trim($response));
+  //exit();
+}
+
+function soapServerMockup_getWsdlPath(){
+  // soapclient wants the location of the wsdl
+  $file = __FILE__;
+  $parts = explode('/',$file);
+  // remove last element of array(the name of the file)
+  array_pop($parts);
+  array_pop($parts);
+  array_pop($parts);
+  $path = implode('/',$parts);
+  $path.='/mockups/hello_world.wsdl';
+
+  //print($path);
+
+  return $path;
+}
+
+
+
+function soapServerMockup_sayHello(){
+  $wsdl = getWsdlUri();
+  $server = new SoapServer($wsdl,array('soap_version'=> SOAP_1_1));
+  //attach class to the SOAP Server
+  $server->setClass('SoapServerMockup');
+  //start the SOAP requests handler
+  $server->handle();
+}
+
+function getWsdlUri(){
+  $path = soapServerMockup_getWsdlPath();
+  $protocol = 'file://';
+  return trim($protocol.$path);
+}
+
+?>

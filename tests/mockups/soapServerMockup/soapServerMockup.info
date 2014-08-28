@@ -1,0 +1,6 @@
+name = "soap server mockup"
+description = "Support module for tingSoapClient"
+package = bibliotek.dk
+version = VERSION
+core = 7.x
+hidden = FALSE;

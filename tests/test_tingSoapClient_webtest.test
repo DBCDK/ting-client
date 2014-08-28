@@ -1,0 +1,123 @@
+<?php
+
+/**
+ * @file
+ * wetest case for TingSoapClient
+ */
+
+$path = drupal_get_path('module', 'ting_client');
+require_once($path.'/lib/request/TingClientRequest.php');
+
+class tingClientTestRequest extends TingClientRequest{
+
+  public function processResponse(stdClass $response){
+    return $response;
+  }
+
+  /** overwrite parent::getWsdlUrl(
+   * @return string
+   */
+  public function getWsdlUrl(){
+    //return 'hello_world.wsdl';
+    // soapclient wants the location of the wsdl
+    $file = __FILE__;
+    $parts = explode('/',$file);
+    // remove last element of array(the name of the file)
+    array_pop($parts);
+    $path = implode('/',$parts);
+    $protocol = 'file://';
+    $path.='/mockups/hello_world.wsdl';
+    return trim($protocol.$path);
+  }
+}
+
+class tingSoapClientWebTest extends DrupalWebTestCase {
+
+  /**
+   *Info for this test case
+   */
+  public function getInfo() {
+    return array(
+      'name' => 'ting client SoapClientTest',
+      'description' => 'webTest soapClient functionality',
+      'group' => 'Ting Client',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp('soapServerMockup','ting_client');
+    module_load_include('php', 'ting_client', '/lib/soapClient/TingSoapClient');
+
+    menu_rebuild();
+  }
+
+  public function test_runner() {
+    $this->helloWorld_test();
+    $this->wrongendpoint_test();
+    //$this->wrongwsdl_test();
+  }
+
+  private function getWsdlUrl() {
+    //$ret = getWsdlUri();
+    //debug(file_get_contents($ret));
+    //return $ret;
+    global $base_url;
+    $url = $base_url.'/soapServerMockup/wsdl';
+    return $url;
+  }
+
+  public function helloWorld_test() {
+
+    // set useragent for drupal to know that this is a test
+    if (preg_match('/simpletest\d+/', $this->databasePrefix, $matches)) {
+      $agent = drupal_generate_test_ua($matches[0]);
+      TingSoapClient::$user_agent = $agent;
+    }
+
+    $this->assertTrue(module_exists('soapServerMockup'), 'Soap server has been enabled');
+    $uri = $this->getWsdlUrl();
+    $this->assertTrue(is_string($uri),'uri to wsdl is '.$uri);
+
+    $this->drupalGet($uri);
+
+    $request = new tingClientTestRequest($uri);
+    $this->assertTrue(is_object($request),t('request created'));
+
+    $client = new TingSoapClient($request);
+    $this->assertTrue(is_object($client),'soapClient from wsdl');
+    $response = $client->call('sayHello','hest');
+    $this->assertTrue($response == 'HELLO hest','HELLO hest found as expected');
+
+    $response = $client->call('sayHello','ko');
+    $this->assertTrue($response == 'HELLO ko','HELLO ko found as expected');
+  }
+
+  /** Developer note: Couldn't make this test run.
+   * apparently there is an issue with xdebug and soapclient
+   * @see https://bugs.php.net/bug.php?id=47584
+   *
+   */
+  public function wrongwsdl_test(){
+    $url = 'http://localhost/hest';
+    $request = new tingClientTestRequest($url);
+    $client = new TingSoapClient($request);
+    $info = $client->getCurlInfo();
+    $this->assertTrue($info['http_code'] == '400', 'status code set to 400 on wrong wsdl url');
+  }
+
+  public function wrongendpoint_test(){
+    $url = $this->getWsdlUrl();
+    $request = new tingClientTestRequest($url);
+    $this->assertTrue(is_object($request), 'request object created');
+    debug('WRONG WSDL');
+    $client = new TingSoapClient($request,'http://localhost/hest');
+    $response = $client->call('sayHello','hest');
+    debug($response);
+    $info = $client->getCurlInfo();
+    $this->assertTrue($info['http_code'] == '400', 'status code set to 400 on wrong endpoint');
+  }
+}
+
+
+
+
