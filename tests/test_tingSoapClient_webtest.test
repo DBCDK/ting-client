@@ -9,6 +9,14 @@ $path = drupal_get_path('module', 'ting_client');
 require_once($path.'/lib/request/TingClientRequest.php');
 
 class tingClientTestRequest extends TingClientRequest{
+  public $bad_url;
+
+  public function __construct($url, $bad_url = NULL){
+    if(!empty($bad_url)){
+      $this->bad_url = $bad_url;
+    }
+    parent::__construct($url);
+  }
 
   public function processResponse(stdClass $response){
     return $response;
@@ -18,6 +26,9 @@ class tingClientTestRequest extends TingClientRequest{
    * @return string
    */
   public function getWsdlUrl(){
+    if( !empty($this->bad_url)){
+      return $this->bad_url;
+    }
     //return 'hello_world.wsdl';
     // soapclient wants the location of the wsdl
     $file = __FILE__;
@@ -54,7 +65,8 @@ class tingSoapClientWebTest extends DrupalWebTestCase {
   public function test_runner() {
     $this->helloWorld_test();
     $this->wrongendpoint_test();
-    //$this->wrongwsdl_test();
+    $this->wrongwsdl_test();
+    $this->invalidmethod_test();
   }
 
   private function getWsdlUrl() {
@@ -77,19 +89,25 @@ class tingSoapClientWebTest extends DrupalWebTestCase {
     $this->assertTrue(module_exists('soapServerMockup'), 'Soap server has been enabled');
     $uri = $this->getWsdlUrl();
     $this->assertTrue(is_string($uri),'uri to wsdl is '.$uri);
-
     $this->drupalGet($uri);
-
     $request = new tingClientTestRequest($uri);
     $this->assertTrue(is_object($request),t('request created'));
-
-    $client = new TingSoapClient($request);
+    try{
+      $client = new TingSoapClient($request);
+    }
+    catch(Exception $e){
+      $this->assertTrue(FALSE, $e->getMessage());
+      return;
+    }
     $this->assertTrue(is_object($client),'soapClient from wsdl');
     $response = $client->call('sayHello','hest');
     $this->assertTrue($response == 'HELLO hest','HELLO hest found as expected');
 
     $response = $client->call('sayHello','ko');
     $this->assertTrue($response == 'HELLO ko','HELLO ko found as expected');
+
+    $info = $client->getCurlInfo();
+    $this->assertTrue($info['http_code'] == 200, '200 returned on success');
   }
 
   /** Developer note: Couldn't make this test run.
@@ -100,21 +118,48 @@ class tingSoapClientWebTest extends DrupalWebTestCase {
   public function wrongwsdl_test(){
     $url = 'http://localhost/hest';
     $request = new tingClientTestRequest($url);
-    $client = new TingSoapClient($request);
-    $info = $client->getCurlInfo();
-    $this->assertTrue($info['http_code'] == '400', 'status code set to 400 on wrong wsdl url');
+    try{
+      $client = new TingSoapClient($request);
+    }
+    catch(Exception $e){
+      $this->assertTrue(TRUE, $e->getMessage(), 'Exception thrown as expected');
+      return;
+    }
   }
 
   public function wrongendpoint_test(){
     $url = $this->getWsdlUrl();
-    $request = new tingClientTestRequest($url);
+    $request = new tingClientTestRequest($url, $url);
     $this->assertTrue(is_object($request), 'request object created');
-    debug('WRONG WSDL');
-    $client = new TingSoapClient($request,'http://localhost/hest');
-    $response = $client->call('sayHello','hest');
-    debug($response);
+    $location = 'http://localhost/hest';
+    try{
+      $client = new TingSoapClient($request, $location);
+    }
+    catch(Exception $e){
+      $this->assertTrue(TRUE, $e->getMessage(),'exception thrown on wrong location as expected');
+      return;
+    }
+    // test did NOT throw an exception
+    $this->assertTrue(FALSE, 'no exception thrown on wrong location');
+  }
+
+  public function invalidmethod_test(){
+    $uri = $this->getWsdlUrl();
+    $this->assertTrue(is_string($uri),'uri to wsdl is '.$uri);
+    $this->drupalGet($uri);
+    $request = new tingClientTestRequest($uri);
+    $this->assertTrue(is_object($request),t('request created'));
+    try{
+      $client = new TingSoapClient($request);
+    }
+    catch(Exception $e){
+      $this->assertTrue(FALSE, $e->getMessage());
+      return;
+    }
+    $this->assertTrue(is_object($client),'soapClient from wsdl');
+    $response = $client->call('gnu','hest');
     $info = $client->getCurlInfo();
-    $this->assertTrue($info['http_code'] == '400', 'status code set to 400 on wrong endpoint');
+    $this->assertTrue($info['http_code'] == 400, '400 returned on bad request');
   }
 }
 

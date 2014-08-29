@@ -26,11 +26,9 @@ function soapServerMockup_menu() {
 
 function soapServerMockup_wsdl() {
   $path = soapServerMockup_getWsdlPath();
-
   $response = file_get_contents($path);
   echo $response;
-  //print(trim($response));
-  //exit();
+  exit();
 }
 
 function soapServerMockup_getWsdlPath(){
