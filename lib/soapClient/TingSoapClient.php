@@ -11,7 +11,6 @@ class TingSoapClient{
   public function __construct($request, $location = NULL){
     // get uri of wsdl
     $wsdl = $request->getWsdlUrl();
-    debug($wsdl);
     // soapClient is set with trace and exception options to enable proper exceptionhandling and logging
     $options = array(
       'trace' => 1,
