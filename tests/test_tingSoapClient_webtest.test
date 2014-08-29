@@ -100,7 +100,7 @@ class tingSoapClientWebTest extends DrupalWebTestCase {
       return;
     }
 
-    $this->assertTrue(FALSE,$uri);
+    $this->assertTrue(FALSE,$request->getWsdlUrl());
 
     $this->assertTrue(is_object($client),'soapClient from wsdl');
     $response = $client->call('sayHello','hest');
