@@ -37,10 +37,8 @@ function soapServerMockup_getWsdlPath(){
   $parts = explode('/',$file);
   // remove last element of array(the name of the file)
   array_pop($parts);
-  array_pop($parts);
-  array_pop($parts);
   $path = implode('/',$parts);
-  $path.='/mockups/hello_world.wsdl';
+  $path.='/hello_world.wsdl';
 
   //print($path);
 
@@ -51,7 +49,12 @@ function soapServerMockup_getWsdlPath(){
 
 function soapServerMockup_sayHello(){
   $wsdl = getWsdlUri();
-  $server = new SoapServer($wsdl,array('soap_version'=> SOAP_1_1));
+
+  $options = array(
+    'soap_version'=> SOAP_1_1,
+    'cache_wsdl' => WSDL_CACHE_NONE,
+  );
+  $server = new SoapServer($wsdl,$options);
   //attach class to the SOAP Server
   $server->setClass('SoapServerMockup');
   //start the SOAP requests handler

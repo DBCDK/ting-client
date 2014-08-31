@@ -37,7 +37,8 @@ class tingClientTestRequest extends TingClientRequest{
     array_pop($parts);
     $path = implode('/',$parts);
     $protocol = 'file://';
-    $path.='/mockups/hello_world.wsdl';
+    $path.='/mockups/soapServerMockup/hello_world.wsdl';
+
     return trim($protocol.$path);
   }
 }
@@ -70,16 +71,12 @@ class tingSoapClientWebTest extends DrupalWebTestCase {
   }
 
   private function getWsdlUrl() {
-    //$ret = getWsdlUri();
-    //debug(file_get_contents($ret));
-    //return $ret;
     global $base_url;
     $url = $base_url.'/soapServerMockup/wsdl';
     return $url;
   }
 
   public function helloWorld_test() {
-
     // set useragent for drupal to know that this is a test
     if (preg_match('/simpletest\d+/', $this->databasePrefix, $matches)) {
       $agent = drupal_generate_test_ua($matches[0]);
@@ -99,8 +96,6 @@ class tingSoapClientWebTest extends DrupalWebTestCase {
       $this->assertTrue(FALSE, $e->getMessage());
       return;
     }
-
-    $this->assertTrue(FALSE,$request->getWsdlUrl());
 
     $this->assertTrue(is_object($client),'soapClient from wsdl');
     $response = $client->call('sayHello','hest');
@@ -139,7 +134,7 @@ class tingSoapClientWebTest extends DrupalWebTestCase {
       $client = new TingSoapClient($request, $location);
     }
     catch(Exception $e){
-      $this->assertTrue(TRUE, $e->getMessage(),'exception thrown on wrong location as expected');
+      $this->assertTrue(TRUE,'exception thrown on wrong location as expected', $e->getMessage());
       return;
     }
     // test did NOT throw an exception
@@ -149,7 +144,6 @@ class tingSoapClientWebTest extends DrupalWebTestCase {
   public function invalidmethod_test(){
     $uri = $this->getWsdlUrl();
     $this->assertTrue(is_string($uri),'uri to wsdl is '.$uri);
-    $this->drupalGet($uri);
     $request = new tingClientTestRequest($uri);
     $this->assertTrue(is_object($request),t('request created'));
     try{
