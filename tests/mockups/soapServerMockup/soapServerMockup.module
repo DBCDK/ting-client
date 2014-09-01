@@ -40,7 +40,6 @@ function soapServerMockup_getWsdlPath(){
   $path = implode('/',$parts);
   $path.='/hello_world.wsdl';
 
-  //print($path);
 
   return $path;
 }
