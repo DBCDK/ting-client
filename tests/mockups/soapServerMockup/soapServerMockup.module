@@ -11,15 +11,15 @@ class SoapServerMockup {
 }
 
 function soapServerMockup_menu() {
-  $items['soapServerMockup/sayHello'] = array(
+  $items['soapServerMockup'] = array(
     'page callback' => 'soapServerMockup_sayHello',
     'access callback' => TRUE,
   );
 
-  $items['soapServerMockup/wsdl'] = array(
+  /*$items['soapServerMockup/wsdl'] = array(
     'page callback' => 'soapServerMockup_wsdl',
     'access callback' => TRUE,
-  );
+  );*/
 
   return $items;
 }
