@@ -44,7 +44,7 @@
         <documentation>WSDL File for HelloService</documentation>
         <port binding="tns:Hello_Binding" name="Hello_Port">
             <soap:address
-                    location="http://localhost/simpletest/soapServerMockup/sayHello"/>
+                    location="http://localhost/simpletest/soapServerMockup"/>
 
         </port>
     </service>
