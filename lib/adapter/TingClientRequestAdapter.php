@@ -36,7 +36,12 @@ class TingClientRequestAdapter {
     $client_type = $request->getClientType();
     switch($client_type){
       case 'SOAPCLIENT':
-        $this->client = new TingSoapClient($request);
+        try{
+          $this->client = new TingSoapClient($request);
+        }
+        catch(Exception $e){
+          throw new TingClientSoapException($e->getMessage());
+        }
         $soapParameters = $this->prepare_soap_client_params($request);
         break;
       case 'NANO':

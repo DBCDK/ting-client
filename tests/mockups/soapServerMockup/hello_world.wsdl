@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <definitions name="HelloService"
              targetNamespace="http://www.examples.com/wsdl/HelloService.wsdl"
              xmlns="http://schemas.xmlsoap.org/wsdl/"
@@ -43,7 +44,7 @@
         <documentation>WSDL File for HelloService</documentation>
         <port binding="tns:Hello_Binding" name="Hello_Port">
             <soap:address
-                    location="http://www.examples.com/SayHello/"/>
+                    location="http://localhost/simpletest/soapServerMockup"/>
 
         </port>
     </service>

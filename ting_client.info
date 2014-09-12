@@ -1,6 +1,6 @@
 name = Ting Client
 description = Ting Client module
-version = 7.x-2.24
+version = 7.x-2.25
 core = 7.x
 package = Ding!
 dependencies[] = nanosoap
@@ -56,7 +56,8 @@ files[] = tests/test_TingClientFormattedCollection.test
 files[] = tests/test_TingClientObjectCollection.test
 files[] = tests/test_TingClientSearchRequest.test
 files[] = tests/mockups/TingClientFormattedCollectionTestClass.inc
-files[] = tests/test_tingSoapClient.test
+;files[] = tests/test_tingSoapClient.test
+files[] = tests/test_tingSoapClient_webtest.test
 ;files[] = tests/tingClientTestRequest_class.php
 
 

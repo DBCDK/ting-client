@@ -420,11 +420,15 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
               'relationType' => $relation->relationType->{'$'},
               'relationUri' => $relation->relationUri->{'$'},
         );
+        if (isset($relation->linkObject)) {
+          $relation_data->linkObject = $relation->linkObject;
+        }
         if (isset($relation->relationObject)) {
           $relation_object = $this->generateObject($relation->relationObject->object, $namespaces);
           $relation_data->relationObject = $relation_object;
           $relation_object->relationType = $relation_data->relationType;
           $relation_object->relationUri = $relation_data->relationUri;
+          $relation_object->linkObject = isset ($relation_data->linkObject) ? $relation_data->linkObject : NULL;
           $object->relations[] = $relation_object;
         }
         $object->relationsData[] = $relation_data;
