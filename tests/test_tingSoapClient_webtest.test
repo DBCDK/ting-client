@@ -50,7 +50,7 @@ class tingSoapClientWebTest extends DrupalWebTestCase {
   /**
    *Info for this test case
    */
-  public function getInfo() {
+  public static function getInfo() {
     return array(
       'name' => 'ting client SoapClientTest',
       'description' => 'webTest soapClient functionality',
