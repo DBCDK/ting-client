@@ -318,6 +318,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     $searchResult->numTotalObjects = self::getValue($searchResponse->result->hitCount);
     $searchResult->numTotalCollections = self::getValue($searchResponse->result->collectionCount);
     $searchResult->more = (bool) preg_match('/true/i', self::getValue($searchResponse->result->more));
+    $searchResult->sortUsed =  self::getValue($searchResponse->result->sortUsed);
 
     if (isset($searchResponse->result->searchResult) && is_array($searchResponse->result->searchResult)) {
       foreach ($searchResponse->result->searchResult as $entry => $result) {
