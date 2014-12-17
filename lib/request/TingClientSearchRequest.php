@@ -320,7 +320,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     $searchResult->more = (bool) preg_match('/true/i', self::getValue($searchResponse->result->more));
 
     // sortUsed is only included in result when asking for a ranking or sorting in the request
-    if (isset($searchResult->result->sortUsed)) {
+    if (isset($searchResponse->result->sortUsed)) {
       $searchResult->sortUsed =  self::getValue($searchResponse->result->sortUsed);
     }
 
