@@ -319,6 +319,11 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     $searchResult->numTotalCollections = self::getValue($searchResponse->result->collectionCount);
     $searchResult->more = (bool) preg_match('/true/i', self::getValue($searchResponse->result->more));
 
+    // sortUsed is only included in result when asking for a ranking or sorting in the request
+    if (isset($searchResponse->result->sortUsed)) {
+      $searchResult->sortUsed =  self::getValue($searchResponse->result->sortUsed);
+    }
+
     if (isset($searchResponse->result->searchResult) && is_array($searchResponse->result->searchResult)) {
       foreach ($searchResponse->result->searchResult as $entry => $result) {
         // pjo 22-05-12 formatted collections
