@@ -216,12 +216,7 @@ abstract class TingClientRequest {
 
   protected static function getAttributeValue($object, $attributeName) {
     $attribute = self::getAttribute($object, $attributeName);
-    if (is_array($attribute)) {
-      return array_map(array('RestJsonTingClientRequest', 'getValue'), $attribute);
-    }
-    else {
-      return self::getValue($attribute);
-    }
+    return self::getValue($attribute);
   }
 
   protected static function getAttribute($object, $attributeName) {
