@@ -1,21 +1,5 @@
 <?php
 
-module_load_include('php', 'ting-client', '/lib/request/TingClientRequest');
-
-abstract class TingClientRequestTester extends TingClientRequest {
-  public static function getBadgerFishValueExposed($badgerFishObject, $valueName) {
-    return self::getBadgerFishValue($badgerFishObject, $valueName);
-  }
-
-  public static function getAttributeValueExposed($object, $attributeName) {
-    return self::getAttributeValue($object, $attributeName);
-  }
-
-  public static function getAttributeExposed($object, $attributeName) {
-    return self::getAttribute($object, $attributeName);
-  }
-}
-
 class TingClientRequestTestCase extends DrupalUnitTestCase {
   public static function getInfo() {
     return array(
@@ -23,6 +7,11 @@ class TingClientRequestTestCase extends DrupalUnitTestCase {
       'description' => 'Tests the abstract class TingClientRequest',
       'group' => 'Ting Client',
     );
+  }
+
+  public function setUp() {
+    module_load_include('php', 'ting-client', '/test/TingClientRequestTester');
+    parent::setUp();
   }
 
   public function test_getBadgerFishValue() {
