@@ -207,7 +207,7 @@ abstract class TingClientRequest {
   // this method needs to called from outside scope.. make it public
   public static function getValue($object) {
     if (is_array($object)) {
-      return array_map(array('RestJsonTingClientRequest', 'getValue'), $object);
+      return array_map(array('TingClientRequest', 'getValue'), $object);
     }
     else {
       return self::getBadgerFishValue($object, '$');

@@ -47,15 +47,19 @@ class TingClientRequestTestCase extends DrupalUnitTestCase {
     $value = TingClientRequestTester::getValue($dollar);
     $this->assertEqual($value, 'I buy that for a dollar.');
 
-    $array_obj = array();
-    $exception = FALSE;
-    try {
-      $arr = TingClientRequestTester::getValue($array_obj);
-    }
-    catch(Exception $e) {
-      $exception = TRUE;
-    }
-    $this->assertTrue($exception, 'Got exception');
+    $array_empty = array();
+    $empty = TingClientRequestTester::getValue($array_empty);
+    $this->assertTrue(is_array($empty), '\'empty\' is an array.');
+    $this->assertTrue(empty($empty), '\'empty\' is empty.');
+
+    $obj1 = new stdClass();
+    $obj2 = new stdClass();
+    $obj1->{'$'} = 'obj1';
+    $obj2->{'$'} = 'obj2';
+    $array = array($obj1, $obj2);
+    $list = TingClientRequestTester::getValue($array);
+    $this->assertTrue(is_array($list), '\'list\' is an array.');
+    $this->assertEqual($list, array('obj1', 'obj2'), '\'list\' has to elements.');
   }
 
   public function test_getAttribute() {
