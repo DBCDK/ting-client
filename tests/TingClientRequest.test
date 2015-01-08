@@ -67,27 +67,4 @@ class TingClientRequestTestCase extends DrupalUnitTestCase {
     $value2 = TingClientRequestTester::getAttributeExposed($obj, '@attr');
     $this->assertEqual($value2, 'attribute', 'Got attribute with @.');
   }
-
-  public function test_getAttributeValue() {
-    $dollar_obj = new stdClass();
-    $dollar = new stdClass();
-    $dollar->{'$'} = 'I buy that for a dollar.';
-    $dollar_obj->{'@dollar'} = $dollar;
-    $value = TingClientRequestTester::getAttributeValueExposed($dollar_obj, 'dollar');
-    $this->assertEqual($value, 'I buy that for a dollar.');
-
-    $elem = new stdClass();
-    $elem->{'$'} = 'elem';
-    $array_obj = array($elem);
-    $obj = new stdClass();
-    $obj->{'@arr'} = $array_obj;
-    $exception = FALSE;
-    try {
-      $arr = TingClientRequestTester::getAttributeValueExposed($obj, 'arr');
-    }
-    catch(Exception $e) {
-      $exception = TRUE;
-    }
-    $this->assertTrue($exception, 'Got exception');
-  }
 }
