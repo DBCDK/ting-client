@@ -1,5 +1,7 @@
 <?php
 
+require_once('TingClientRequestTester.php');
+
 class TingClientRequestTestCase extends DrupalUnitTestCase {
   public static function getInfo() {
     return array(
@@ -7,11 +9,6 @@ class TingClientRequestTestCase extends DrupalUnitTestCase {
       'description' => 'Tests the abstract class TingClientRequest',
       'group' => 'Ting Client',
     );
-  }
-
-  public function setUp() {
-    module_load_include('php', 'ting-client', '/test/TingClientRequestTester');
-    parent::setUp();
   }
 
   public function test_getBadgerFishValue() {

@@ -1,8 +1,5 @@
 <?php
 
-require_once('../lib/request/TingClientRequest.php');
-#module_load_include('php', 'ting-client', '/lib/request/TingClientRequest');
-
 abstract class TingClientRequestTester extends TingClientRequest {
   public static function getBadgerFishValueExposed($badgerFishObject, $valueName) {
     return self::getBadgerFishValue($badgerFishObject, $valueName);
