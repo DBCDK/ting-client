@@ -246,12 +246,17 @@ class ting_client_class {
         // stop timer
         self::_invoke('timer', array('stop', 'search_client'));
 
-        if ($cache) {
-          $expire = REQUEST_TIME + (60 * $request->cacheTimeout());
-          if (function_exists(self::$module . '_cache_set')) {
-            $function = self::$module . '_cache_set';
-            call_user_func_array($function, array($request->cacheKey(), $res, $request->cacheBin(), $expire));
+        if($request->checkResponse($res)) {
+          if ($cache) {
+            $expire = REQUEST_TIME + (60 * $request->cacheTimeout());
+            if (function_exists(self::$module . '_cache_set')) {
+              $function = self::$module . '_cache_set';
+              call_user_func_array($function, array($request->cacheKey(), $res, $request->cacheBin(), $expire));
+            }
           }
+        }
+        else{
+          watchdog('ting client', '%class returned FALSE in checkResponse', array('%class' => get_class($request)), WATCHDOG_ERROR);
         }
         return $res;
       } catch (Exception $e) {
