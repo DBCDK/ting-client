@@ -8,6 +8,8 @@ interface ITingClientRequestCache {
   public function cacheTimeout($value = NULL);
 
   public function cacheBin();
+
+  public function checkResponse($response);
 }
 
 abstract class TingClientRequest {
@@ -44,6 +46,10 @@ abstract class TingClientRequest {
 
   public function getClientType(){
     return 'NANO';
+  }
+
+  public function checkResponse($response){
+    return TRUE;
   }
 
   // default implementation of ITingClientRequestCache::cacheBin
