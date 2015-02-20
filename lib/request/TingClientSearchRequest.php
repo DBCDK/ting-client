@@ -308,6 +308,26 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     $this->profile = $profile;
   }
 
+  public function checkResponse($response){
+    if(empty($response->numTotalCollections)) {
+      // this is either an empty or facet-search. Either way cache it
+      return TRUE;
+    }
+    else{
+      // check if id is set
+      $collections = $response->collections;
+      foreach($collections as $collection) {
+        $objects = $collection->objects;
+        foreach($objects as $object){
+          if(empty($object->id)){
+            return FALSE;
+          }
+        }
+      }
+    }
+    return TRUE;
+  }
+
   public function processResponse(stdClass $response) {
     $searchResult = new TingClientSearchResult();
     $searchResponse = $response->searchResponse;
