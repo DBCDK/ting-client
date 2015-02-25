@@ -34,7 +34,27 @@ class TestTingClientSearchRequest extends DrupalUnitTestCase {
 
     $this->fullViewResponse = json_decode(file_get_contents($this->path . '/tests/mockups/processResponse_response_dump_full_view_search.json'));
     $this->shortViewResponse = json_decode(file_get_contents($this->path . '/tests/mockups/processResponse_response_dump_short_view_search.json'));
+    $this->validResponse = json_decode(file_get_contents($this->path . '/tests/mockups/validSearchResponse.json'));
+    $this->noIdResponse = json_decode(file_get_contents($this->path . '/tests/mockups/noIdSearchResponse.json'));
+    $this->emptyResponse = json_decode(file_get_contents($this->path . '/tests/mockups/emptySearchResult.json'));
+
     parent::setUp();
+  }
+
+  public function testCheckResponseMethod(){
+    // check a valid response
+    $Request = new TingClientSearchRequest('');
+    $response = $this->validResponse;
+    $result = $Request->checkResponse($response);
+    $this->assertTrue($result, 'checkResponse is TRUE for valid response');
+    // check an invalid response (no id)
+    $response = $this->noIdResponse;
+    $result = $Request->checkResponse($response);
+    $this->assertFalse($result, 'checkResponse is FALSE when no id in object');
+    // check empty response
+    $response = $this->emptyResponse;
+    $result = $Request->checkResponse($response);
+    $this->assertTrue($result, 'checkResponse is TRUE on empty searchresult ');
   }
 
   public function testProcessResponseShort() {
