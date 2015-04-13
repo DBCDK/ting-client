@@ -207,7 +207,8 @@ abstract class TingClientRequest {
   // this method needs to called from outside scope.. make it public
   public static function getValue($object) {
     if (is_array($object)) {
-      return array_map(array('TingClientRequest', 'getValue'), $object);
+      //array not allowed
+      throw new TingClientException('Unexpected object array in getValue');
     }
     else {
       return self::getBadgerFishValue($object, '$');
@@ -216,7 +217,13 @@ abstract class TingClientRequest {
 
   protected static function getAttributeValue($object, $attributeName) {
     $attribute = self::getAttribute($object, $attributeName);
-    return self::getValue($attribute);
+    if (is_array($attribute)) {
+      //array not allowed
+      throw new TingClientException('Unexpected object array in getAttributeValue');
+    }
+    else {
+      return self::getValue($attribute);
+    }
   }
 
   protected static function getAttribute($object, $attributeName) {
