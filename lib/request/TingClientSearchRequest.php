@@ -110,39 +110,6 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     return $methodParameterMap;
   }
 
-  /** \brief ITingClientRequestCache::cacheKey; get a cachekey
-   * 
-   * @return string 
-   */
-  public function cacheKey() {
-    $params = $this->getParameters();
-    $ret = '';
-    $this->make_cache_key($params, $ret);
-
-    return md5($ret);
-  }
-
-  /** \brief make a cachekey based on request parameters
-   *
-   * @param array $params
-   * @param string $ret
-   */
-  private function make_cache_key($params, &$ret) {
-    foreach ($params as $key => $value) {
-      if($key == 'trackingId'){
-        continue;
-      }
-      if (is_array($value)) {
-        // recursive
-        $ret .= $key;
-        $this->make_cache_key($value, $ret);
-      }
-      else {
-        $ret .= $value;
-      }
-    }
-  }
-
   /**
    * Generates a md5 hash based on the query value in params array.
    * @return string md5 hash
