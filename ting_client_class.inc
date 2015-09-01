@@ -37,9 +37,11 @@ class ting_client_class {
   /**
    * @param $requestName
    * @param $params
+   * @param $cache_me; override configuration cache settings if needed
    * @return bool|stdClass|string
+   *
    */
-  public function do_request($requestName, $params) {
+  public function do_request($requestName, $params, $cache_me=TRUE) {
     // set appropiate agent for testing
     if ($simpletest_prefix = drupal_valid_test_ua()) {
       NanoSOAPClient::setUserAgent(drupal_generate_test_ua($simpletest_prefix));
@@ -60,7 +62,7 @@ class ting_client_class {
 
     $this->_set_params($request, $params);
 
-    $result = $this->execute($request);
+    $result = $this->execute($request, $cache_me);
     // add cachekey to result
     if (is_object($result)) {
       if (method_exists($request, 'cacheKey')) {
@@ -226,7 +228,7 @@ class ting_client_class {
   /**
    * execute a request
    * */
-  private function execute($request) {
+  private function execute($request, $cache_me = TRUE) {
 
     // set useragent for simpletest framework
     if ($simpletest_prefix = drupal_valid_test_ua()) {
@@ -234,7 +236,7 @@ class ting_client_class {
     }
 
     $cache = FALSE;
-    if ($res = $this->get_from_cache($request, $cache)) {
+    if (($res = $this->get_from_cache($request, $cache)) && $cache_me) {
       return $res;
     }
     else {

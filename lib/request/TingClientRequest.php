@@ -65,9 +65,7 @@ abstract class TingClientRequest {
    **/
   public function cacheKey() {
     $params = $this->getParameters();
-    $ret = '';
-    $this->make_cache_key($params, $ret);
-
+    $ret = $this->make_cache_key($params);
     return md5($ret);
   }
 
@@ -76,17 +74,23 @@ abstract class TingClientRequest {
    * @param array $params
    * @param string $ret
    **/
-  private function make_cache_key($params, &$ret) {
+  private function make_cache_key($params, $ret='') {
     foreach ($params as $key => $value) {
+      // skip trackinId
+       if ($key === 'trackingId') {
+        continue;
+      }
+
+      $ret .= $key;
       if (is_array($value)) {
         // recursive
-        $ret .= $key;
-        $this->make_cache_key($value, $ret);
+        $ret = $this->make_cache_key($value, $ret);
       }
       else {
         $ret .= $value;
       }
     }
+    return $ret;
   }
 
   public function __construct($wsdlUrl, $serviceName = NULL) {
