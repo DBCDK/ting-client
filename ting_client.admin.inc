@@ -126,14 +126,6 @@ function ting_client_admin_webservices_settings($form_state) {
     '#default_value' => variable_get('ting_spell_url', ''),
   );
 
-  $form['webservices']['ting_recommendation_url'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Recommendation service URL'),
-    '#description' => t('URL to the Ting recommendation webservice (Andre der har lånt...) , e.g. http://openadhl.addi.dk/1.1/'),
-    '#required' => TRUE,
-    '#default_value' => variable_get('ting_recommendation_url', ''),
-  );
-
   $form['webservices']['ting_enable_logging'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable logging'),
