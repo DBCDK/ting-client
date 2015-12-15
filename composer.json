@@ -1,0 +1,6 @@
+{
+    "name": "druapal/ting-client",
+    "description": "drupal integraion for TingClient library",
+    "type": "drupal-module",
+    "license": "GPL-2.0+"
+}
