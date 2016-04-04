@@ -362,6 +362,10 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     if (!isset($objectData->identifier))
       return;
 
+    if(isset($objectData->error))
+      return;
+
+
     $object->id = self::getValue($objectData->identifier);
 
     $object->record = array();
