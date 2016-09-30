@@ -35,6 +35,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
   protected $profile;
   protected $includeHoldingsCount;
   var $userDefinedBoost;
+  protected $userDefinedBoosts = array();
   var $userDefinedRanking;
   protected $objectFormat;
   protected $outputType;
@@ -71,9 +72,11 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
       ));
     }
 
-    // Include userDefinedBoost if set on the request.
-    if (is_array($this->userDefinedBoost) && !empty($this->userDefinedBoost)) {
-      $this->setParameter('userDefinedBoost', $this->userDefinedBoost);
+    // Include userdefinedBoost
+    $this->generateBoost();
+    $userDefinedBoost = $this->getUserDefinedBoost();
+    if ($userDefinedBoost) {
+     $this->setParameter('userDefinedBoost', $userDefinedBoost);
     }
 
     // Include userDefinedRanking if set on the request.
@@ -195,6 +198,14 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     $this->numFacets = $numFacets;
   }
 
+  public function getUserDefinedBoost() {
+    return $this->userDefinedBoosts;
+  }
+
+  public function setUserDefinedBoost($userDefinedBoosts) {
+    $this->userDefinedBoosts = $userDefinedBoosts;
+  }
+
   public function getFormat() {
     return $this->format;
   }
@@ -202,6 +213,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
   public function setFormat($format) {
     $this->format = $format;
   }
+
 
   public function getObjectFormat() {
     return $this->objectFormat;
@@ -438,6 +450,96 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     }
 
     return $object;
+  }
+
+  /*
+   * Boost language = dan and current year + last 12 years
+  */
+  public function generateBoost() {
+
+    $currentYear = date("Y");
+    $userDefinedBoosts[] = array(
+        'fieldName' => 'term.language',
+        'fieldValue' => 'dan',
+        'weight' => 40,
+    );
+
+    $userDefinedBoosts[] = array(
+        'fieldName' => 'term.date',
+        'fieldValue' => $currentYear,
+        'weight' => 20,
+    );
+
+    $userDefinedBoosts[] = array(
+        'fieldName' => 'term.date',
+        'fieldValue' => $currentYear - 1,
+        'weight' => 19,
+    );
+
+    $userDefinedBoosts[] = array(
+        'fieldName' => 'term.date',
+        'fieldValue' => $currentYear - 2,
+        'weight' => 18,
+    );
+    $userDefinedBoosts[] = array(
+        'fieldName' => 'term.date',
+        'fieldValue' => $currentYear - 3,
+        'weight' => 17,
+    );
+
+    $userDefinedBoosts[] = array(
+        'fieldName' => 'term.date',
+        'fieldValue' => $currentYear - 4,
+        'weight' => 16,
+    );
+
+    $userDefinedBoosts[] = array(
+        'fieldName' => 'term.date',
+        'fieldValue' => $currentYear - 5,
+        'weight' => 15,
+    );
+
+    $userDefinedBoosts[] = array(
+        'fieldName' => 'term.date',
+        'fieldValue' => $currentYear - 6,
+        'weight' => 14,
+    );
+
+    $userDefinedBoosts[] = array(
+        'fieldName' => 'term.date',
+        'fieldValue' => $currentYear - 7,
+        'weight' => 13,
+    );
+
+    $userDefinedBoosts[] = array(
+        'fieldName' => 'term.date',
+        'fieldValue' => $currentYear - 8,
+        'weight' => 12,
+    );
+    $userDefinedBoosts[] = array(
+        'fieldName' => 'term.date',
+        'fieldValue' => $currentYear - 9,
+        'weight' => 11,
+    );
+
+    $userDefinedBoosts[] = array(
+        'fieldName' => 'term.date',
+        'fieldValue' => $currentYear - 10,
+        'weight' => 10,
+    );
+
+    $userDefinedBoosts[] = array(
+        'fieldName' => 'term.date',
+        'fieldValue' => $currentYear - 11,
+        'weight' => 9,
+    );
+
+    $userDefinedBoosts[] = array(
+        'fieldName' => 'term.date',
+        'fieldValue' => $currentYear - 12,
+        'weight' => 8,
+    );
+    $this->setUserDefinedBoost($userDefinedBoosts);
   }
 
 }
