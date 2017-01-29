@@ -463,82 +463,14 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
         'fieldValue' => 'dan',
         'weight' => 40,
     );
+    for ($x = 0; $x <= 12; $x++) {
+      $userDefinedBoosts[] = array(
+        'fieldName' => 'term.date',
+        'fieldValue' => $currentYear - $x,
+        'weight' => 20 -$x ,
+      );
+    }
 
-    $userDefinedBoosts[] = array(
-        'fieldName' => 'term.date',
-        'fieldValue' => $currentYear,
-        'weight' => 20,
-    );
-
-    $userDefinedBoosts[] = array(
-        'fieldName' => 'term.date',
-        'fieldValue' => $currentYear - 1,
-        'weight' => 19,
-    );
-
-    $userDefinedBoosts[] = array(
-        'fieldName' => 'term.date',
-        'fieldValue' => $currentYear - 2,
-        'weight' => 18,
-    );
-    $userDefinedBoosts[] = array(
-        'fieldName' => 'term.date',
-        'fieldValue' => $currentYear - 3,
-        'weight' => 17,
-    );
-
-    $userDefinedBoosts[] = array(
-        'fieldName' => 'term.date',
-        'fieldValue' => $currentYear - 4,
-        'weight' => 16,
-    );
-
-    $userDefinedBoosts[] = array(
-        'fieldName' => 'term.date',
-        'fieldValue' => $currentYear - 5,
-        'weight' => 15,
-    );
-
-    $userDefinedBoosts[] = array(
-        'fieldName' => 'term.date',
-        'fieldValue' => $currentYear - 6,
-        'weight' => 14,
-    );
-
-    $userDefinedBoosts[] = array(
-        'fieldName' => 'term.date',
-        'fieldValue' => $currentYear - 7,
-        'weight' => 13,
-    );
-
-    $userDefinedBoosts[] = array(
-        'fieldName' => 'term.date',
-        'fieldValue' => $currentYear - 8,
-        'weight' => 12,
-    );
-    $userDefinedBoosts[] = array(
-        'fieldName' => 'term.date',
-        'fieldValue' => $currentYear - 9,
-        'weight' => 11,
-    );
-
-    $userDefinedBoosts[] = array(
-        'fieldName' => 'term.date',
-        'fieldValue' => $currentYear - 10,
-        'weight' => 10,
-    );
-
-    $userDefinedBoosts[] = array(
-        'fieldName' => 'term.date',
-        'fieldValue' => $currentYear - 11,
-        'weight' => 9,
-    );
-
-    $userDefinedBoosts[] = array(
-        'fieldName' => 'term.date',
-        'fieldValue' => $currentYear - 12,
-        'weight' => 8,
-    );
     $this->setUserDefinedBoost($userDefinedBoosts);
   }
 
