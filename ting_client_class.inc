@@ -94,7 +94,7 @@ class ting_client_class {
 
   /**
    * Get service definitions
-   * 
+   *
    * @return array.
    * List of variable webservices
    */

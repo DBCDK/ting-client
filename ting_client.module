@@ -17,17 +17,19 @@ function ting_client_validate_xsd($classname, $action) {
 
   $client = new ting_client_class();
   $xsd_url = FALSE;
-  foreach ( $client->getUrls() as $service ) {
-    if ( !empty($service['class']) && $service['class'] == $classname ) {
+  foreach ($client->getUrls() as $service) {
+    if (!empty($service['class']) && $service['class'] == $classname) {
       $xsd_url = $service['xsd_url'];
     }
   }
-  if ( !$xsd_url ) {
-    throw new Exception( 'ting-client: Webservice XSD is not defined for ' . $classname);
+  if (!$xsd_url) {
+    throw new Exception('ting-client: Webservice XSD is not defined for ' .
+      $classname);
     return array();
   }
   $parts = parse_url(variable_get($xsd_url));
-  $xsd_file_name = file_default_scheme() . '://ting/ting-client/xsd/' . basename($parts['path']);
+  $xsd_file_name = file_default_scheme() . '://ting/ting-client/xsd/' .
+    basename($parts['path']);
 
   $schema = new xml_schema();
   $schema->get_from_file($xsd_file_name);
@@ -74,7 +76,6 @@ function ting_client_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('ting_client_admin_webservices_settings'),
     'access arguments' => array('administer webservices settings'),
-//'access arguments' => TRUE,
     'file' => 'ting_client.admin.inc'
   );
 
@@ -84,12 +85,55 @@ function ting_client_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('ting_client_cache_admin_form'),
     'access arguments' => array('administer webservices settings'),
-//'access arguments' => TRUE,
-    // 'type' => MENU_LOCAL_ACTION,
     'file' => 'ting_client.admin.inc',
+  );
+
+
+  $items['admin/config/serviceclient/overview'] = array(
+    'title' => 'View services in use',
+    'description' => 'View services in use.',
+    'page callback' => 'ting_client_view_services',
+    'access arguments' => array('administer webservices settings')
   );
   return $items;
 }
+
+/**
+ * Get a table view of active webservices
+ *
+ * @return string
+ *   html table definition
+ * @throws Exception
+ *   Drupals theme function might throw an exception - ignore
+ */
+function ting_client_view_services() {
+  $client = new ting_client_class();
+  $services = $client->getUrls();
+  $header = array('NAME', 'URL');
+  $rows = array();
+  foreach ($services as $name => $service) {
+    $rows[] = array($name, $service['url']);
+  }
+
+  $rows = array_merge($rows, ting_client_loose_services());
+
+  return theme('table', array('header' => $header, 'rows' => $rows));
+}
+
+/**
+ * Get an array of services NOT handled by ting_client
+ * @return array
+ */
+function ting_client_loose_services() {
+  $rows = array();
+  //autocomplete
+  $rows[] = array('Autocomplete', variable_get('bibdk_autocomplete_rest_url'));
+  //openuserinfo
+  $rows[] = array('OpenUserInfo', variable_get
+  ('bibdk_provider_webservice_url'));
+  return $rows;
+}
+
 
 
 /**
@@ -104,15 +148,18 @@ function ting_client_set_request_factory($url_variables) {
   }
 
   // get the real url (variable_get)
-  foreach ( $url_variables as $name=>$settings ) {
-    if ( !($url = ( isset($settings['url']) ) ? $settings['url'] : NULL) ) {
-      throw new Exception( 'ting-client: Webservice URL is not defined for ' . $name);
+  foreach ($url_variables as $name => $settings) {
+    if (!($url = (isset($settings['url'])) ? $settings['url'] : NULL)) {
+      throw new Exception('ting-client: Webservice URL is not defined for ' .
+        $name);
     }
     // if ( !($class = ( isset($settings['class']) ) ? $settings['class'] : NULL) ) {
     //  throw new Exception( 'ting-client: Webservice class is not defined for ' . $name);
     // }
     $webservice_check[$name]['url'] = $url;
-    $webservice_check[$name]['xsd_url'] = ( isset($url_variables[$name]['xsd_url']) ) ? $url_variables[$name]['xsd_url'] : NULL;
+    $webservice_check[$name]['xsd_url'] =
+      (isset($url_variables[$name]['xsd_url'])) ?
+        $url_variables[$name]['xsd_url'] : NULL;
     $url_variables[$name]['url'] = variable_get($url);
   }
 
@@ -131,43 +178,51 @@ function ting_client_webservice_check($check_data) {
   // get stored values
   $webservice_check = variable_get('webservice_check', array());
 
-  foreach ( $check_data as $name=>$settings ) {
-    $webservice_check_url = ( !empty($webservice_check[$name]['url']) ) ? $webservice_check[$name]['url'] : NULL;
-    $webservice_check_xsd = ( !empty($webservice_check[$name]['xsd_url']) ) ? $webservice_check[$name]['xsd_url'] : NULL;
+  foreach ($check_data as $name => $settings) {
+    $webservice_check_url = (!empty($webservice_check[$name]['url'])) ?
+      $webservice_check[$name]['url'] : NULL;
+    $webservice_check_xsd = (!empty($webservice_check[$name]['xsd_url'])) ?
+      $webservice_check[$name]['xsd_url'] : NULL;
     $webservice_check_file = NULL;
-    if ( !empty($settings['xsd_url']) ) {
+    if (!empty($settings['xsd_url'])) {
       $parts = parse_url(variable_get($settings['xsd_url']));
-      $xsd_file_name = file_default_scheme() . '://ting/ting-client/xsd/' . basename($parts['path']);
+      $xsd_file_name = file_default_scheme() . '://ting/ting-client/xsd/' .
+        basename($parts['path']);
       $webservice_check_file = is_file($xsd_file_name);
     }
-    if (
-        !isset($webservice_check[$name])
-        || variable_get($settings['url']) != $webservice_check_url
-        || variable_get($settings['xsd_url']) != $webservice_check_xsd
-        || ( $settings['xsd_url'] && !$webservice_check_xsd )
-        || !$webservice_check_file
-      ) {
+    if (!isset($webservice_check[$name]) ||
+      variable_get($settings['url']) != $webservice_check_url ||
+      variable_get($settings['xsd_url']) != $webservice_check_xsd ||
+      ($settings['xsd_url'] && !$webservice_check_xsd) ||
+      !$webservice_check_file
+    ) {
 
       $webservice_check[$name]['url'] = variable_get($settings['url']);
-      if ( !empty($settings['xsd_url']) && $xsd_url = variable_get($settings['xsd_url'])) {
+      if (!empty($settings['xsd_url']) &&
+        $xsd_url = variable_get($settings['xsd_url'])
+      ) {
 
         // update XSD if webservice has changed URL.
         $result = drupal_http_request($xsd_url);
 
         // Bail if the HTTP request failed
-        if ( !empty($result->error) ) {
-          throw new Exception( "ting-client: HTTP request failed for $xsd_url. Error: $result->error");
+        if (!empty($result->error)) {
+          throw new Exception("ting-client: HTTP request failed for $xsd_url. Error: $result->error");
         }
 
         // Get the folder for the final location of this preset...
         $directory = dirname($xsd_file_name);
 
         // Build the destination folder tree if it doesn't already exist.
-        if ( !file_prepare_directory($directory, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS) ) {
-          throw new Exception('ting-client: Failed to create directory: ' . $directory);
+        if (!file_prepare_directory($directory,
+          FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS)
+        ) {
+          throw new Exception('ting-client: Failed to create directory: ' .
+            $directory);
         }
         file_save_data($result->data, $xsd_file_name, FILE_EXISTS_REPLACE);
-        $webservice_check[$name]['xsd_url'] = variable_get($settings['xsd_url']);
+        $webservice_check[$name]['xsd_url'] =
+          variable_get($settings['xsd_url']);
       }
     }
   }
@@ -195,7 +250,8 @@ function ting_client_cache_get($cache_key, $storage = NULL) {
  * set method for caching
  * use drupal::cache_set
  * */
-function ting_client_cache_set($cache_key, $data, $storage = NULL, $expire = NULL) {
+function ting_client_cache_set($cache_key, $data, $storage = NULL,
+  $expire = NULL) {
   cache_set($cache_key, $data, $storage, $expire);
 }
 
@@ -204,12 +260,14 @@ function ting_client_cache_set($cache_key, $data, $storage = NULL, $expire = NUL
  * support for ting_client_class
  * add a drupal message and write to watchdog
  * */
-function ting_client_set_message($message = '', $type = 'status', $repeat = NULL, $watchdog = array()) {
+function ting_client_set_message($message = '', $type = 'status',
+  $repeat = NULL, $watchdog = array()) {
   if (!empty($message)) {
     drupal_set_message($message, $type, $repeat);
   }
   if (!empty($watchdog)) {
-    watchdog($watchdog['type'], $watchdog['message'], array(), WATCHDOG_ERROR, $watchdog['link']);
+    watchdog($watchdog['type'], $watchdog['message'], array(), WATCHDOG_ERROR,
+      $watchdog['link']);
   }
   else if ($type == 'error') {
     watchdog('ting_client', $message, array(), WATCHDOG_ERROR, NULL);
@@ -255,7 +313,8 @@ function ting_client_ding_install_tasks() {
     'ting_client_admin_webservices_settings' => array(
       'display_name' => st('Service settings'),
       'type' => 'form',
-      'file' => drupal_get_path('module', 'ting_client') . '/ting_client.admin.inc',
+      'file' => drupal_get_path('module', 'ting_client') .
+        '/ting_client.admin.inc',
     ),
   );
 }
