@@ -351,4 +351,8 @@ class ting_client_class {
     return $matches[1];
   }
 
+  public static function getAllUrls() {
+    return self::request_factory()->getUrls();
+  }
+
 }
