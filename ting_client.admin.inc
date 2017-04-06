@@ -91,7 +91,7 @@ $cache_classes =  $client->get_all_cache_classes();
  * @see system_settings_form()
  */
 function ting_client_admin_webservices_settings($form_state) {
-  form_load_include($form_state, 'inc', 'ting', 'ting_client.admin');
+  form_load_include($form_state, 'inc', 'ting-client', 'ting_client.admin');
   $form = array();
 
   $form['webservices'] = array(
