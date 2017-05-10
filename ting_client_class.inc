@@ -93,6 +93,8 @@ class ting_client_class {
 
 
   /**
+   * Get service definitions
+   *
    * @return array.
    * List of variable webservices
    */
@@ -349,6 +351,10 @@ class ting_client_class {
     }
     // We have a quote. Just return it.
     return $matches[1];
+  }
+
+  public static function getAllUrls() {
+    return self::request_factory()->getUrls();
   }
 
 }
