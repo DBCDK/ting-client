@@ -116,10 +116,10 @@ class ting_client_class {
       $url_variables = array(
         'agency' => array('url' => 'agency_search_url', 'class' => 'TingClientAgencyRequest'),
         'search' => array('url' => 'ting_search_url', 'class' => 'TingClientSearchRequest'),
-        'scan' => array('url' => 'ting_scan_url', 'class' => ''),
+        // 'scan' => array('url' => 'ting_scan_url', 'class' => ''),
         'object' => array('url' => 'ting_search_url', 'class' => 'TingClientObjectRequest'),
         'collection' => array('url' => 'ting_search_url', 'class' => 'TingCollectionRequest'),
-        'spell' => array('url' => 'ting_spell_url', 'class' => ''),
+        // 'spell' => array('url' => 'ting_spell_url', 'class' => ''),
       );
 
       $urls = array();

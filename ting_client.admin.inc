@@ -91,7 +91,7 @@ $cache_classes =  $client->get_all_cache_classes();
  * @see system_settings_form()
  */
 function ting_client_admin_webservices_settings($form_state) {
-  form_load_include($form_state, 'inc', 'ting_client', 'ting_client.admin');
+  form_load_include($form_state, 'inc', 'ting', 'ting_client.admin');
   $form = array();
 
   $form['webservices'] = array(
@@ -110,6 +110,7 @@ function ting_client_admin_webservices_settings($form_state) {
     '#default_value' => variable_get('ting_search_url', ''),
   );
 
+/*
   $form['webservices']['ting_scan_url'] = array(
     '#type' => 'textfield',
     '#title' => t('Scan service URL'),
@@ -125,7 +126,8 @@ function ting_client_admin_webservices_settings($form_state) {
     '#required' => TRUE,
     '#default_value' => variable_get('ting_spell_url', ''),
   );
-
+*/
+  
   $form['webservices']['ting_enable_logging'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable logging'),
