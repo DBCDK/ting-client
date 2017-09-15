@@ -75,7 +75,8 @@ class ting_client_class {
 
     if (isset($settings['custom_parse'])) {
       if (method_exists($request, $settings['custom_parse'])) {
-        return $request->$settings['custom_parse']($result);
+        $function = $settings['custom_parse'];
+        return $request->$function($result);
       }
     }
 
