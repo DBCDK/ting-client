@@ -251,6 +251,7 @@ class ting_client_class {
         // stop timer
         self::_invoke('timer', array('stop', 'search_client'));
 
+        /** @var TingClientRequest $request */
         if($request->checkResponse($res)) {
           if ($cache) {
             $expire = REQUEST_TIME + (60 * $request->cacheTimeout());
