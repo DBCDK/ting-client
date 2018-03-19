@@ -24,10 +24,10 @@
 function hook_ting_client_webservice() {
   $ret = array();
   // REQUIRED
-  $ret['holdingstatus']['class'] = 'open_holdingstatus';
-  $ret['holdingstatus']['url'] = 'open_holdingstatus_url';
+  $ret['openHoldingStatus']['class'] = 'openHoldingStatus';
+  $ret['openHoldingStatus']['url'] = 'openHoldingStatus_url';
   // OPTIONAL
-  $ret['holdingstatus']['xsdNamespace'] = array(0 => 'http://oss.dbc.dk/ns/openagency');
-  $ret['holdingstatus']['custom_parse'] = 'parse_me';
+  $ret['openHoldingStatus']['xsdNamespace'] = array(0 => 'http://oss.dbc.dk/ns/openagency');
+  $ret['openHoldingStatus']['custom_parse'] = 'parse_me';
   return $ret;
 }
