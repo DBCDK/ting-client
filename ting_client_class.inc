@@ -59,7 +59,6 @@ class ting_client_class {
     if (isset($settings['xsdNamespace'])) {
       $request->setXsdNamespace($settings['xsdNamespace']);
     }
-
     $this->_set_params($request, $params);
 
     $result = $this->execute($request, $cache_me);

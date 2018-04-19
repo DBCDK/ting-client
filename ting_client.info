@@ -4,17 +4,22 @@ version = 7.x-2.44
 core = 7.x
 package = Ding!
 dependencies[] = nanosoap
+dependencies[] = microcurl
 
 ; classes
 files[] = lib/TingClient.php
 files[] = lib/adapter/TingClientRequestAdapter.php
 files[] = lib/exception/TingClientException.php
+;
 files[] = lib/exception/TingClientSoapException.php
+files[] = lib/exception/TingClientRestException.php
 files[] = lib/exception/TingClientHttpStatusException.php
+;
 files[] = lib/log/TingClientDrupalDebugLogger.php
 files[] = lib/log/TingClientDrupalWatchDogLogger.php
 files[] = lib/log/TingClientLogger.php
 files[] = lib/log/TingClientVoidLogger.php
+;
 files[] = lib/request/TingClientCollectionRequest.php
 files[] = lib/request/TingClientInfomediaArticleRequest.php
 files[] = lib/request/TingClientInfomediaRequest.php
@@ -26,6 +31,8 @@ files[] = lib/request/TingClientScanRequest.php
 files[] = lib/request/TingClientAgencyServiceRequest.php
 files[] = lib/request/TingClientSearchRequest.php
 files[] = lib/request/TingClientSpellRequest.php
+files[] = lib/request/TingClientOpenPlatformRequest.php
+;
 ;files[] = lib/result/agency/TingClientAgencyBranch.php
 ;files[] = lib/result/agency/TingClientAgencyAgency.php
 files[] = lib/result/infomedia/TingClientInfomediaResult.php
@@ -38,9 +45,15 @@ files[] = lib/result/scan/TingClientScanTerm.php
 files[] = lib/result/search/TingClientFacetResult.php
 files[] = lib/result/search/TingClientSearchResult.php
 files[] = lib/result/spell/TingClientSpellSuggestion.php
+;
+files[] = lib/interface/TingClientAgentInterface.php
+;
 files[] = lib/xsdparse/xsdparse.inc
-files[] = lib/soapClient/TingSoapClient.php
-
+;
+files[] = lib/clients/TingNanoSOAPClient.php
+files[] = lib/clients/TingSoapClient.php
+files[] = lib/clients/TingRestClient.php
+;
 ; tests (needs review - testing against live (dead) webservices)
 ;simple unit testing
 files[] = tests/ting_client_web.test

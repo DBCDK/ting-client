@@ -15,15 +15,17 @@ class TingClientDrupalWatchDogLogger extends TingClientLogger {
     }
     switch($message_type){
       case 'soap_request_complete':
-        $message = 'Completed SOAP request @action @wsdlUrl ( @time s). Request body: @requestBody';
+        $message = 'Completed @adapter request @action @wsdlUrl ( @time s). Request body: @requestBody';
+        if (!empty($variables['requestVariables'])) {
+          $message .= '. Request variables: @requestVariables';
+        }
         break;
       case 'soap_request_error':
-        $message = 'Error handling SOAP request @action @wsdlUrl: @error';
+        $message = 'Error handling @adapter request @action @wsdlUrl: @error';
         break;
       default :
         $vars['@type'] = $message_type;
         $message = '@type request @action @wsdlUrl ( @time s). Request body: @requestBody';
-
     }
 
     watchdog('ting client',$message, $variables,
