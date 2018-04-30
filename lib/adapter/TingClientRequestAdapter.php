@@ -103,12 +103,20 @@ class TingClientRequestAdapter {
       $this->logger->log('soap_request_complete', $log);
 
       // check if http_code is a valid url
+      $curl_info = array();
       if (method_exists($this->client, 'getCurlInfo')) {
         $curl_info = $this->client->getCurlInfo();
       }
 
       if ($curl_info['http_code'] != 200) {
-        throw new TingClientHttpStatusException('Curl returns wrong http code ('.$curl_info['http_code'].')',  $curl_info['http_code'] );
+        $response = json_decode($response);
+        // Open Platform has more detailed error description.
+        $error = $error_description = NULL;
+        if (!empty($response->errorMessage) && $errorMessage = json_decode($response->errorMessage)) {
+          $error = (!empty($errorMessage->error)) ? '. '. $errorMessage->error : NULL;
+          $error_description = (!empty($errorMessage->error_description)) ? '. ' . $errorMessage->error_description : NULL;
+        }
+        throw new TingClientHttpStatusException('Curl returns wrong http code ('.$curl_info['http_code'].')' . $error . $error_description,  $curl_info['http_code'] );
       }
 
       // If using JSON and DKABM, we help parse it.
@@ -125,9 +133,7 @@ class TingClientRequestAdapter {
         'wsdlUrl' => $request->getWsdlUrl(),
         'error' => $e->getMessage(),
       );
-
       $this->logger->log('soap_request_error', $log);
-      //$this->logger->log('Error handling SOAP request ' . $soapAction . ' ' . $request->getWsdlUrl() . ': ' . $e->getMessage());
       throw $e;
     }
   }

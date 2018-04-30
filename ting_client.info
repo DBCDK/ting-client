@@ -31,7 +31,6 @@ files[] = lib/request/TingClientScanRequest.php
 files[] = lib/request/TingClientAgencyServiceRequest.php
 files[] = lib/request/TingClientSearchRequest.php
 files[] = lib/request/TingClientSpellRequest.php
-files[] = lib/request/TingClientOpenPlatformRequest.php
 ;
 ;files[] = lib/result/agency/TingClientAgencyBranch.php
 ;files[] = lib/result/agency/TingClientAgencyAgency.php

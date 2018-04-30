@@ -48,18 +48,13 @@ class TingRestClient extends MicroCURL implements TingClientAgentInterface {
    * Http method.
    * @var string
    */
-  private $method = 'GET';
+  private $httpMethod = 'GET';
 
   public function __construct($request) {
     parent::__construct();
     $this->request = $request;
     $this->curlOptions = $request->curlOptions;
-    $this->method = (!empty($this->curlOptions[CURLOPT_POST]) && $this->curlOptions) ? 'POST' : 'GET';
-dpm($request);
-    // headers are set in request(!?)
-    // $headers = $this->get_option(CURLOPT_HTTPHEADER);
-    // $headers[] = "Accept: application/json";
-    // $this->set_option(CURLOPT_HTTPHEADER, $headers);
+    $this->httpMethod = (!empty($this->curlOptions[CURLOPT_POST]) && $this->curlOptions) ? 'POST' : 'GET';
   }
 
   public function call($action, $params) {
@@ -74,10 +69,9 @@ dpm($request);
       }
     }
 
-    if ($this->method == 'POST') {
+    if ($this->httpMethod == 'POST') {
       $url = $this->request->getWsdlUrl();
       $this->requestBodyString = $this->getRequestBodyString();
-      dpm($this->requestBodyString);
     }
     else {
       $this->requestVariables = http_build_query($params);
