@@ -13,6 +13,7 @@ class ting_client_class {
   private static $enable_logging = FALSE;
   private static $module;
   private static $searchKey;
+  private $error = NULL;
 
   public function __construct() {
     // client_class tries to get some settings from the module using it.
@@ -284,6 +285,16 @@ class ting_client_class {
     $watchdog['status'] = $status;
     $watchdog['link'] = $_SERVER["HTTP_HOST"] . $_SERVER['REQUEST_URI'];
     self::_invoke('set_message', array($message, 'error', NULL, $watchdog));
+    $this->setError($e);
+  }
+
+  private function setError($e) {
+    $this->error['message'] = $e->getMessage();
+    $this->error['code'] = $e->getCode();
+  }
+
+  public function getError() {
+    return $this->error;
   }
 
   private static function _invoke($function, $params) {
