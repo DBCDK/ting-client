@@ -59,9 +59,7 @@ class tingSoapClientWebTest extends DrupalWebTestCase {
   }
 
   public function setUp() {
-    parent::setUp();
-    module_load_include('php', 'ting_client', '/lib/soapClient/TingSoapClient');
-
+    parent::setUp(array('ting_client'));
     menu_rebuild();
   }
 
