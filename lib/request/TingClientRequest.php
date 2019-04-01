@@ -48,6 +48,10 @@ abstract class TingClientRequest {
     return 'NANO';
   }
 
+  public function defaultOutputType(){
+    return TRUE;
+  }
+
   public function checkResponse($response){
     return TRUE;
   }

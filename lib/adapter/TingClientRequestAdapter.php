@@ -1,4 +1,5 @@
 <?php
+
 //require_once('lib/soapClient/TingSoapClient.php');
 class TingClientRequestAdapter {
 
@@ -17,71 +18,79 @@ class TingClientRequestAdapter {
   }
 
   /* Prepare the parameters for the request.
-   * @param object $request
+   * @param TingClientRequest $request
    * @param string $client_type
    * @return array
    */
-  private function prepare_client_params($request, $client_type = NULL){
+  private function prepare_client_params($request, $client_type = NULL) {
+    /** @var TingClientRequest $request */
     $parameters = $request->getParameters();
     switch ($client_type) {
       case 'NANO':
-        // JSON is the default outputType.
-        if (!isset($parameters['outputType'])) {
-          $parameters['outputType'] = 'json';
+        if ($request->defaultOutputType()) {
+          // JSON is the default outputType.
+          if (!isset($parameters['outputType'])) {
+            $parameters['outputType'] = 'json';
+          }
         }
     }
     return $parameters;
   }
 
-  private function set_client_and_params($request) {
+  private
+  function set_client_and_params($request) {
+    /** @var TingClientRequest $request */
     $client_type = $request->getClientType();
     $parameters = $this->prepare_client_params($request, $client_type);
     switch ($client_type) {
       case 'SOAPCLIENT':
         try {
           $this->client = new TingSoapClient($request);
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
           throw new TingClientSoapException($e->getMessage());
         }
         break;
       case 'NANO':
         // set options for NanoSoap @see contrib/Nanosoap
         $options = array();
-        if ($request->getXsdNameSpace()){
+        if ($request->getXsdNameSpace()) {
           $options['namespaces'] = $request->getXsdNameSpace();
         }
         $this->client = new TingNanoSOAPClient($request->getWsdlUrl(), $options);
         break;
       case 'REST':
-        try{
+        try {
           $this->client = new TingRestClient($request);
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
           throw new TingClientRestException($e->getMessage());
         }
         break;
       default:
         $class_name = get_class($request);
-        throw new TingClientSoapException('No or wrong client type given for '.$class_name);
+        throw new TingClientSoapException('No or wrong client type given for ' . $class_name);
         break;
     }
     return $parameters;
   }
 
-  public function execute(TingClientRequest $request) {
+  /**
+   * @param TingClientRequest $request
+   * @return mixed
+   * @throws Exception
+   */
+  public
+  function execute(TingClientRequest $request) {
     try {
-      try{
+      try {
         $soapParameters = $this->set_client_and_params($request);
         if (isset($soapParameters['action'])) {
           $soapAction = $soapParameters['action'];
           unset($soapParameters['action']);
         }
-        else{
+        else {
           $soapAction = $request->getAction();
         }
-      }
-      catch (TingClientSoapException $e) {
+      } catch (TingClientSoapException $e) {
         $soapAction = $request->getAction();
         throw new TingClientException($e->getMessage());
       }
@@ -113,10 +122,10 @@ class TingClientRequestAdapter {
         // Open Platform has more detailed error description.
         $error = $error_description = NULL;
         if (!empty($response->errorMessage) && $errorMessage = json_decode($response->errorMessage)) {
-          $error = (!empty($errorMessage->error)) ? '. '. $errorMessage->error : NULL;
+          $error = (!empty($errorMessage->error)) ? '. ' . $errorMessage->error : NULL;
           $error_description = (!empty($errorMessage->error_description)) ? '. ' . $errorMessage->error_description : NULL;
         }
-        throw new TingClientHttpStatusException('Curl returns wrong http code ('.$curl_info['http_code'].')' . $error . $error_description,  $curl_info['http_code'] );
+        throw new TingClientHttpStatusException('Curl returns wrong http code (' . $curl_info['http_code'] . ')' . $error . $error_description, $curl_info['http_code']);
       }
 
       // If using JSON and DKABM, we help parse it.

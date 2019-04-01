@@ -207,7 +207,8 @@ function ting_client_webservice_check($check_data) {
 
         // Bail if the HTTP request failed
         if (!empty($result->error)) {
-          throw new Exception("ting-client: HTTP request failed for $xsd_url. Error: $result->error");
+          watchdog('ting client', 'ting-client: HTTP request failed for ' . $xsd_url .'Error: @error', array('@error' => $result->error ), WATCHDOG_ERROR);
+          return;
         }
 
         // Get the folder for the final location of this preset...

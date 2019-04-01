@@ -109,7 +109,7 @@ class ting_client_class {
    * initialize requestfactory
    * return TingClientRequestFactory (@see ting-client/lib/request/TingClientRequestFactory.php
    * */
-  private function request_factory() {
+  private static function request_factory() {
 
     //   self::$request_factory=NULL;
 
