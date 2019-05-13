@@ -132,6 +132,9 @@ class TingClientRequestAdapter {
       if (isset($soapParameters['outputType']) && $soapParameters['outputType'] == 'json') {
         return $request->parseResponse($response);
       }
+      else if (!$request->defaultOutputType()){
+        return $request->parseResponse($response);
+      }
       else {
         return $response;
       }
