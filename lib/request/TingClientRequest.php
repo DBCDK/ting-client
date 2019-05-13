@@ -60,7 +60,7 @@ abstract class TingClientRequest {
 
   /**
    * Used to check if response should be cached or not - default to TRUE
-   * for usage see 
+   * for usage see @ting_client_class::execute
    * @param $response
    * @return bool
    */
