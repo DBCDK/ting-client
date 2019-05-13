@@ -48,10 +48,22 @@ abstract class TingClientRequest {
     return 'NANO';
   }
 
+  /**
+   * Set default outputType or NOT (@see TingClientRequestAdapter.php for usage)
+   * if set to FALSE extending class SHOULD implement (override) parseResponse method
+   * and handle parsing of response on its own - defaults to TRUE
+   * @return bool
+   */
   public function defaultOutputType(){
     return TRUE;
   }
 
+  /**
+   * Used to check if response should be cached or not - default to TRUE
+   * for usage see 
+   * @param $response
+   * @return bool
+   */
   public function checkResponse($response){
     return TRUE;
   }
