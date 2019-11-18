@@ -62,6 +62,15 @@ class ting_client_class {
     }
     $this->_set_params($request, $params);
 
+    // Return cache information from ting_mockup. We need to save cachekey in
+    // a variable for the mockup (cache key changes in execute method)
+    $mockup_cache_key = $request->cacheKey();
+    $mockup_cache_result = module_invoke_all('ting_client_mockup_cache_get', $mockup_cache_key);
+
+    if (!empty($mockup_cache_result) && $mockup_cache_result['status'] === TRUE) {
+      return $mockup_cache_result['record'];
+    }
+
     $result = $this->execute($request, $cache_me);
     // add cachekey to result
     if (is_object($result)) {
@@ -76,10 +85,12 @@ class ting_client_class {
     if (isset($settings['custom_parse'])) {
       if (method_exists($request, $settings['custom_parse'])) {
         $function = $settings['custom_parse'];
-        return $request->$function($result);
+        $result = $request->$function($result);
       }
     }
 
+    // Cache result in ting_mockup.
+    module_invoke_all('ting_client_mockup_cache_set', $mockup_cache_key, $result);
     return $result;
   }
 
