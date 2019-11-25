@@ -62,14 +62,7 @@ class ting_client_class {
     }
     $this->_set_params($request, $params);
 
-    // Return cache information from ting_mockup. We need to save cachekey in
-    // a variable for the mockup (cache key changes in execute method)
-    $mockup_cache_key = $request->cacheKey();
-    $mockup_cache_result = module_invoke_all('ting_client_mockup_cache_get', $mockup_cache_key);
 
-    if (!empty($mockup_cache_result) && $mockup_cache_result['status'] === TRUE) {
-      return $mockup_cache_result['record'];
-    }
 
     $result = $this->execute($request, $cache_me);
     // add cachekey to result
@@ -90,7 +83,7 @@ class ting_client_class {
     }
 
     // Cache result in ting_mockup.
-    module_invoke_all('ting_client_mockup_cache_set', $mockup_cache_key, $result);
+    module_invoke_all('ting_client_mockup_cache_set', $request->cacheKey(), $result);
     return $result;
   }
 
@@ -190,6 +183,14 @@ class ting_client_class {
         $cached_result = call_user_func_array($cache_function, array($request->cacheKey(), $request->cacheBin()));
       }
     }
+
+    // Return cache information from ting_mockup.
+    // @see bibdk_mockup module
+    $mockup_cache_result = module_invoke_all('ting_client_mockup_cache_get', $request->cacheKey());
+    if (!empty($mockup_cache_result) && $mockup_cache_result['status'] === TRUE) {
+      return $mockup_cache_result['record'];
+    }
+
     if (!empty($cached_result)) {
       $res = $cached_result->data;
       return $res;
