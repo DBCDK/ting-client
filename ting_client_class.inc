@@ -75,15 +75,16 @@ class ting_client_class {
       }
     }
 
+    // Cache result in ting_mockup.
+    module_invoke_all('ting_client_mockup_cache_set', $request->cacheKey(), $result);
+
     if (isset($settings['custom_parse'])) {
       if (method_exists($request, $settings['custom_parse'])) {
         $function = $settings['custom_parse'];
-        $result = $request->$function($result);
+        return $request->$function($result);
       }
     }
 
-    // Cache result in ting_mockup.
-    module_invoke_all('ting_client_mockup_cache_set', $request->cacheKey(), $result);
     return $result;
   }
 
