@@ -274,7 +274,7 @@ class ting_client_class {
           }
         }
         else{
-          watchdog('ting client', '%class returned FALSE in checkResponse NO caching done', array('%class' => get_class($request)), WATCHDOG_ERROR);
+          watchdog('ting client', '%class returned FALSE in checkResponse NO caching done', array('%class' => get_class($request)), WATCHDOG_NOTICE);
         }
         return $res;
       } catch (Exception $e) {
