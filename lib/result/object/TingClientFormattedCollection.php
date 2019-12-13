@@ -30,6 +30,10 @@ class TingClientFormattedCollection {
       $this->workDisplay = $formattedCollection->workDisplay;
       $this->setWorkOne($formattedCollection->workDisplay);
     }
+    else if (isset($formattedCollection->bibdkWorkDisplay)){
+      $this->workDisplay = $formattedCollection->bibdkWorkDisplay;
+      $this->setWorkOne($formattedCollection->bibdkWorkDisplay);
+    }
     if (isset($formattedCollection->briefDisplay)) {
       $this->briefDisplay = $formattedCollection->briefDisplay;
     }
