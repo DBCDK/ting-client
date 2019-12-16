@@ -15,10 +15,10 @@ class TingClientFormattedCollection {
    */
   protected $workDisplay;
 
-  /* @var stdClass $workOne*/
+  /* @var stdClass $workOne */
   protected $workOne;
 
-  /* @var Array */
+  /* @var array */
   protected $objectCollection;
 
   /**
@@ -30,9 +30,11 @@ class TingClientFormattedCollection {
       $this->workDisplay = $formattedCollection->workDisplay;
       $this->setWorkOne($formattedCollection->workDisplay);
     }
-      else if (isset($formattedCollection->bibdkWorkDisplay)){
-      $this->workDisplay = $formattedCollection->bibdkWorkDisplay;
-      $this->setWorkOne($formattedCollection->bibdkWorkDisplay);
+    else {
+      if (isset($formattedCollection->bibdkWorkDisplay)) {
+        $this->workDisplay = $formattedCollection->bibdkWorkDisplay;
+        $this->setWorkOne($formattedCollection->bibdkWorkDisplay);
+      }
     }
     if (isset($formattedCollection->briefDisplay)) {
       $this->briefDisplay = $formattedCollection->briefDisplay;
@@ -63,12 +65,12 @@ class TingClientFormattedCollection {
 
     $manifestations = $workDisplay->manifestation;
 
-    if(!is_array($manifestations)){
+    if (!is_array($manifestations)) {
       $manifestations = array($manifestations);
     }
 
     foreach ($manifestations as $manifestation) {
-      if(is_object($manifestation)){
+      if (is_object($manifestation)) {
         $this->workOne = $this->addRelationsToElement($manifestation, $this->objectCollection);
         break;
       }
@@ -79,11 +81,11 @@ class TingClientFormattedCollection {
   /**
    * Add relation data to the work one manifestation
    *
-   *@param $element
+   * @param $element
    * @param $collection
    */
-  protected function addRelationsToElement($element, $collection){
-    if (empty($collection)){
+  protected function addRelationsToElement($element, $collection) {
+    if (empty($collection)) {
       return $element;
     }
 
