@@ -39,11 +39,11 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
   var $userDefinedRanking;
   protected $objectFormat;
   protected $outputType;
-  
+
 
   /** \brief this method is called from adapter to set parameters for a webservice call (see lib/adapter/TingClientRequestAdapter.php)
    *
-   * @return \TingClientSearchRequest 
+   * @return \TingClientSearchRequest
    */
   public function getRequest() {
     // These defaults are always needed.
@@ -83,7 +83,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     if (is_array($this->userDefinedRanking) && !empty($this->userDefinedRanking)) {
       $this->setParameter('userDefinedRanking', $this->userDefinedRanking);
     }
-    
+
     // numResults is not a valid parameter for search service
     $this->unsetParameter('numResults');
 
@@ -108,6 +108,7 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
       'objectFormat' => 'objectFormat',
       'trackingId' => 'trackingId',
       'outputType'=>'outputType',
+      'includeHoldingsCount' => 'includeHoldingsCount',
     );
 
     return $methodParameterMap;
@@ -139,11 +140,11 @@ class TingClientSearchRequest extends TingClientRequest implements ITingClientRe
     $class_name = get_class($this);
     return variable_get($class_name . TingClientRequest::cache_lifetime, '1');
   }
-  
+
   public function setOutputType($value){
     $this->outputType = $value;
   }
-  
+
   public function getOutputType(){
     return $this->outputType;
   }
