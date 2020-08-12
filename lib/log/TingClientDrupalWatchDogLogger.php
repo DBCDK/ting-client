@@ -7,12 +7,12 @@
  */
 class TingClientDrupalWatchDogLogger extends TingClientLogger {
   public function doLog($message_type, $variables, $severity) {
-
-    $variables['time'] = $this->log_time;
-    $vars = array();
-    foreach ($variables as $key => $value){
-      $vars['@'.$key] = $value;
+    $log_type = 'ting client';
+    // we want a seperate log type for slow requests
+    if($this->log_time > 2.0){
+      $log_type = 'SLA alert';
     }
+    $variables['time'] = $this->log_time;
     switch($message_type){
       case 'soap_request_complete':
         $message = 'Completed @adapter request @action @wsdlUrl ( @time s). Request body: @requestBody';
@@ -24,11 +24,10 @@ class TingClientDrupalWatchDogLogger extends TingClientLogger {
         $message = 'Error handling @adapter request @action @wsdlUrl: @error';
         break;
       default :
-        $vars['@type'] = $message_type;
         $message = '@type request @action @wsdlUrl ( @time s). Request body: @requestBody';
     }
 
-    watchdog('ting client',$message, $variables,
+    watchdog($log_type,$message, $variables,
              constant('WATCHDOG_' . $severity),
              'http://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
   }
