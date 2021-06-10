@@ -8,6 +8,8 @@ class TingClientObject {
   /**
    * We do not want specific items in the review box on bibliotek.dk.
    * Therefore we need to be able to remove them. Such as 150005-anmeld reviews.
+   * The unwanted reviews are there because OpenSearch is called without a profile.
+   * Therefore the "default" profile is used.
    *
    * @param array $needle
    * $needle must be an assoc array. ['field_name' => 'field_value'].
